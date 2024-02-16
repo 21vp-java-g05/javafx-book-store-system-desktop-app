@@ -11,6 +11,9 @@ module main.frontend {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens main.frontend to javafx.fxml;
+    // Export the main.frontend package
     exports main.frontend;
+
+    // Open the main.frontend.controller package to javafx.fxml
+    opens main.frontend.controller to javafx.fxml;
 }
