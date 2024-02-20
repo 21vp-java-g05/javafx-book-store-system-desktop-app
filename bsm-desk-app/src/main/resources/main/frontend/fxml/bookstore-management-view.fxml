@@ -21,7 +21,7 @@
     <TabPane prefHeight="600.0" prefWidth="660.0" tabClosingPolicy="UNAVAILABLE">
         <Tab closable="false" text="Books">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="660.0">
-                <TableView layoutX="15.0" layoutY="50.0" prefHeight="400.0" prefWidth="630.0">
+                <TableView layoutX="15.0" layoutY="50.0" prefHeight="425.0" prefWidth="630.0">
                     <columns>
                         <TableColumn editable="false" prefWidth="75.0" resizable="false" text="Book ID" />
                         <TableColumn editable="false" minWidth="15.0" text="Book Name" />
@@ -33,32 +33,36 @@
                         <TableColumn editable="false" prefWidth="90.39999999999998" text="Actions" />
                     </columns>
                 </TableView>
-                <Pagination layoutX="14.0" layoutY="530.0" prefHeight="63.0" prefWidth="631.0" AnchorPane.bottomAnchor="0.0" />
+                <Pagination layoutX="14.0" layoutY="480.0" prefHeight="63.0" prefWidth="631.0" AnchorPane.bottomAnchor="14.399999999999977" />
                 <Button layoutX="607.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="Add" />
                 <TextField layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="518.0" />
                 <Button layoutX="528.0" layoutY="15.0" minWidth="10.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="75.0" text="Search" />
             </AnchorPane>
         </Tab>
-        <Tab closable="false" text="New Books">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                <TableView layoutX="15.0" layoutY="50.0" prefHeight="475.0" prefWidth="630.0">
-                    <columns>
+      <Tab closable="false" text="New Books">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="660.0">
+               <children>
+                  <TableView layoutX="15.0" layoutY="50.0" prefHeight="425.0" prefWidth="630.0">
+                     <columns>
                         <TableColumn editable="false" prefWidth="75.0" resizable="false" text="Book ID" />
                         <TableColumn editable="false" minWidth="15.0" text="Book Name" />
                         <TableColumn editable="false" minWidth="0.0" text="Book Cat." />
                         <TableColumn editable="false" prefWidth="75.0" text="Authors" />
                         <TableColumn editable="false" prefWidth="75.0" text="Publishers" />
-                        <TableColumn editable="false" prefWidth="90.0" text="Pub. Date" />
                         <TableColumn editable="false" prefWidth="75.0" text="Quantity" />
                         <TableColumn editable="false" prefWidth="78.39999999999998" text="Price" />
-                    </columns>
-                </TableView>
-                <Pagination layoutX="14.0" layoutY="530.0" prefHeight="70.0" prefWidth="631.0" AnchorPane.bottomAnchor="0.0" />
-                <Button layoutX="621.0" layoutY="15.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
-                <TextField layoutX="14.0" layoutY="15.0" prefHeight="24.0" prefWidth="579.0" />
-                <Button layoutX="590.0" layoutY="15.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                        <TableColumn editable="false" prefWidth="90.39999999999998" text="Actions" />
+                     </columns>
+                  </TableView>
+                  <Pagination layoutX="14.0" layoutY="480.0" prefHeight="63.0" prefWidth="631.0" AnchorPane.bottomAnchor="14.399999999999977" />
+                  <Button layoutX="607.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="Add" />
+                  <TextField layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="518.0" />
+                  <Button layoutX="528.0" layoutY="15.0" minWidth="10.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="75.0" text="Search" />
+               </children>
             </AnchorPane>
-        </Tab>
+         </content>
+      </Tab>
         <Tab text="Account">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
