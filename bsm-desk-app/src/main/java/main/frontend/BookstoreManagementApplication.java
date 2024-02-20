@@ -42,13 +42,13 @@ public class BookstoreManagementApplication extends Application {
         stage.setY(y);
     }
 
-    public void showMainView(Stage stage) throws IOException {
+    public void showEmployeeView(Stage stage) throws IOException {
         // Load the main view after successful login
         FXMLLoader mainLoader = new FXMLLoader(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/bookstore-management-view.fxml"));
         Scene mainScene = new Scene(mainLoader.load());
 
         stage.getIcons().add(new Image("https://upload.wikimedia.org/wikipedia/commons/3/3a/Book-icon-bible.png"));
-        stage.setTitle("Bookstore Management");
+        stage.setTitle("Bookstore Management - Employee");
         stage.setScene(mainScene);
         centerStage(stage);
         stage.show();

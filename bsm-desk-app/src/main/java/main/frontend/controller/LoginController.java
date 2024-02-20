@@ -34,7 +34,7 @@ public class LoginController {
             try {
                 // Close the login stage if necessary
                 Stage stage = (Stage) usernameField.getScene().getWindow();
-                mainApplication.showMainView(stage);
+                mainApplication.showEmployeeView(stage);
             } catch (IOException e) {
                 e.printStackTrace(); // Handle the exception appropriately
             }

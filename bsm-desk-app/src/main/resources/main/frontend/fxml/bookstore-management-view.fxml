@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="700.0" prefWidth="700.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.frontend.controller.BookstoreManagementController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, " />
+    <TabPane prefHeight="600.0" prefWidth="660.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab closable="false" text="Books">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="660.0">
+                <TableView layoutX="15.0" layoutY="50.0" prefHeight="400.0" prefWidth="630.0">
+                    <columns>
+                        <TableColumn editable="false" prefWidth="75.0" resizable="false" text="Book ID" />
+                        <TableColumn editable="false" minWidth="15.0" text="Book Name" />
+                        <TableColumn editable="false" minWidth="0.0" text="Book Cat." />
+                        <TableColumn editable="false" prefWidth="75.0" text="Authors" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Publishers" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Quantity" />
+                        <TableColumn editable="false" prefWidth="78.39999999999998" text="Price" />
+                        <TableColumn editable="false" prefWidth="90.39999999999998" text="Actions" />
+                    </columns>
+                </TableView>
+                <Pagination layoutX="14.0" layoutY="530.0" prefHeight="63.0" prefWidth="631.0" AnchorPane.bottomAnchor="0.0" />
+                <Button layoutX="607.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="Add" />
+                <TextField layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="518.0" />
+                <Button layoutX="528.0" layoutY="15.0" minWidth="10.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="75.0" text="Search" />
+            </AnchorPane>
+        </Tab>
+        <Tab closable="false" text="New Books">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView layoutX="15.0" layoutY="50.0" prefHeight="475.0" prefWidth="630.0">
+                    <columns>
+                        <TableColumn editable="false" prefWidth="75.0" resizable="false" text="Book ID" />
+                        <TableColumn editable="false" minWidth="15.0" text="Book Name" />
+                        <TableColumn editable="false" minWidth="0.0" text="Book Cat." />
+                        <TableColumn editable="false" prefWidth="75.0" text="Authors" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Publishers" />
+                        <TableColumn editable="false" prefWidth="90.0" text="Pub. Date" />
+                        <TableColumn editable="false" prefWidth="75.0" text="Quantity" />
+                        <TableColumn editable="false" prefWidth="78.39999999999998" text="Price" />
+                    </columns>
+                </TableView>
+                <Pagination layoutX="14.0" layoutY="530.0" prefHeight="70.0" prefWidth="631.0" AnchorPane.bottomAnchor="0.0" />
+                <Button layoutX="621.0" layoutY="15.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+                <TextField layoutX="14.0" layoutY="15.0" prefHeight="24.0" prefWidth="579.0" />
+                <Button layoutX="590.0" layoutY="15.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" />
+            </AnchorPane>
+        </Tab>
+        <Tab text="Account">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </Tab>
+        <Tab closable="false" text="Book Categories ">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </Tab>
+        <Tab closable="false" text="Book Authors">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </Tab>
+        <Tab text="Book Publishers">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </Tab>
+        <Tab text="Import">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </Tab>
+        <Tab text="Order">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </Tab>
+    </TabPane>
+
+  <Label fx:id="welcomeText" />
+</VBox>
