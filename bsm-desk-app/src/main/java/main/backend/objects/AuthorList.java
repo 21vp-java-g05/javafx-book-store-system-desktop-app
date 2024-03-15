@@ -1,8 +1,4 @@
-/*
- * Họ và tên: Nguyễn Trần Châu Minh
- * MSSV		: 21126030
- * Lớp		: 21VP
-*/
+package main.backend.objects;
 
 import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
@@ -10,17 +6,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AuthorList {
-	//Declare an ArrayList of authors
 	private ArrayList<Author> authors;
 	
 	public AuthorList() {
 		authors = new ArrayList<>();
 	}
 	
-	/*
-	 * This function reads authors information  from a file and put in author list.
-	 * Returns true if the function successes, false otherwise 
-	 */
 	public boolean loadAuthorsFromFile(String filename) {
 		try (Scanner scanner = new Scanner(new FileInputStream(filename), StandardCharsets.UTF_8)) {
 			scanner.nextLine();
@@ -35,9 +26,6 @@ public class AuthorList {
 		return true;
 	}
 
-	/*
-	 * This function searches author in an author list by id and returns the author found.
-	 */
 	public Author getAuthorByID(String id) {
 		for (Author author : authors)
 			if (author.getId().equals(id))

@@ -1,8 +1,4 @@
-/*
- * Họ và tên: Nguyễn Trần Châu Minh
- * MSSV		: 21126030
- * Lớp		: 21VP
-*/
+package main.backend.objects;
 
 import java.io.FileInputStream;
 import java.io.PrintWriter;
@@ -11,17 +7,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookList {
-	//Declare a list of books
 	private ArrayList<Book> books;
 	
 	public BookList() {
 		books = new ArrayList<>();
 	}
 	
-	/*
-	 * This function reads books information  from a file and put in book list.
-	 * Returns true if the function successes, false otherwise 
-	 */
 	public boolean loadBooksFromFile(String filename, PublisherList pl, AuthorList al) {
 		try (Scanner scanner = new Scanner(new FileInputStream(filename), StandardCharsets.UTF_8)) {
 			scanner.nextLine();
@@ -36,25 +27,14 @@ public class BookList {
 		return true;
 	}
 	
-	/*
-	 * This function searches a publisher in a publisher list pl by id and returns the publisher found.
-	 */
 	public Publisher getPublisherById(PublisherList pl, String id) {
 		return pl.getPublisherByID(id);
 	}
 	
-	/*
-	 * This function searches an author in an author list al by id and returns the author found.
-	 */
 	public Author getAuthorById(AuthorList al, String id) {
 		return al.getAuthorByID(id);
 	}
 	
-	/*
-	 * This function writes book list in output file. 
-	 * The output file includes the following fields: No., ID, ISBN, Title, Publisher, Language, Number of pages, Author
-	 * These fields are separated by a tab '\t'
-	 */
 	public void writeBooksToFile(String filename) {
 		try (PrintWriter writer = new PrintWriter(filename)) {
 			writer.println("No.\tID\tISBN\tTitle\tPublisher\tLanguage\tNumber of pages\tAuthor");

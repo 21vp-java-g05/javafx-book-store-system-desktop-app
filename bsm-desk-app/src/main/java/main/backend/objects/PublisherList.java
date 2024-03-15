@@ -1,8 +1,4 @@
-/*
- * Họ và tên: Nguyễn Trần Châu Minh
- * MSSV		: 21126030
- * Lớp		: 21VP
-*/
+package main.backend.objects;
 
 import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
@@ -10,17 +6,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PublisherList {
-	//Declare a list of publishers
 	private ArrayList <Publisher> publishers;
 	
 	public PublisherList() {
 		publishers = new ArrayList<>();
 	}
 	
-	/*
-	 * This function reads publisher information  from a file and put in publisher list.
-	 * Returns true if the function successes, false otherwise 
-	 */
 	public boolean loadPublisherFromFile(String filename) {
 		try (Scanner scanner = new Scanner(new FileInputStream(filename), StandardCharsets.UTF_8)) {
 			scanner.nextLine();
@@ -35,9 +26,6 @@ public class PublisherList {
 		return true;
 	}
 	
-	/*
-	 * This function searches publisher in an publisher list by id and returns the publisher found.
-	 */
 	public Publisher getPublisherByID(String id) {
 		for (Publisher publisher : publishers)
 			if (publisher.getId().equals(id))
