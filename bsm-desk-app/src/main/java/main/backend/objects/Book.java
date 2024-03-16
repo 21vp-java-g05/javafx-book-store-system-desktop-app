@@ -7,35 +7,21 @@ public class Book {
 	private Author author;
 	private boolean enabled;
 	
-	public Book(String id, String isbn, String title, Publisher publisher, String language, int numberOfPages, Author author) {
-		this.id = id;
-		this.isbn = isbn;
-		this.title = title;
-		this.publisher = new Publisher(publisher);
-		this.language = language;
-		this.numberOfPages = numberOfPages;
-		this.author = new Author(author);
-		enabled = true;
-	}
 	public Book(String id, String isbn, String title, Publisher publisher, String language, int numberOfPages, Author author, boolean enabled) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
-		this.publisher = new Publisher(publisher);
+		this.publisher = publisher;
 		this.language = language;
 		this.numberOfPages = numberOfPages;
-		this.author = new Author(author);
+		this.author = author;
 		this.enabled = enabled;
 	}
-	public Book(Book book) {
-		id = book.id;
-		isbn = book.isbn;
-		title = book.title;
-		publisher = new Publisher(book.publisher);
-		language = book.language;
-		numberOfPages = book.numberOfPages;
-		author = new Author(book.author);
-		enabled = book.enabled;
+	public Book(String id, String isbn, String title, Publisher publisher, String language, int numberOfPages, Author author) {
+		this(id, isbn, title, publisher, language, numberOfPages, author, true);
+	}
+	public Book(Book other) {
+		this(other.id, other.isbn, other.title, other.publisher, other.language, other.numberOfPages, other.author, other.enabled);
 	}
 
 	public String getId() { return id; }
@@ -53,10 +39,10 @@ public class Book {
 	public void setId(String id) { this.id = id; }
 	public void setIsbn(String isbn) { this.isbn = isbn; }
 	public void setTitle(String title) { this.title = title; }
-	public void setPublisher(Publisher publisher) { this.publisher = new Publisher(publisher); }
+	public void setPublisher(Publisher publisher) { this.publisher = publisher; }
 	public void setLanguage(String language) { this.language = language; }
 	public void setNumberOfPages(int numberOfPages) { this.numberOfPages = numberOfPages; }
-	public void setAuthor(Author author) { this.author = new Author(author); }
+	public void setAuthor(Author author) { this.author = author; }
 	public void setEnable(boolean enabled) { this.enabled = enabled; }
 
 	@Override
@@ -68,7 +54,8 @@ public class Book {
 		String langStr = "\tLanguage: " + language + "\n";
 		String numString = "\tNumber of pages: " + numberOfPages + "\n";
 		String authorStr = "\tAuthor: " + author.getAuthorName() + "\n";
+		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
-		return idStr + isbnStr + titleStr + publisherStr + langStr + numString + authorStr;
+		return idStr + isbnStr + titleStr + publisherStr + langStr + numString + authorStr + stsStr;
 	}
 }

@@ -1,4 +1,4 @@
-package main.backend.objects;
+package main.backend.list;
 
 import java.io.FileInputStream;
 import java.io.PrintWriter;
@@ -6,12 +6,24 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import main.backend.objects.Author;
+import main.backend.objects.Book;
+import main.backend.objects.Publisher;
+
 public class BookList {
 	private ArrayList<Book> books;
 	
 	public BookList() {
 		books = new ArrayList<>();
 	}
+	public BookList(BookList other) {
+		books = new ArrayList<>(other.books);
+	}
+
+	public void addBook(Book book) {
+		books.add(book);
+	}
+	
 	
 	public boolean loadBooksFromFile(String filename, PublisherList pl, AuthorList al) {
 		try (Scanner scanner = new Scanner(new FileInputStream(filename), StandardCharsets.UTF_8)) {

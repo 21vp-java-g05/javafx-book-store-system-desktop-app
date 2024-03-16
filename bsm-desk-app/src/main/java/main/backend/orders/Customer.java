@@ -4,14 +4,6 @@ public class Customer {
 	private String id, mail, fullname, phone;
 	private boolean male, enabled;
 
-	public Customer(String id, String mail, String fullname, String phone, boolean male) {
-		this.id = id;
-		this.mail = mail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.male = male;
-		enabled = true;
-	}
 	public Customer(String id, String mail, String fullname, String phone, boolean male, boolean enabled) {
 		this.id = id;
 		this.mail = mail;
@@ -20,13 +12,11 @@ public class Customer {
 		this.male = male;
 		this.enabled = enabled;
 	}
-	public Customer(Customer customer) {
-		id = customer.id;
-		mail = customer.mail;
-		fullname = customer.fullname;
-		phone = customer.phone;
-		male = customer.male;
-		enabled = customer.enabled;
+	public Customer(String id, String mail, String fullname, String phone, boolean male) {
+		this(id, mail, fullname, phone, male, true);
+	}
+	public Customer(Customer other) {
+		this(other.id, other.mail, other.fullname, other.phone, other.male, other.enabled);
 	}
 
 	public String getId() { return id; }
@@ -49,7 +39,8 @@ public class Customer {
 		String fullnameStr = "\tFull name: " + fullname + "\n";
 		String phoneStr = "\tPhone: " + phone + "\n";
 		String gender = "\tGender: " + (male ? "male" : "female") + "\n";
+		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
-		return idStr + mailStr + fullnameStr + phoneStr + gender;
+		return idStr + mailStr + fullnameStr + phoneStr + gender + stsStr;
 	}
 }
