@@ -4,23 +4,17 @@ public class Publisher {
 	private String id, name, description;
 	private boolean enabled;
 	
-	public Publisher(String id, String name, String description) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.enabled = true;
-	}
 	public Publisher(String id, String name, String description, boolean enabled) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.enabled = enabled;
 	}
-	public Publisher(Publisher publisher) {
-		id = publisher.id;
-		name = publisher.name;
-		description = publisher.description;
-		enabled = publisher.enabled;
+	public Publisher(String id, String name, String description) {
+		this(id, name, description, true);
+	}
+	public Publisher(Publisher other) {
+		this(other.id, other.name, other.description, other.enabled);
 	}
 
 	public String getId() { return id; }
@@ -38,7 +32,8 @@ public class Publisher {
 		String idStr = "\tID: " + id + "\n";
 		String nameStr = "\tPublisher name: " + name + "\n";
 		String disStr = "\tPublisher description: " + description + "\n";
+		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
-		return idStr + nameStr + disStr;
+		return idStr + nameStr + disStr + stsStr;
 	}
 }

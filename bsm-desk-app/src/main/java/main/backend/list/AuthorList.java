@@ -1,15 +1,24 @@
-package main.backend.objects;
+package main.backend.list;
 
 import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import main.backend.objects.Author;
+
 public class AuthorList {
 	private ArrayList<Author> authors;
 	
 	public AuthorList() {
 		authors = new ArrayList<>();
+	}
+	public AuthorList(AuthorList other) {
+		authors = new ArrayList<>(other.authors);
+	}
+
+	public void addAuthor(Author author) {
+		authors.add(author);
 	}
 	
 	public boolean loadAuthorsFromFile(String filename) {
@@ -42,5 +51,4 @@ public class AuthorList {
 		
 		return str;
 	}
-	
 }

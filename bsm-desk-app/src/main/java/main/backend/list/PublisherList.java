@@ -1,15 +1,24 @@
-package main.backend.objects;
+package main.backend.list;
 
 import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import main.backend.objects.Publisher;
+
 public class PublisherList {
-	private ArrayList <Publisher> publishers;
+	private ArrayList<Publisher> publishers;
 	
 	public PublisherList() {
 		publishers = new ArrayList<>();
+	}
+	public PublisherList(PublisherList other) {
+		publishers = new ArrayList<>(other.publishers);
+	}
+
+	public void addPublisher(Publisher publisher) {
+		publishers.add(publisher);
 	}
 	
 	public boolean loadPublisherFromFile(String filename) {

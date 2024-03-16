@@ -4,13 +4,6 @@ public class Account {
 	private String id, username, password, mail;
 	private boolean enabled;
 
-	public Account(String id, String username, String password, String mail) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.mail = mail;
-		enabled = true;
-	}
 	public Account(String id, String username, String password, String mail, boolean enabled) {
 		this.id = id;
 		this.username = username;
@@ -18,12 +11,11 @@ public class Account {
 		this.mail = mail;
 		this.enabled = enabled;
 	}
-	public Account(Account account) {
-		id = account.id;
-		username = account.username;
-		password = account.password;
-		mail = account.mail;
-		enabled = account.enabled;
+	public Account(String id, String username, String password, String mail) {
+		this(id, username, password, mail, true);
+	}
+	public Account(Account other) {
+		this(other.id, other.username, other.password, other.mail, other.enabled);
 	}
 
 	public String getId() { return id; }
@@ -44,7 +36,8 @@ public class Account {
 		String nameStr = "\tUser name: " + username + "\n";
 		String disStr = "\tPassword: " + password + "\n";
 		String mailStr = "\tMail: " + mail + "\n";
+		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
-		return idStr + nameStr + disStr + mailStr;
+		return idStr + nameStr + disStr + mailStr + stsStr;
 	}
 }

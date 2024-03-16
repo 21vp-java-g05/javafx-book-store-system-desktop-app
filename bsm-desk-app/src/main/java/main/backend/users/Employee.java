@@ -7,7 +7,13 @@ public class Employee extends Account {
 	public Employee(String id, String username, String password, String mail, boolean enabled) {
 		super(id, username, password, mail, enabled);
 	}
-	public Employee(Account account) {
-		super(account);
+	public Employee(Employee other) {
+		super(other);
+	}
+
+	@Override
+	public String toString() {
+		String str = "Employee:" + "\n";
+		return str + super.toString();
 	}
 }
