@@ -5,8 +5,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="fontawesomefx-8.2" level="project" />
-    <orderEntry type="library" name="fontawesomefx-fontawesome-4.7.0-9.1.2" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.21" level="project" />
     <orderEntry type="library" name="javafx.web" level="project" />
   </component>
