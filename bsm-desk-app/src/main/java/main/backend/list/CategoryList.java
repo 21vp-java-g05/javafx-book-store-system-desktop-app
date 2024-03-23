@@ -7,21 +7,14 @@ import main.backend.objects.Category;
 public class CategoryList {
 	private ArrayList<Category> categories;
 	
-	public CategoryList() {
-		categories = new ArrayList<Category>();
-	}
-	public CategoryList(CategoryList other) {
-		categories = new ArrayList<>(other.categories);
-	}
+	public CategoryList() { categories = new ArrayList<Category>(); }
+	public CategoryList(CategoryList other) { categories = new ArrayList<>(other.categories); }
 
-	public void addCategory(Category category) {
-		categories.add(category);
-	}
+	public void addCategory(Category category) { categories.add(category); }
 	
-	public Category getCategoryByID(String id) {
+	public Category getCategoryByID(int id) {
 		for (Category category : categories)
-			if (category.getId().equals(id))
-				return category;
+			if (category.getId() == id) return category;
 		return null;
 	}
 

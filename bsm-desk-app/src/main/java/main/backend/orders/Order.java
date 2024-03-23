@@ -7,7 +7,7 @@ import main.backend.list.BookList;
 import main.backend.users.Employee;
 
 public class Order {
-	private String id;
+	private int id;
 	private Date OrderTime;
 	private Employee employee;
 	private float SalesPrice;
@@ -16,7 +16,7 @@ public class Order {
 	private ArrayList<Float> ImportPrice;
 	private Customer customer;
 
-	public Order(String id, Date OrderTime, Employee employee, float SalesPrice, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice, Customer customer) {
+	public Order(int id, Date OrderTime, Employee employee, float SalesPrice, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice, Customer customer) {
 		this.id = id;
 		this.OrderTime = OrderTime;
 		this.employee = employee;
@@ -30,7 +30,7 @@ public class Order {
 		this(other.id, other.OrderTime, other.employee, other.SalesPrice, other.books, other.quantity, other.ImportPrice, other.customer);
 	}
 
-	public String getId() { return id; }
+	public int getId() { return id; }
 	public Date getOrderTime() { return OrderTime; }
 	public Employee getEmployee() { return employee; }
 	public float getSalesPrice() { return SalesPrice; }
@@ -38,4 +38,15 @@ public class Order {
 	public ArrayList<Integer> getQuantity() { return quantity; }
 	public ArrayList<Float> getImportPrice() { return ImportPrice; }
 	public Customer getCustomer() { return customer; }
+
+	public void changeInfo(int id, Date OrderTime, Employee employee, float SalesPrice, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice, Customer customer) {
+		this.id = id;
+		this.OrderTime = OrderTime;
+		this.employee = employee;
+		this.SalesPrice = SalesPrice;
+		this.books = books;
+		this.quantity = quantity;
+		this.ImportPrice = ImportPrice;
+		this.customer = customer;
+	}
 }
