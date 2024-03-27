@@ -10,6 +10,7 @@ module main.frontend {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     // Export the main.frontend package
     exports main.frontend;
