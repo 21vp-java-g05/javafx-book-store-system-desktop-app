@@ -1,46 +1,53 @@
 package main.backend.objects;
 
+import main.backend.lists.CategoryList;
+
 public class Book {
+	private int id, numberOfPages;
 	private String isbn, title, language;
 	private Publisher publisher;
-	private int id, numberOfPages;
 	private Author author;
+	private CategoryList categories;
 	private boolean enabled;
 	
-	public Book(int id, String isbn, String title, Publisher publisher, String language, int numberOfPages, Author author, boolean enabled) {
+	public Book() {}
+	public Book(int id, String title, String isbn, String language, int numberOfPages, Publisher publisher, Author author, CategoryList categories, boolean enabled) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
-		this.publisher = publisher;
 		this.language = language;
 		this.numberOfPages = numberOfPages;
+		this.publisher = publisher;
 		this.author = author;
+		this.categories = categories;
 		this.enabled = enabled;
 	}
-	public Book(int id, String isbn, String title, Publisher publisher, String language, int numberOfPages, Author author) {
-		this(id, isbn, title, publisher, language, numberOfPages, author, true);
+	public Book(int id, String title, String isbn, String language, int numberOfPages, Publisher publisher, Author author, CategoryList categories) {
+		this(id, isbn, title, language, numberOfPages, publisher, author, categories, true);
 	}
 	public Book(Book other) {
-		this(other.id, other.isbn, other.title, other.publisher, other.language, other.numberOfPages, other.author, other.enabled);
+		this(other.id, other.isbn, other.title, other.language, other.numberOfPages, other.publisher, other.author, other.categories, other.enabled);
 	}
 
 	public int getId() { return id; }
 	public String getIsbn() { return isbn; }
 	public String getTitle() { return title; }
-	public Publisher getPublisher() { return publisher; }
 	public String getLanguage() { return language; }
 	public int getNumberOfPages() { return numberOfPages; }
+	public Publisher getPublisher() { return publisher; }
 	public Author geAuthor() { return author; }
+	public CategoryList getCategories() { return categories; }
 	public boolean isEnabled() { return enabled; }
 	
-	public void changeInfo(int id, String isbn, String title, Publisher publisher, String language, int numberOfPages, Author author, boolean enabled) {
+	public void changeInfo(int id, String title, String isbn, String language, int numberOfPages, Publisher publisher, Author author, CategoryList categories, boolean enabled) {
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;
-		this.publisher = publisher;
 		this.language = language;
 		this.numberOfPages = numberOfPages;
+		this.publisher = publisher;
 		this.author = author;
+		this.categories = categories;
 		this.enabled = enabled;
 	}
 
@@ -49,12 +56,13 @@ public class Book {
 		String idStr = "\tID: " + String.valueOf(id) + "\n";
 		String isbnStr = "\tISBN: " + isbn + "\n";
 		String titleStr = "\tTitle: " + title + "\n";
-		String publisherStr = "\tPublisher: " + publisher.getPublisherName() + "\n";
 		String langStr = "\tLanguage: " + language + "\n";
 		String numString = "\tNumber of pages: " + numberOfPages + "\n";
+		String publisherStr = "\tPublisher: " + publisher.getPublisherName() + "\n";
 		String authorStr = "\tAuthor: " + author.getAuthorName() + "\n";
+		String categoriesStr = categories.toString();
 		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
-		return idStr + isbnStr + titleStr + publisherStr + langStr + numString + authorStr + stsStr;
+		return idStr + isbnStr + titleStr + langStr + numString + publisherStr + authorStr + categoriesStr + stsStr;
 	}
 }

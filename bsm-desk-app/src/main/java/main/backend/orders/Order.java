@@ -1,9 +1,9 @@
 package main.backend.orders;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
-import main.backend.list.BookList;
+import main.backend.lists.BookList;
 import main.backend.users.Employee;
 
 public class Order {
@@ -16,6 +16,7 @@ public class Order {
 	private ArrayList<Float> ImportPrice;
 	private Customer customer;
 
+	public Order() {}
 	public Order(int id, Date OrderTime, Employee employee, float SalesPrice, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice, Customer customer) {
 		this.id = id;
 		this.OrderTime = OrderTime;

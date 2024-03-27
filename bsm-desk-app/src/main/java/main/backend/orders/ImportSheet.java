@@ -1,9 +1,9 @@
 package main.backend.orders;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
-import main.backend.list.BookList;
+import main.backend.lists.BookList;
 import main.backend.users.Employee;
 
 public class ImportSheet {
@@ -15,6 +15,7 @@ public class ImportSheet {
 	private ArrayList<Integer> quantity;
 	private ArrayList<Float> ImportPrice;
 
+	public ImportSheet() {}
 	public ImportSheet(int id, Date ImportTime, Employee employee, float TotalCost, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice) {
 		this.id = id;
 		this.ImportTime = ImportTime;

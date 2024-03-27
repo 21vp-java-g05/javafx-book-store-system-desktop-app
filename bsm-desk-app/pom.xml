@@ -14,6 +14,13 @@
 <junit.version>5.10.0</junit.version>  </properties>
 
   <dependencies>
+
+    </dependency>    <dependency>
+    </dependency>      <groupId>org.postgresql</groupId>
+    </dependency>      <artifactId>postgresql</artifactId>
+    </dependency>      <version>42.7.3</version>
+    </dependency>    </dependency>
+
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>

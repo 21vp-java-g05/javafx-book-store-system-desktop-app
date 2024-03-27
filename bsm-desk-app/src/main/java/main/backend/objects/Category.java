@@ -5,6 +5,7 @@ public class Category {
 	private String name, description;
 	private boolean enabled;
 	
+	public Category() {}
 	public Category(int id, String name, String description, boolean enabled) {
 		this.id = id;
 		this.name = name;

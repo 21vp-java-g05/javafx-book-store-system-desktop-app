@@ -5,6 +5,7 @@ public class Customer {
 	private String mail, fullname, phone;
 	private boolean male, enabled;
 
+	public Customer() {}
 	public Customer(int id, String mail, String fullname, String phone, boolean male, boolean enabled) {
 		this.id = id;
 		this.mail = mail;

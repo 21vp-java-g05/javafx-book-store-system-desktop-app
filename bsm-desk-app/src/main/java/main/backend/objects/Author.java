@@ -1,10 +1,15 @@
 package main.backend.objects;
 
+import java.sql.SQLException;
+
+import main.backend.utils.DBconnect;
+
 public class Author {
 	private int id;
 	private String name, description;
 	private boolean enabled;
-	
+
+	public Author() {}
 	public Author(int id, String name, String description, boolean enabled) {
 		this.id = id;
 		this.name = name;
@@ -26,6 +31,21 @@ public class Author {
 		this.enabled = enabled;
 	}
 	
+	public boolean addAuthor_toDatabase() {
+		boolean rs;
+		try (DBconnect db = new DBconnect();) {
+			rs = db.add("AUTHOR", "");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return rs;
+	}
+	public boolean updateAuthor_toDatabase() {
+		
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		String idStr = "\tID: " + String.valueOf(id) + "\n";
