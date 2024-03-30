@@ -33,7 +33,6 @@ public class AuthorList {
 			e.printStackTrace();
 			return false;
 		}
-
 		return true;
 	}
 	

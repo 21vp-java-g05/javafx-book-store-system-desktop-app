@@ -12,6 +12,8 @@ module main.frontend {
     requires com.almasb.fxgl.all;
     requires java.sql;
 
+    requires java.sql;
+
     // Export the main.frontend package
     exports main.frontend;
 
