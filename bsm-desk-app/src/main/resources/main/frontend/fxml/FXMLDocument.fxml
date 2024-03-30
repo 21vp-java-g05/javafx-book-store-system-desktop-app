@@ -13,27 +13,27 @@
     <children>
         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <AnchorPane prefHeight="424.0" prefWidth="320.0" styleClass="left-form" stylesheets="@../css/login.css">
+                <AnchorPane prefHeight="424.0" prefWidth="320.0" styleClass="left_from" stylesheets="@../css/login.css">
                     <children>
-                        <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="136.0" layoutY="185.0" size="72" />
-                        <Label layoutX="50.0" layoutY="212.0" text="Book Shop Management System" textFill="WHITE">
+                        <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="107.0" layoutY="217.0" size="9.5em" text="" />
+                        <Label layoutX="28.0" layoutY="246.0" text="Book Shop Management System" textFill="WHITE">
                             <font>
-                                <Font name="Arial Bold" size="15.0" />
+                                <Font name="Arial Bold" size="17.0" />
                             </font>
                         </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="320.0" prefHeight="424.0" prefWidth="320.0" styleClass="right-form" stylesheets="@../css/login.css">
+                <AnchorPane layoutX="320.0" prefHeight="424.0" prefWidth="320.0" styleClass="right_from" stylesheets="@../css/login.css">
                     <children>
-                        <FontAwesomeIcon glyphName="USER" layoutX="141.0" layoutY="98.0" size="4em" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="104.0" text="Login" textAlignment="CENTER">
+                        <FontAwesomeIcon glyphName="USER" layoutX="141.0" layoutY="110.0" size="4em" text="" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="133.0" layoutY="117.0" text="Login" textAlignment="CENTER">
                             <font>
                                 <Font name="Arial Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="username" layoutX="50.0" layoutY="173.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="textfield" stylesheets="@../css/login.css" />
-                        <PasswordField fx:id="password" layoutX="50.0" layoutY="219.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@../css/login.css" />
-                        <Button fx:id="loginBtn" layoutX="50.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/login.css" text="Login" />
+                        <TextField fx:id="username" layoutX="50.0" layoutY="182.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="text-field" stylesheets="@../css/login.css" />
+                        <PasswordField fx:id="password" layoutX="50.0" layoutY="226.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="text-field" stylesheets="@../css/login.css" />
+                        <Button fx:id="loginBtn" layoutX="50.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@../css/login.css" text="LOGIN" />
                         <Button fx:id="close" layoutX="270.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/login.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                             <graphic>
                                 <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />

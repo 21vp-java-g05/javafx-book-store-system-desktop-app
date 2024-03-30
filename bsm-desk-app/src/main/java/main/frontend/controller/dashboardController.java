@@ -71,6 +71,12 @@ public class dashboardController implements Initializable{
     private Button purchase_btn;
 
     @FXML
+    private Button publisher_btn;
+
+    @FXML
+    private Button author_btn;
+
+    @FXML
     private Button logout;
 
     @FXML
@@ -108,6 +114,9 @@ public class dashboardController implements Initializable{
 
     @FXML
     private TextField availableBooks_author;
+
+    @FXML
+    private TextField availableBooks_publisher;
 
     @FXML
     private TextField availableBooks_genre;
@@ -210,6 +219,86 @@ public class dashboardController implements Initializable{
 
     @FXML
     private TableColumn<customerData, String> purchase_col_price;
+
+    @FXML
+    private AnchorPane publisher_form;
+
+    @FXML
+    private TextField publisher_search;
+
+    @FXML
+    private TableView<publisherData> publisher_tableView;
+
+    @FXML
+    private TextField publisher_publisherID;
+
+    @FXML
+    private TextField publisher_publisherName;
+
+    @FXML
+    private Button publisher_importBtn;
+
+    @FXML
+    private Button publisher_addBtn;
+
+    @FXML
+    private Button publisher_updateBtn;
+
+    @FXML
+    private Button publisher_enableBtn;
+
+    @FXML
+    private Button publisher_disableBtn;
+
+    @FXML
+    private ImageView publisher_imageView;
+
+    @FXML
+    private TableColumn<publisherData, String> publisher_col_publisherID;
+
+    @FXML
+    private TableColumn<publisherData, String> publisher_col_publisherName;
+
+
+    @FXML
+    private AnchorPane author_form;
+
+    @FXML
+    private Button author_importBtn;
+
+    @FXML
+    private Button author_addBtn;
+
+    @FXML
+    private Button author_enableBtn;
+
+    @FXML
+    private Button author_updateBtn;
+
+    @FXML
+    private Button author_disableBtn;
+
+    @FXML
+    private TextField author_authorID;
+
+    @FXML
+    private TextField author_authorName;
+
+    @FXML
+    private TextField author_search;
+
+    @FXML
+    private ImageView author_imageView;
+
+    @FXML
+    private TableColumn<?, ?> author_col_authorID;
+
+    @FXML
+    private TableColumn<?, ?> author_col_authorName;
+
+    @FXML
+    private TableView<?> author_tableView;
+
 
 //    private Connection connect;
 //    private PreparedStatement prepare;
@@ -337,6 +426,7 @@ public class dashboardController implements Initializable{
 //            if(availableBooks_bookID.getText().isEmpty()
 //                    || availableBooks_bookTitle.getText().isEmpty()
 //                    || availableBooks_author.getText().isEmpty()
+//                    || availableBooks_publisher.getText().isEmpty()
 //                    || availableBooks_genre.getText().isEmpty()
 //                    || availableBooks_date.getValue() == null
 //                    || availableBooks_price.getText().isEmpty()
@@ -369,6 +459,7 @@ public class dashboardController implements Initializable{
 //                    prepare.setString(4, availableBooks_genre.getText());
 //                    prepare.setString(5, String.valueOf(availableBooks_date.getValue()));
 //                    prepare.setString(6, availableBooks_price.getText());
+//                    prepare.setString(7, availableBooks_publisher.getText());
 //
 //                    String uri = getData.path;
 //                    uri = uri.replace("\\", "\\\\");
@@ -401,6 +492,7 @@ public class dashboardController implements Initializable{
         String sql = "UPDATE book SET title = '"
                 +availableBooks_bookTitle.getText()+"', author = '"
                 +availableBooks_author.getText()+"', genre = '"
+                +availableBooks_publisher.getText()+"', publisher = '"
                 +availableBooks_genre.getText()+"', pub_date = '"
                 +availableBooks_date.getValue()+"', price = '"
                 +availableBooks_price.getText()+"', image = '"
@@ -414,6 +506,7 @@ public class dashboardController implements Initializable{
             if(availableBooks_bookID.getText().isEmpty()
                     || availableBooks_bookTitle.getText().isEmpty()
                     || availableBooks_author.getText().isEmpty()
+                    || availableBooks_publisher.getText().isEmpty()
                     || availableBooks_genre.getText().isEmpty()
                     || availableBooks_date.getValue() == null
                     || availableBooks_price.getText().isEmpty()
@@ -450,6 +543,7 @@ public class dashboardController implements Initializable{
 
     }
 
+    //Chỉnh lại thành Disable
     public void availableBooksDelete(){
 
 //        String sql = "DELETE FROM book WHERE book_id = '"
@@ -463,6 +557,7 @@ public class dashboardController implements Initializable{
 //            if(availableBooks_bookID.getText().isEmpty()
 //                    || availableBooks_bookTitle.getText().isEmpty()
 //                    || availableBooks_author.getText().isEmpty()
+//                    || availableBooks_publisher.getText().isEmpty()
 //                    || availableBooks_genre.getText().isEmpty()
 //                    || availableBooks_date.getValue() == null
 //                    || availableBooks_price.getText().isEmpty()
@@ -499,10 +594,13 @@ public class dashboardController implements Initializable{
 
     }
 
+// Chỉnh lại thành enable trước khi sử dụng
+
     public void availableBooksClear(){
         availableBooks_bookID.setText("");
         availableBooks_bookTitle.setText("");
         availableBooks_author.setText("");
+        availableBooks_publisher.setText("");
         availableBooks_genre.setText("");
         availableBooks_date.setValue(null);
         availableBooks_price.setText("");
@@ -924,6 +1022,159 @@ public class dashboardController implements Initializable{
 
     }
 
+    public void publisherAdd(){
+        String sql = "INSERT INTO Publisher (publisher_id, name) "
+                + "VALUES(?,?,?,?,?,?,?)";
+
+//        connect = database.connectDb();
+//
+//        try{
+//            Alert alert;
+//
+//            if(publisher_publisherID.getText().isEmpty()
+//                    || publisher_publisherName.getText().isEmpty()){
+//                alert = new Alert(AlertType.ERROR);
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Please fill all blank fields");
+//                alert.showAndWait();
+//            }else{
+//                // CHECK IF BOOK ID IS ALREADY EXIST
+//                String checkData = "SELECT publisher_id FROM book WHERE publisher_id = '"
+//                        +publisher_publisherID.getText()+"'";
+//
+//                statement = connect.createStatement();
+//                result = statement.executeQuery(checkData);
+//
+//                if(result.next()){
+//                    alert = new Alert(AlertType.ERROR);
+//                    alert.setTitle("Erro  r Message");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("Book ID: " + publisher_publisherID.getText() + " was already exist!");
+//                    alert.showAndWait();
+//                }else{
+//
+//                    prepare = connect.prepareStatement(sql);
+//                    prepare.setString(1, publisher_publisherID.getText());
+//                    prepare.setString(2, publisher_publisherName.getText());
+//
+//                    String uri = getData.path;
+//                    uri = uri.replace("\\", "\\\\");
+//
+//                    prepare.setString(2, uri);
+//
+//                    prepare.executeUpdate();
+//
+//                    alert = new Alert(AlertType.INFORMATION);
+//                    alert.setTitle("Information Message");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("Successfully Added!");
+//                    alert.showAndWait();
+//
+//                    // TO BE UPDATED THE TABLEVIEW
+//                    publisherShowListData();
+//                    // CLEAR FIELDS
+//                    availableBooksClear();
+//                }
+//            }
+//        }catch(Exception e){e.printStackTrace();}
+    }
+
+//    public void publisherUpdate(){
+//        String uri = getData.path;
+//        uri = uri.replace("\\", "\\\\");
+//
+//        String sql = "Upadte publisher Name = '"
+//                +publisher_publisherID.setText("") +"', name = ' "
+//                +publisher_publisherName.getText()+"', image = '"
+//                +uri+"'" ;
+//
+//
+//    }
+
+    public void publisherSearch(){
+        FilteredList<publisherData> filter = new FilteredList<>(publisherList, e -> true);
+
+        publisher_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+            filter.setPredicate(predicatePublisherData -> {
+                if((newValue == null || newValue.isEmpty())){
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+                if(predicatePublisherData.getPublisherId().toString().contains(searchKey)){
+                    return true;
+                } else if (predicatePublisherData.getName().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else return false;
+            });
+        });
+
+        SortedList<publisherData> sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(publisher_tableView.comparatorProperty());
+        publisher_tableView.setItems(sortList);
+    }
+
+    public void publisherInsertImage(){
+        FileChooser open = new FileChooser();
+        open.setTitle("Open Image File");
+        open.getExtensionFilters().add(new ExtensionFilter("File Image", "*jpg", "*png"));
+
+        File file = open.showOpenDialog(main_form.getScene().getWindow());
+
+        if(file != null){
+            getData.path = file.getAbsolutePath();
+
+            image = new Image(file.toURI().toString(), 112, 137, false, true);
+            publisher_imageView.setImage(image);
+        }
+
+    }
+
+    public ObservableList<publisherData> publisherListData(){
+        ObservableList<publisherData> listData = FXCollections.observableArrayList();
+//        String sql = "SELECT * FROM ";
+
+//        connect = database.connectDb();
+//
+//        try{
+//            prepare = connect.prepareStatement(sql);
+//            result = prepare.executeQuery();
+//
+//            publisherData pubD;
+//
+//            while(result.next()){
+//                pubD = new publisherData(result.getInt("publisher_id"), result.getString("name"), result.getString("image"));
+//                listData.add(pubD);
+//            }
+//        }catch(Exception e){e.printStackTrace();}
+        return listData;
+    }
+    private ObservableList<publisherData> publisherList;
+    public void publisherShowListData(){
+        publisherList = publisherListData();
+        publisher_col_publisherID.setCellValueFactory(new PropertyValueFactory<>("publisherId"));
+        publisher_col_publisherName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        publisher_tableView.setItems(publisherList);
+    }
+
+    public void publisherSelect(){
+        publisherData pubD = publisher_tableView.getSelectionModel().getSelectedItem();
+        int num = publisher_tableView.getSelectionModel().getSelectedIndex();
+
+        if((num - 1) < -1){
+            return;
+        }
+
+        publisher_publisherID.setText(String.valueOf(pubD.getPublisherId()));
+        publisher_publisherName.setText(pubD.getName());
+
+        String uri = "file: " + pubD.getImage();
+        image = new Image(uri, 112, 137, false, true);
+        publisher_imageView.setImage(image);
+    }
+
     public void displayUsername(){
 //        String user = getData.username;
 //        user = user.substring(0, 1).toUpperCase() + user.substring(1);
@@ -937,10 +1188,14 @@ public class dashboardController implements Initializable{
             dashboard_form.setVisible(true);
             availableBooks_form.setVisible(false);
             purchase_form.setVisible(false);
+            publisher_form.setVisible(false);
+            author_form.setVisible(false);
 
-            dashboard_btn.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
+            dashboard_btn.setStyle("-fx-background-color: linear-gradient(to top right, #9AD0C2, #E2F4C5);");
             availableBooks_btn.setStyle("-fx-background-color: transparent");
             purchase_btn.setStyle("-fx-background-color: transparent");
+            publisher_btn.setStyle("-fx-background-color: transparent");
+            author_btn.setStyle("-fx-background-color: transparent");
 
             dashboardAB();
             dashboardTI();
@@ -952,10 +1207,14 @@ public class dashboardController implements Initializable{
             dashboard_form.setVisible(false);
             availableBooks_form.setVisible(true);
             purchase_form.setVisible(false);
+            publisher_form.setVisible(false);
+            author_form.setVisible(false);
 
-            availableBooks_btn.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
+            availableBooks_btn.setStyle("-fx-background-color: linear-gradient(to top right, #9AD0C2, #E2F4C5);");
             dashboard_btn.setStyle("-fx-background-color: transparent");
             purchase_btn.setStyle("-fx-background-color: transparent");
+            publisher_btn.setStyle("-fx-background-color: transparent");
+            author_btn.setStyle("-fx-background-color: transparent");
 
             availableBooksShowListData();
             availableBooksSeach();
@@ -964,10 +1223,14 @@ public class dashboardController implements Initializable{
             dashboard_form.setVisible(false);
             availableBooks_form.setVisible(false);
             purchase_form.setVisible(true);
+            publisher_form.setVisible(false);
+            author_form.setVisible(false);
 
-            purchase_btn.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
+            purchase_btn.setStyle("-fx-background-color: linear-gradient(to top right, #9AD0C2, #E2F4C5);");
             availableBooks_btn.setStyle("-fx-background-color: transparent");
             dashboard_btn.setStyle("-fx-background-color: transparent");
+            publisher_btn.setStyle("-fx-background-color: transparent");
+            author_btn.setStyle("-fx-background-color: transparent");
 
             purchaseBookTitle();
             purchaseBookId();
@@ -975,6 +1238,33 @@ public class dashboardController implements Initializable{
             purchaseDisplayQTY();
             purchaseDisplayTotal();
 
+        } else if (event.getSource() == publisher_btn) {
+            dashboard_form.setVisible(false);
+            availableBooks_form.setVisible(false);
+            publisher_form.setVisible(true);
+            purchase_form.setVisible(false);
+            author_form.setVisible(false);
+
+            publisher_btn.setStyle("-fx-background-color: linear-gradient(to top right, #9AD0C2, #E2F4C5);");
+            availableBooks_btn.setStyle("-fx-background-color: transparent");
+            dashboard_btn.setStyle("-fx-background-color: transparent");
+            purchase_btn.setStyle("-fx-background-color: transparent");
+            author_btn.setStyle("-fx-background-color: transparent");
+
+            publisherShowListData();
+
+        } else if (event.getSource() == author_btn) {
+            dashboard_form.setVisible(false);
+            availableBooks_form.setVisible(false);
+            publisher_form.setVisible(false);
+            purchase_form.setVisible(false);
+            author_form.setVisible(true);
+
+            author_btn.setStyle("-fx-background-color: linear-gradient(to top right, #9AD0C2, #E2F4C5);");
+            availableBooks_btn.setStyle("-fx-background-color: transparent");
+            dashboard_btn.setStyle("-fx-background-color: transparent");
+            purchase_btn.setStyle("-fx-background-color: transparent");
+            publisher_btn.setStyle("-fx-background-color: transparent");
         }
     }
 
@@ -1049,7 +1339,7 @@ public class dashboardController implements Initializable{
         purchaseShowCustomerListData();
         purchaseDisplayQTY();
         purchaseDisplayTotal();
-
+        publisherShowListData();
     }
 
 }
