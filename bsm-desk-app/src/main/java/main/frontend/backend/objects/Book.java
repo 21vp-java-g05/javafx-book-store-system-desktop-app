@@ -60,7 +60,7 @@ public class Book {
 		String numString = "\tNumber of pages: " + numberOfPages + "\n";
 		String publisherStr = "\tPublisher: " + publisher.getPublisherName() + "\n";
 		String authorStr = "\tAuthor: " + author.getAuthorName() + "\n";
-		String categoriesStr = categories.toString();
+		String categoriesStr = "\tCategories: " + categories.toString();
 		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
 		return idStr + isbnStr + titleStr + langStr + numString + publisherStr + authorStr + categoriesStr + stsStr;

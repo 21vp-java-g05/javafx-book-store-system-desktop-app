@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="fontawesomefx-8.25">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jar_files/fontawesomefx-8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jar_files/jfreechart-1.0.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jar_files/postgresql-42.7.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
