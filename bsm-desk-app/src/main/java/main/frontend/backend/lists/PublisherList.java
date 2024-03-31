@@ -1,10 +1,10 @@
-package main.backend.lists;
+package main.frontend.backend.lists;
+
+import main.frontend.backend.objects.Publisher;
+import main.frontend.backend.utils.DBconnect;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import main.backend.objects.Publisher;
-import main.backend.utils.DBconnect;
 
 public class PublisherList {
 	private ArrayList<Publisher> publishers;

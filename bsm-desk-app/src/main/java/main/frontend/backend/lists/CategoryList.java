@@ -1,10 +1,10 @@
-package main.backend.lists;
+package main.frontend.backend.lists;
+
+import main.frontend.backend.objects.Category;
+import main.frontend.backend.utils.DBconnect;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import main.backend.objects.Category;
-import main.backend.utils.DBconnect;
 
 public class CategoryList {
 	private ArrayList<Category> categories;
@@ -39,11 +39,11 @@ public class CategoryList {
 
 	@Override
 	public String toString() {
-		String str = "There are " + categories.size() + " publishers in the list.\n\n";
+		StringBuilder str = new StringBuilder();
 
 		for (Category category : categories)
-			str += category.toString() + "\n";
+			str.append(category.toString()).append("\n");
 		
-		return str;
+		return str.toString();
 	}
 }

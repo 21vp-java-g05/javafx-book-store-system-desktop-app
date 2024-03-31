@@ -1,6 +1,6 @@
-package main.backend.objects;
+package main.frontend.backend.objects;
 
-import main.backend.lists.CategoryList;
+import main.frontend.backend.lists.CategoryList;
 
 public class Book {
 	private int id, numberOfPages;
@@ -35,7 +35,7 @@ public class Book {
 	public String getLanguage() { return language; }
 	public int getNumberOfPages() { return numberOfPages; }
 	public Publisher getPublisher() { return publisher; }
-	public Author geAuthor() { return author; }
+	public Author getAuthor() { return author; }
 	public CategoryList getCategories() { return categories; }
 	public boolean isEnabled() { return enabled; }
 	

@@ -1,10 +1,10 @@
-package main.backend.lists;
+package main.frontend.backend.lists;
+
+import main.frontend.backend.objects.Author;
+import main.frontend.backend.utils.DBconnect;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import main.backend.objects.Author;
-import main.backend.utils.DBconnect;
 
 public class AuthorList {
 	private ArrayList<Author> authors;

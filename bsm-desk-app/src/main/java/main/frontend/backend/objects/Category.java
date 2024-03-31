@@ -1,6 +1,30 @@
-package main.backend.objects;
+package main.frontend.backend.objects;
 
 public class Category {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	private int id;
 	private String name, description;
 	private boolean enabled;
@@ -29,11 +53,6 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		String idStr = "\tID: " + String.valueOf(id) + "\n";
-		String nameStr = "\tCategory name: " + name + "\n";
-		String disStr = "\tCategory description: " + description + "\n";
-		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
-		
-		return idStr + nameStr + disStr + stsStr;
+		return name;
 	}
 }

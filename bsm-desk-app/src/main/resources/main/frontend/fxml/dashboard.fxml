@@ -279,16 +279,15 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <TextField fx:id="availableBooks_search" layoutX="14.0" layoutY="14.0" onAction="#availableBooksSeach" onKeyTyped="#availableBooksSeach" prefHeight="25.0" prefWidth="240.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="486.6666666666667" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.33333333333337" AnchorPane.topAnchor="14.0" />
+                                                <TextField fx:id="availableBooks_search" layoutX="14.0" layoutY="14.0" onAction="#availableBooksSearch" onKeyTyped="#availableBooksSearch" prefHeight="25.0" prefWidth="240.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="486.6666666666667" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.33333333333337" AnchorPane.topAnchor="14.0" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="18.0" layoutY="34.0" size="1.5em" text="" />
                                                 <TableView fx:id="availableBooks_tableView" layoutX="18.0" layoutY="58.0" onMouseClicked="#availableBooksSelect" prefHeight="451.0" prefWidth="550.0">
                                                     <columns>
                                                         <TableColumn fx:id="availableBooks_col_bookID" prefWidth="68.6666259765625" text="Book ID" />
-                                                        <TableColumn fx:id="availableBooks_col_bookTItle" prefWidth="115.3333740234375" text="Title" />
-                                                        <TableColumn fx:id="availableBooks_col_author" prefWidth="97.33340454101562" text="Author" />
-                                                        <TableColumn fx:id="availableBooks_col_genre" prefWidth="96.6666259765625" text="Category" />
-                                                        <TableColumn fx:id="availableBooks_col_date" prefWidth="96.66668701171875" text="Published Date" />
-                                                        <TableColumn fx:id="availableBooks_col_price" prefWidth="82.00006103515625" text="Price($)" />
+                                                        <TableColumn fx:id="availableBooks_col_bookTitle" prefWidth="115.3333740234375" text="Title" />
+                                                        <TableColumn fx:id="availableBooks_col_author" prefWidth="96.6666259765625" text="Author" />
+                                                        <TableColumn fx:id="availableBooks_col_publisher" prefWidth="96.66668701171875" text="Publisher" />
+                                                        <TableColumn fx:id="availableBooks_col_genre" prefWidth="168.0" text="Category" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -502,7 +501,7 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <TextField fx:id="author_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#availableBooksSeach" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <TextField fx:id="author_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#availableBooksSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
                                                 <TableView fx:id="author_tableView" layoutX="14.0" layoutY="52.0" prefHeight="459.0" prefWidth="557.0">
                                                     <columns>

@@ -1,10 +1,34 @@
-package main.backend.objects;
+package main.frontend.backend.objects;
+
+import main.frontend.backend.utils.DBconnect;
 
 import java.sql.SQLException;
 
-import main.backend.utils.DBconnect;
-
 public class Author {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	private int id;
 	private String name, description;
 	private boolean enabled;

@@ -6,11 +6,8 @@ import java.net.URL;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -46,9 +42,13 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.frontend.BookstoreManagementApplication;
+import main.frontend.backend.lists.AuthorList;
+import main.frontend.backend.lists.BookList;
+import main.frontend.backend.lists.CategoryList;
+import main.frontend.backend.lists.PublisherList;
+import main.frontend.backend.objects.Book;
 
 public class dashboardController implements Initializable{
-
     @FXML
     private AnchorPane main_form;
 
@@ -149,7 +149,7 @@ public class dashboardController implements Initializable{
     private TableColumn<bookData, String> availableBooks_col_bookID;
 
     @FXML
-    private TableColumn<bookData, String> availableBooks_col_bookTItle;
+    private TableColumn<bookData, String> availableBooks_col_bookTitle;
 
     @FXML
     private TableColumn<bookData, String> availableBooks_col_author;
@@ -158,10 +158,7 @@ public class dashboardController implements Initializable{
     private TableColumn<bookData, String> availableBooks_col_genre;
 
     @FXML
-    private TableColumn<bookData, String> availableBooks_col_date;
-
-    @FXML
-    private TableColumn<bookData, String> availableBooks_col_price;
+    private TableColumn<bookData, String> availableBooks_col_publisher;
 
     @FXML
     private AnchorPane purchase_form;
@@ -182,7 +179,7 @@ public class dashboardController implements Initializable{
     private Label purchase_info_bookID;
 
     @FXML
-    private Label purchase_info_bookTItle;
+    private Label purchase_info_bookTitle;
 
     @FXML
     private Label purchase_info_author;
@@ -299,11 +296,10 @@ public class dashboardController implements Initializable{
     @FXML
     private TableView<?> author_tableView;
 
-
-//    private Connection connect;
-//    private PreparedStatement prepare;
-//    private Statement statement;
-//    private ResultSet result;
+    private BookList feBookList;
+    private PublisherList fePublisherList;
+    private AuthorList feAuthorList;
+    private CategoryList feCategoryList;
 
     private Image image;
 
@@ -628,41 +624,32 @@ public class dashboardController implements Initializable{
     }
 
     public ObservableList<bookData> availableBooksListData(){
-
+        feBookList = new BookList();
         ObservableList<bookData> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM book";
-
-//        connect = database.connectDb();
-//
-//        try{
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            bookData bookD;
-//
-//            while(result.next()){
-//                bookD = new bookData(result.getInt("book_id"), result.getString("title")
-//                        , result.getString("author"), result.getString("genre")
-//                        , result.getDate("pub_date"), result.getDouble("price")
-//                        , result.getString("image"));
-//
-//                listData.add(bookD);
-//            }
-//        }catch(Exception e){e.printStackTrace();}
+        ArrayList<Book> books = feBookList.loadBooks_fromDatabase(null);
+        for (Book book : books) {
+            System.out.println(book.toString());
+            bookData data = new bookData(
+                    book.getId(),
+                    book.getTitle(),
+                    book.getAuthor().getAuthorName(),
+                    book.getPublisher().getPublisherName(),
+                    book.getCategories().toString(),
+                    ""
+            );
+            listData.add(data);
+        }
         return listData;
     }
 
     private ObservableList<bookData> availableBooksList;
     public void availableBooksShowListData(){
         availableBooksList = availableBooksListData();
-
         availableBooks_col_bookID.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-        availableBooks_col_bookTItle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        availableBooks_col_bookTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         availableBooks_col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
+        availableBooks_col_publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         availableBooks_col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        availableBooks_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        availableBooks_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-
         availableBooks_tableView.setItems(availableBooksList);
     }
 
@@ -676,8 +663,7 @@ public class dashboardController implements Initializable{
         availableBooks_bookTitle.setText(bookD.getTitle());
         availableBooks_author.setText(bookD.getAuthor());
         availableBooks_genre.setText(bookD.getGenre());
-        availableBooks_date.setValue(LocalDate.parse(String.valueOf(bookD.getDate())));
-        availableBooks_price.setText(String.valueOf(bookD.getPrice()));
+        availableBooks_publisher.setText(bookD.getPublisher());
 
         getData.path = bookD.getImage();
 
@@ -688,7 +674,7 @@ public class dashboardController implements Initializable{
         availableBooks_imageView.setImage(image);
     }
 
-    public void availableBooksSeach(){
+    public void availableBooksSearch(){
 
         FilteredList<bookData> filter = new FilteredList<>(availableBooksList, e -> true);
 
@@ -708,13 +694,10 @@ public class dashboardController implements Initializable{
                     return true;
                 }else if(predicateBookData.getAuthor().toLowerCase().contains(searchKey)){
                     return true;
-                }else if(predicateBookData.getGenre().toLowerCase().contains(searchKey)){
+                }else if(predicateBookData.getPublisher().toLowerCase().contains(searchKey)){
                     return true;
-                }else if(predicateBookData.getDate().toString().contains(searchKey)){
-                    return true;
-                }else if(predicateBookData.getPrice().toString().contains(searchKey)){
-                    return true;
-                }else return false;
+                }
+                else return predicateBookData.getGenre().toLowerCase().contains(searchKey);
             });
         });
 
@@ -922,7 +905,7 @@ public class dashboardController implements Initializable{
 //            }
 
             purchase_info_bookID.setText(bookId);
-            purchase_info_bookTItle.setText(title);
+            purchase_info_bookTitle.setText(title);
             purchase_info_author.setText(author);
             purchase_info_genre.setText(genre);
             purchase_info_date.setText(date);
@@ -962,10 +945,8 @@ public class dashboardController implements Initializable{
         return listData;
     }
 
-    private ObservableList<customerData> purchaseCustomerList;
     public void purchaseShowCustomerListData(){
-        purchaseCustomerList = purchaseListData();
-
+        ObservableList<customerData> purchaseCustomerList = purchaseListData();
         purchase_col_bookID.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         purchase_col_bookTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         purchase_col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -1217,7 +1198,7 @@ public class dashboardController implements Initializable{
             author_btn.setStyle("-fx-background-color: transparent");
 
             availableBooksShowListData();
-            availableBooksSeach();
+            availableBooksSearch();
 
         }else if(event.getSource() == purchase_btn){
             dashboard_form.setVisible(false);

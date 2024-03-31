@@ -1,6 +1,30 @@
-package main.backend.objects;
+package main.frontend.backend.objects;
 
 public class Publisher {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	private int id;
 	private String name, description;
 	private boolean enabled;
@@ -13,6 +37,10 @@ public class Publisher {
 	}
 	public Publisher(int id, String name, String description) { this(id, name, description, true); }
 	public Publisher(Publisher other) { this(other.id, other.name, other.description, other.enabled); }
+
+	public Publisher() {
+
+	}
 
 	public int getId() { return id; }
 	public String getPublisherName() { return name; }

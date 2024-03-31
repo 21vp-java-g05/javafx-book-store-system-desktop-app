@@ -1,4 +1,4 @@
-package main.backend.users;
+package main.frontend.backend.users;
 
 public class Employee extends Account {
 	public Employee(int id, String username, String password, String mail) { super(id, username, password, mail); }

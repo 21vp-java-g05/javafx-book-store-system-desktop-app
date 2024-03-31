@@ -1,35 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main.frontend.controller;
 
-//import java.sql.Date;
-
-/**
- *
- * @Author     : MarcoMan
-    Support and Subscribe our channel: https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
- */
 public class bookData {
     
     private Integer bookId;
     private String title;
     private String author;
     private String genre;
-    private Date date;
-    private Double price;
+    private String publisher;
     private String image;
-    // MAKE SURE YOU FOLLOWED THE PARAMETERS THAT I PUT
-    public bookData(Integer bookId, String title, String author, String genre
-            , Date date, Double price, String image){
+    public bookData(Integer bookId, String title, String author, String publisher, String genre, String image){
         this.bookId = bookId;
         this.title = title;
         this.author = author;
+        this.publisher = publisher;
         this.genre = genre;
-        this.date = date;
-        this.price = price;
         this.image = image;
     }
     public Integer getBookId(){
@@ -44,14 +28,11 @@ public class bookData {
     public String getGenre(){
         return genre;
     }
-    public Date getDate(){
-        return date;
-    }
-    public Double getPrice(){
-        return price;
-    }
     public String getImage(){
         return image;
     }
-    
+
+    public String getPublisher() {
+        return publisher;
+    }
 }

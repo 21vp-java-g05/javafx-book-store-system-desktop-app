@@ -10,13 +10,13 @@ module main.frontend {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
-    requires java.sql;
 
     requires java.sql;
+    requires org.postgresql.jdbc;
 
     // Export the main.frontend package
     exports main.frontend;
 
-    // Open the main.frontend.controller package to javafx.fxml
-    opens main.frontend.controller to javafx.fxml;
+    // Open the main.frontend.controller package to javafx.fxml and javafx.base
+    opens main.frontend.controller to javafx.fxml, javafx.base;
 }

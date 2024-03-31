@@ -1,4 +1,4 @@
-package main.backend.users;
+package main.frontend.backend.users;
 
 public class Account {
 	private int id;

@@ -1,36 +1,43 @@
-package main.backend.utils;
+package main.frontend.backend.utils;
 
 import java.sql.*;
 
 public class DBconnect implements AutoCloseable {
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = "jdbc:postgresql://host/database";
+//	private static final String URL = "jdbc:postgresql:database";
+	private static final String URL = "jdbc:postgresql://localhost:5432/";
 	private static final String USER = "postgres";
-	private static final String PASSWORD = "03102003Minh";
+	private static final String PASSWORD = "123456";
 
-	private static Connection connection = null;
+	private static Connection connection;
 
+	// Constructor for initializing the connection
 	public DBconnect() {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			System.out.println("Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	// Method to execute a query and retrieve a ResultSet
 	public ResultSet view(String object, String condition) {
-		ResultSet rs = null;
-		try (Statement st = connection.createStatement();) {
+		try (Statement st = connection.createStatement()) {
+			ResultSet rs;
 			String query = "SELECT * FROM " + object;
 			if (condition != null)
 				query += " WHERE " + condition;
+			System.out.println(query);
 			rs = st.executeQuery(query);
+			return rs;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return null;
 	}
+
 	public boolean add(String object, String value) {
 		try (Statement st = connection.createStatement();) {
 			String query = "INSERT INTO " + object + " VALUES (" + value + ")";
@@ -65,6 +72,12 @@ public class DBconnect implements AutoCloseable {
 
 	@Override
 	public void close() throws SQLException {
-		connection.close();
+		if (connection != null) {
+			connection.close();
+		}
+	}
+
+	public Connection getConnection() {
+		return connection;
 	}
 }
