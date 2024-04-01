@@ -2,8 +2,6 @@ package main.frontend.backend.objects;
 
 import main.frontend.backend.utils.DBconnect;
 
-import java.sql.SQLException;
-
 public class Author {
 	public void setId(int id) {
 		this.id = id;
@@ -56,13 +54,9 @@ public class Author {
 	}
 	
 	public boolean addAuthor_toDatabase() {
-		boolean rs;
-		try (DBconnect db = new DBconnect();) {
-			rs = db.add("AUTHOR", "");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		DBconnect db = new DBconnect();
+		boolean rs = db.add("AUTHOR", "");
+		db.close();
 		return rs;
 	}
 	public boolean updateAuthor_toDatabase() {

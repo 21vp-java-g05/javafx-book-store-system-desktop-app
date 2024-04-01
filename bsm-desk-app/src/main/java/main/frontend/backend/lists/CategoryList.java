@@ -4,6 +4,7 @@ import main.frontend.backend.objects.Category;
 import main.frontend.backend.utils.DBconnect;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CategoryList {
@@ -21,28 +22,33 @@ public class CategoryList {
 	}
 
 	public boolean loadCategories_fromDatabase(String name) {
-		String condition = name == null ? null : ("WHERE Name = " + name);
-		try (
-			DBconnect db = new DBconnect();
-			ResultSet rs = db.view("AUTHOR", condition);
-		) {
-			categories.clear();
+		String condition = name == null ? null : ("name LIKE '%" + name + "%'");
+		DBconnect db = new DBconnect();
+		categories = new ArrayList<Category>();
+		
+		try (ResultSet rs = db.view("CATEGORY", condition);) {
 			while (rs.next())
-				categories.add(new Category(rs.getInt(0), rs.getString(1), rs.getString(2)));
-		} catch (Exception e) {
+				categories.add(new Category(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getBoolean("status")));
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
+		} finally { db.close(); }
 
 		return true;
 	}
 
+	public String getName() {
+		String names = categories.get(0).getName();
+		for (int i = 1; i < categories.size(); i++)
+			names += ", " + categories.get(i).getName();
+		return names;
+	}
 	@Override
 	public String toString() {
-		StringBuilder str = new StringBuilder();
+		String str = "There are " + categories.size() + " categories in the list.\n\n";
 
 		for (Category category : categories)
-			str.append(category.toString()).append("\n");
+			str += category.toString() + "\n";
 		
 		return str.toString();
 	}

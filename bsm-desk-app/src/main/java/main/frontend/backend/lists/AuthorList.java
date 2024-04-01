@@ -4,6 +4,7 @@ import main.frontend.backend.objects.Author;
 import main.frontend.backend.utils.DBconnect;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AuthorList {
@@ -21,18 +22,18 @@ public class AuthorList {
 	}
 
 	public boolean loadAuthors_fromDatabase(String name) {
-		String condition = name == null ? null : ("WHERE Name = " + name);
-		try (
-			DBconnect db = new DBconnect();
-			ResultSet rs = db.view("AUTHOR", condition);
-		) {
-			authors.clear();
+		String condition = name == null ? null : ("name LIKE '%" + name + "%'");
+		DBconnect db = new DBconnect();
+		authors = new ArrayList<Author>();
+		
+		try (ResultSet rs = db.view("AUTHOR", condition);) {
 			while (rs.next())
-				authors.add(new Author(rs.getInt(0), rs.getString(1), rs.getString(2)));
-		} catch (Exception e) {
+				authors.add(new Author(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getBoolean("status")));
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		}
+		} finally { db.close(); }
+		
 		return true;
 	}
 	

@@ -21,18 +21,17 @@ public class PublisherList {
 	}
 
 	public boolean loadPublishers_fromDatabase(String name) {
-		String condition = name == null ? null : ("WHERE Name = " + name);
-		try (
-			DBconnect db = new DBconnect();
-			ResultSet rs = db.view("AUTHOR", condition);
-		) {
-			publishers.clear();
+		String condition = name == null ? null : ("name LIKE '%" + name + "%'");
+		DBconnect db = new DBconnect();
+		publishers = new ArrayList<Publisher>();
+		
+		try (ResultSet rs = db.view("PUBLISHER", condition);) {
 			while (rs.next())
-				publishers.add(new Publisher(rs.getInt(0), rs.getString(1), rs.getString(2)));
+				publishers.add(new Publisher(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getBoolean("status")));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}
+		} finally { db.close(); }
 
 		return true;
 	}

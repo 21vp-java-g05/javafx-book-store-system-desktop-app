@@ -53,6 +53,11 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		return name;
+		String idStr = "\tID: " + String.valueOf(id) + "\n";
+		String nameStr = "\tPublisher name: " + name + "\n";
+		String disStr = "\tPublisher description: " + description + "\n";
+		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
+		
+		return idStr + nameStr + disStr + stsStr;
 	}
 }
