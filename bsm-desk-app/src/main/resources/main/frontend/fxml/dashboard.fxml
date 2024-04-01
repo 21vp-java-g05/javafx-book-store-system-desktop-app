@@ -14,7 +14,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -220,10 +219,6 @@
                                                         <String fx:value="white-bg" />
                                                         <String fx:value="shadow" />
                                                     </styleClass>
-                                                    <children>
-                                                        <ImageView fx:id="availableBooks_imageView" fitHeight="137.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" />
-                                                        <Button fx:id="availableBooks_importBtn" layoutX="9.0" layoutY="110.0" mnemonicParsing="false" onAction="#avaialableBooksInsertImage" prefHeight="25.0" prefWidth="93.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Import" />
-                                                    </children>
                                                 </AnchorPane>
                                                 <Label layoutX="19.0" layoutY="189.0" text="Book ID:">
                                                     <font>
@@ -249,22 +244,26 @@
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="availableBooks_genre" layoutX="102.0" layoutY="285.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="9.0" layoutY="359.0" text="Published Date:">
+                                                <Label layoutX="18.0" layoutY="359.0" text="Status:">
                                                     <font>
                                                         <Font name="Arial" size="15.0" />
                                                     </font>
                                                 </Label>
-                                                <DatePicker fx:id="availableBooks_date" layoutX="118.0" layoutY="355.0" prefHeight="25.0" prefWidth="130.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="18.0" layoutY="394.0" text="Price:">
-                                                    <font>
-                                                        <Font name="Arial" size="15.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="availableBooks_price" layoutX="102.0" layoutY="390.0" promptText="\$0.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <TextField fx:id="availableBooks_status" layoutX="102.0" layoutY="355.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <!--                                                <Label layoutX="9.0" layoutY="359.0" text="Published Date:">-->
+<!--                                                    <font>-->
+<!--                                                        <Font name="Arial" size="15.0" />-->
+<!--                                                    </font>-->
+<!--                                                </Label>-->
+<!--                                                <DatePicker fx:id="availableBooks_date" layoutX="118.0" layoutY="355.0" prefHeight="25.0" prefWidth="130.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />-->
+<!--                                                <Label layoutX="18.0" layoutY="394.0" text="Price:">-->
+<!--                                                    <font>-->
+<!--                                                        <Font name="Arial" size="15.0" />-->
+<!--                                                    </font>-->
+<!--                                                </Label>-->
+<!--                                                <TextField fx:id="availableBooks_price" layoutX="102.0" layoutY="390.0" promptText="\$0.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />-->
                                                 <Button fx:id="availableBooks_addBtn" layoutX="39.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
                                                 <Button fx:id="availableBooks_updateBtn" layoutX="151.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
-                                                <Button fx:id="availableBooks_clearBtn" layoutX="39.0" layoutY="482.0" mnemonicParsing="false" onAction="#availableBooksClear" prefHeight="30.0" prefWidth="75.0" styleClass="clear-btn" stylesheets="@../css/dashboard.css" text="Enable" />
-                                                <Button fx:id="availableBooks_deleteBtn" layoutX="151.0" layoutY="482.0" mnemonicParsing="false" onAction="#availableBooksDelete" prefHeight="30.0" prefWidth="75.0" styleClass="disable-btn" stylesheets="@../css/dashboard.css" text="Disable" />
                                                 <Label layoutX="19.0" layoutY="323.0" text="Publisher:">
                                                     <font>
                                                         <Font name="Arial" size="15.0" />
@@ -287,7 +286,8 @@
                                                         <TableColumn fx:id="availableBooks_col_bookTitle" prefWidth="115.3333740234375" text="Title" />
                                                         <TableColumn fx:id="availableBooks_col_author" prefWidth="96.6666259765625" text="Author" />
                                                         <TableColumn fx:id="availableBooks_col_publisher" prefWidth="96.66668701171875" text="Publisher" />
-                                                        <TableColumn fx:id="availableBooks_col_genre" prefWidth="168.0" text="Category" />
+                                                        <TableColumn fx:id="availableBooks_col_genre" prefWidth="96" text="Category" />
+                                                        <TableColumn fx:id="availableBooks_col_status" prefWidth="72" text="Status" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -421,10 +421,7 @@
                                                         <String fx:value="white-bg" />
                                                         <String fx:value="shadow" />
                                                     </styleClass>
-                                                    <children>
-                                                        <ImageView fx:id="publisher_imageView" fitHeight="137.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" />
-                                                        <Button fx:id="publisher_importBtn" layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#publisherInsertImage" prefHeight="25.0" prefWidth="100.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Import" />
-                                                    </children>
+
                                                 </AnchorPane>
                                                 <Label layoutX="18.0" layoutY="203.0" text="Publisher ID:">
                                                     <font>
@@ -438,6 +435,12 @@
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="publisher_publisherName" layoutX="119.0" layoutY="237.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <Label layoutX="18.0" layoutY="279.0" text="Status:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="publisher_publisherStatus" layoutX="119.0" layoutY="275.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane layoutX="297.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
@@ -449,18 +452,17 @@
 
                                                 <TableView fx:id="publisher_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#publisherSelect" prefHeight="460.0" prefWidth="558.0">
                                                     <columns>
-                                                        <TableColumn fx:id="publisher_col_publisherID" prefWidth="186.66668701171875" text="Publisher ID" />
-                                                        <TableColumn fx:id="publisher_col_publisherName" prefWidth="370.0000305175781" text="Name" />
+                                                        <TableColumn fx:id="publisher_col_publisherID" prefWidth="136.66668701171875" text="Publisher ID" />
+                                                        <TableColumn fx:id="publisher_col_publisherName" prefWidth="330.0000305175781" text="Name" />
+                                                        <TableColumn fx:id="publisher_col_publisherStatus" prefWidth="90" text="Status" />
                                                     </columns>
                                                 </TableView>
-                                                <TextField fx:id="publisher_search" layoutX="14.0" layoutY="14.0" onAction="#publisherSearch" prefHeight="25.0" prefWidth="230.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <TextField fx:id="publisher_search" layoutX="14.0" layoutY="14.0" onAction="#publisherSearch" onKeyPressed="#publisherSearch" prefHeight="25.0" prefWidth="230.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="20.0" layoutY="33.0" size="1.5em" text="" />
                                             </children>
                                         </AnchorPane>
-                                        <Button fx:id="publisher_addBtn" layoutX="49.0" layoutY="447.0" mnemonicParsing="false" onAction="#availableBooksAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
-                                        <Button fx:id="publisher_updateBtn" layoutX="161.0" layoutY="447.0" mnemonicParsing="false" onAction="#availableBooksUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
-                                        <Button fx:id="publisher_enableBtn" layoutX="49.0" layoutY="492.0" mnemonicParsing="false" onAction="#availableBooksClear" prefHeight="30.0" prefWidth="75.0" styleClass="clear-btn" stylesheets="@../css/dashboard.css" text="Enable" />
-                                        <Button fx:id="publisher_disableBtn" layoutX="161.0" layoutY="492.0" mnemonicParsing="false" onAction="#availableBooksDelete" prefHeight="30.0" prefWidth="75.0" styleClass="disable-btn" stylesheets="@../css/dashboard.css" text="Disable" />
+                                        <Button fx:id="publisher_addBtn" layoutX="49.0" layoutY="447.0" mnemonicParsing="false" onAction="#publisherAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
+                                        <Button fx:id="publisher_updateBtn" layoutX="161.0" layoutY="447.0" mnemonicParsing="false" onAction="#publisherUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane fx:id="author_form" layoutX="57.0" layoutY="93.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -476,10 +478,7 @@
                                                         <String fx:value="white-bg" />
                                                         <String fx:value="shadow" />
                                                     </styleClass>
-                                                    <children>
-                                                        <ImageView fx:id="author_imageView" fitHeight="137.0" fitWidth="112.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                                        <Button fx:id="author_importBtn" layoutX="6.0" layoutY="112.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Import" />
-                                                    </children>
+
                                                 </AnchorPane>
                                                 <Label layoutX="18.0" layoutY="203.0" text="Author ID: ">
                                                     <font>
@@ -493,6 +492,12 @@
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="author_authorName" layoutX="119.0" layoutY="237.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <Label layoutX="18.0" layoutY="279.0" text="Status:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="author_authorStatus" layoutX="119.0" layoutY="275.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
@@ -501,20 +506,19 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <TextField fx:id="author_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#availableBooksSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <TextField fx:id="author_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#authorSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
-                                                <TableView fx:id="author_tableView" layoutX="14.0" layoutY="52.0" prefHeight="459.0" prefWidth="557.0">
+                                                <TableView fx:id="author_tableView" onMouseClicked="#authorSelect" layoutX="14.0" layoutY="52.0" prefHeight="459.0" prefWidth="557.0">
                                                     <columns>
-                                                        <TableColumn fx:id="author_col_authorID" prefWidth="178.0" text="Author ID" />
-                                                        <TableColumn fx:id="author_col_authorName" prefWidth="377.3333435058594" text="Name" />
+                                                        <TableColumn fx:id="author_col_authorID" prefWidth="128.0" text="Author ID" />
+                                                        <TableColumn fx:id="author_col_authorName" prefWidth="337.3333435058594" text="Name" />
+                                                        <TableColumn fx:id="author_col_authorStatus" prefWidth="90" text="Name" />
                                                     </columns>
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                                        <Button fx:id="author_addBtn" layoutX="59.0" layoutY="457.0" mnemonicParsing="false" onAction="#availableBooksAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
-                                        <Button fx:id="author_updateBtn" layoutX="171.0" layoutY="457.0" mnemonicParsing="false" onAction="#availableBooksUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
-                                        <Button fx:id="author_enableBtn" layoutX="59.0" layoutY="502.0" mnemonicParsing="false" onAction="#availableBooksClear" prefHeight="30.0" prefWidth="75.0" styleClass="clear-btn" stylesheets="@../css/dashboard.css" text="Enable" />
-                                        <Button fx:id="author_disableBtn" layoutX="171.0" layoutY="502.0" mnemonicParsing="false" onAction="#availableBooksDelete" prefHeight="30.0" prefWidth="75.0" styleClass="disable-btn" stylesheets="@../css/dashboard.css" text="Disable" />
+                                        <Button fx:id="author_addBtn" layoutX="59.0" layoutY="457.0" mnemonicParsing="false" onAction="#authorAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
+                                        <Button fx:id="author_updateBtn" layoutX="171.0" layoutY="457.0" mnemonicParsing="false" onAction="#authorUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
                                     </children>
                                 </AnchorPane>
                             </children>

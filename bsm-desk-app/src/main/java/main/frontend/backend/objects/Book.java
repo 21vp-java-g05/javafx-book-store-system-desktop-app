@@ -65,4 +65,6 @@ public class Book {
 		
 		return idStr + isbnStr + titleStr + langStr + numString + publisherStr + authorStr + categoriesStr + stsStr;
 	}
+
+
 }

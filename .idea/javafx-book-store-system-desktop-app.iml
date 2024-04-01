@@ -11,5 +11,6 @@
     <orderEntry type="library" name="postgresql-42.7.3" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.24" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.25" level="project" />
+    <orderEntry type="library" name="fontawesomefx-8.26" level="project" />
   </component>
 </module>

@@ -1,18 +1,18 @@
 package main.frontend.controller;
 
-public class publisherData {
-    private final Integer publisherId;
+public class authorData {
+    private final Integer authorId;
     private final String name;
     private final String status;
 
-    public publisherData(Integer publisherId, String name, String status){
-        this.publisherId = publisherId;
+    public authorData(Integer authorId, String name, String status){
+        this.authorId = authorId;
         this.name = name;
         this.status = status;
     }
 
-    public Integer getPublisherId(){
-        return publisherId;
+    public Integer getAuthorId(){
+        return authorId;
     }
 
     public String getName(){

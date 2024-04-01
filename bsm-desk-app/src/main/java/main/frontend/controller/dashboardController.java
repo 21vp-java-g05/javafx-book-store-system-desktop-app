@@ -8,6 +8,7 @@ import java.net.URL;
 //import java.sql.Statement;
 import java.util.*;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -33,8 +34,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -46,9 +45,13 @@ import main.frontend.backend.lists.AuthorList;
 import main.frontend.backend.lists.BookList;
 import main.frontend.backend.lists.CategoryList;
 import main.frontend.backend.lists.PublisherList;
+import main.frontend.backend.objects.Author;
 import main.frontend.backend.objects.Book;
+import main.frontend.backend.objects.Publisher;
 
 public class dashboardController implements Initializable{
+
+
     @FXML
     private AnchorPane main_form;
 
@@ -101,9 +104,6 @@ public class dashboardController implements Initializable{
     private AnchorPane availableBooks_form;
 
     @FXML
-    private ImageView availableBooks_imageView;
-
-    @FXML
     private Button availableBooks_importBtn;
 
     @FXML
@@ -120,7 +120,8 @@ public class dashboardController implements Initializable{
 
     @FXML
     private TextField availableBooks_genre;
-
+    @FXML
+    private TextField availableBooks_status;
     @FXML
     private DatePicker availableBooks_date;
 
@@ -159,6 +160,9 @@ public class dashboardController implements Initializable{
 
     @FXML
     private TableColumn<bookData, String> availableBooks_col_publisher;
+
+    @FXML
+    private TableColumn<bookData, String> availableBooks_col_status;
 
     @FXML
     private AnchorPane purchase_form;
@@ -231,6 +235,8 @@ public class dashboardController implements Initializable{
 
     @FXML
     private TextField publisher_publisherName;
+    @FXML
+    private TextField publisher_publisherStatus;
 
     @FXML
     private Button publisher_importBtn;
@@ -248,14 +254,12 @@ public class dashboardController implements Initializable{
     private Button publisher_disableBtn;
 
     @FXML
-    private ImageView publisher_imageView;
-
-    @FXML
     private TableColumn<publisherData, String> publisher_col_publisherID;
 
     @FXML
     private TableColumn<publisherData, String> publisher_col_publisherName;
-
+    @FXML
+    private TableColumn<publisherData, String> publisher_col_publisherStatus;
 
     @FXML
     private AnchorPane author_form;
@@ -282,26 +286,24 @@ public class dashboardController implements Initializable{
     private TextField author_authorName;
 
     @FXML
+    private TextField author_authorStatus;
+
+    @FXML
     private TextField author_search;
 
     @FXML
-    private ImageView author_imageView;
+    private TableColumn<authorData, String> author_col_authorID;
 
     @FXML
-    private TableColumn<?, ?> author_col_authorID;
+    private TableColumn<authorData, String> author_col_authorName;
+    @FXML
+    private TableColumn<authorData, String> author_col_authorStatus;
 
     @FXML
-    private TableColumn<?, ?> author_col_authorName;
-
-    @FXML
-    private TableView<?> author_tableView;
-
-    private BookList feBookList;
+    private TableView<authorData> author_tableView;
     private PublisherList fePublisherList;
     private AuthorList feAuthorList;
     private CategoryList feCategoryList;
-
-    private Image image;
 
     public void dashboardAB(){
 
@@ -410,92 +412,6 @@ public class dashboardController implements Initializable{
     }
 
     public void availableBooksAdd(){
-
-        String sql = "INSERT INTO book (book_id, title, author, genre, pub_date, price, image) "
-                + "VALUES(?,?,?,?,?,?,?)";
-
-//        connect = database.connectDb();
-//
-//        try{
-//            Alert alert;
-//
-//            if(availableBooks_bookID.getText().isEmpty()
-//                    || availableBooks_bookTitle.getText().isEmpty()
-//                    || availableBooks_author.getText().isEmpty()
-//                    || availableBooks_publisher.getText().isEmpty()
-//                    || availableBooks_genre.getText().isEmpty()
-//                    || availableBooks_date.getValue() == null
-//                    || availableBooks_price.getText().isEmpty()
-//                    || getData.path == null || getData.path == ""){
-//                alert = new Alert(AlertType.ERROR);
-//                alert.setTitle("Error Message");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Please fill all blank fields");
-//                alert.showAndWait();
-//            }else{
-//                // CHECK IF BOOK ID IS ALREADY EXIST
-//                String checkData = "SELECT book_id FROM book WHERE book_id = '"
-//                        +availableBooks_bookID.getText()+"'";
-//
-//                statement = connect.createStatement();
-//                result = statement.executeQuery(checkData);
-//
-//                if(result.next()){
-//                    alert = new Alert(AlertType.ERROR);
-//                    alert.setTitle("Error Message");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Book ID: " + availableBooks_bookID.getText() + " was already exist!");
-//                    alert.showAndWait();
-//                }else{
-//
-//                    prepare = connect.prepareStatement(sql);
-//                    prepare.setString(1, availableBooks_bookID.getText());
-//                    prepare.setString(2, availableBooks_bookTitle.getText());
-//                    prepare.setString(3, availableBooks_author.getText());
-//                    prepare.setString(4, availableBooks_genre.getText());
-//                    prepare.setString(5, String.valueOf(availableBooks_date.getValue()));
-//                    prepare.setString(6, availableBooks_price.getText());
-//                    prepare.setString(7, availableBooks_publisher.getText());
-//
-//                    String uri = getData.path;
-//                    uri = uri.replace("\\", "\\\\");
-//
-//                    prepare.setString(7, uri);
-//
-//                    prepare.executeUpdate();
-//
-//                    alert = new Alert(AlertType.INFORMATION);
-//                    alert.setTitle("Information Message");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Successfully Added!");
-//                    alert.showAndWait();
-//
-//                    // TO BE UPDATED THE TABLEVIEW
-//                    availableBooksShowListData();
-//                    // CLEAR FIELDS
-//                    availableBooksClear();
-//                }
-//            }
-//        }catch(Exception e){e.printStackTrace();}
-
-    }
-
-    public void availableBooksUpdate(){
-
-        String uri = getData.path;
-        uri = uri.replace("\\", "\\\\");
-
-        String sql = "UPDATE book SET title = '"
-                +availableBooks_bookTitle.getText()+"', author = '"
-                +availableBooks_author.getText()+"', genre = '"
-                +availableBooks_publisher.getText()+"', publisher = '"
-                +availableBooks_genre.getText()+"', pub_date = '"
-                +availableBooks_date.getValue()+"', price = '"
-                +availableBooks_price.getText()+"', image = '"
-                +uri+"' WHERE book_id = '"+availableBooks_bookID.getText()+"'";
-
-//        connect = database.connectDb();
-
         try{
             Alert alert;
 
@@ -504,34 +420,31 @@ public class dashboardController implements Initializable{
                     || availableBooks_author.getText().isEmpty()
                     || availableBooks_publisher.getText().isEmpty()
                     || availableBooks_genre.getText().isEmpty()
-                    || availableBooks_date.getValue() == null
-                    || availableBooks_price.getText().isEmpty()
-                    || getData.path == null || getData.path == ""){
+                    || availableBooks_status.getText().isEmpty()
+                    ){
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             }else{
-                alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE Book ID: " + availableBooks_bookID.getText() + "?");
-                Optional<ButtonType> option = alert.showAndWait();
-
-                if(option.get().equals(ButtonType.OK)){
-//                    statement = connect.createStatement();
-//                    statement.executeUpdate(sql);
-
+                BookList feBookList = new BookList();
+                // CHECK IF BOOK ID IS ALREADY EXIST
+                bookData add = new bookData(Integer.parseInt(availableBooks_bookID.getText()), availableBooks_bookTitle.getText(), availableBooks_author.getText(), availableBooks_publisher.getText(), availableBooks_genre.getText(), availableBooks_status.getText());
+                boolean isAddedSuccessfully = feBookList.addBook(add);
+                if(!isAddedSuccessfully) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Book ID: " + availableBooks_bookID.getText() + " was already exist!");
+                    alert.showAndWait();
+                } else {
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successful Updated!");
+                    alert.setContentText("Successfully Added!");
                     alert.showAndWait();
-
-                    // TO BE UPDATED THE TABLEVIEW
                     availableBooksShowListData();
-                    // CLEAR FIELDS
                     availableBooksClear();
                 }
             }
@@ -539,58 +452,46 @@ public class dashboardController implements Initializable{
 
     }
 
-    //Chỉnh lại thành Disable
-    public void availableBooksDelete(){
+    public void availableBooksUpdate() {
+        try {
+            Alert alert;
 
-//        String sql = "DELETE FROM book WHERE book_id = '"
-//                +availableBooks_bookID.getText()+"'";
-//
-//        connect = database.connectDb();
-//
-//        try{
-//            Alert alert;
-//
-//            if(availableBooks_bookID.getText().isEmpty()
-//                    || availableBooks_bookTitle.getText().isEmpty()
-//                    || availableBooks_author.getText().isEmpty()
-//                    || availableBooks_publisher.getText().isEmpty()
-//                    || availableBooks_genre.getText().isEmpty()
-//                    || availableBooks_date.getValue() == null
-//                    || availableBooks_price.getText().isEmpty()
-//                    || getData.path == null || getData.path == ""){
-//                alert = new Alert(AlertType.ERROR);
-//                alert.setTitle("Error Message");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Please fill all blank fields");
-//                alert.showAndWait();
-//            }else{
-//                alert = new Alert(AlertType.CONFIRMATION);
-//                alert.setTitle("Confirmation Message");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Are you sure you want to DELETE Book ID: " + availableBooks_bookID.getText() + "?");
-//                Optional<ButtonType> option = alert.showAndWait();
-//
-//                if(option.get().equals(ButtonType.OK)){
-//                    statement = connect.createStatement();
-//                    statement.executeUpdate(sql);
-//
-//                    alert = new Alert(AlertType.INFORMATION);
-//                    alert.setTitle("Information Message");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Successful Delete!");
-//                    alert.showAndWait();
-//
-//                    // TO BE UPDATED THE TABLEVIEW
-//                    availableBooksShowListData();
-//                    // CLEAR FIELDS
-//                    availableBooksClear();
-//                }
-//            }
-//        }catch(Exception e){e.printStackTrace();}
-
+            if (availableBooks_bookID.getText().isEmpty()
+                    || availableBooks_bookTitle.getText().isEmpty()
+                    || availableBooks_author.getText().isEmpty()
+                    || availableBooks_publisher.getText().isEmpty()
+                    || availableBooks_genre.getText().isEmpty()
+                    || availableBooks_status.getText().isEmpty()
+                    ) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                BookList feBookList = new BookList();
+                bookData update = new bookData(Integer.parseInt(availableBooks_bookID.getText()), availableBooks_bookTitle.getText(), availableBooks_author.getText(), availableBooks_publisher.getText(), availableBooks_genre.getText(), availableBooks_status.getText());
+                boolean isUpdatedSuccessfully = feBookList.updateBook(update);
+                if (!isUpdatedSuccessfully) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Book ID: " + availableBooks_bookID.getText() + " was not found!");
+                    alert.showAndWait();
+                } else {
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+                    availableBooksShowListData();
+                    availableBooksClear();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-// Chỉnh lại thành enable trước khi sử dụng
 
     public void availableBooksClear(){
         availableBooks_bookID.setText("");
@@ -598,44 +499,30 @@ public class dashboardController implements Initializable{
         availableBooks_author.setText("");
         availableBooks_publisher.setText("");
         availableBooks_genre.setText("");
-        availableBooks_date.setValue(null);
-        availableBooks_price.setText("");
-
-        getData.path = "";
-
-        availableBooks_imageView.setImage(null);
-    }
-
-    public void avaialableBooksInsertImage(){
-
-        FileChooser open = new FileChooser();
-        open.setTitle("Open Image File");
-        open.getExtensionFilters().add(new ExtensionFilter("File Image", "*jpg", "*png"));
-
-        File file = open.showOpenDialog(main_form.getScene().getWindow());
-
-        if(file != null){
-            getData.path = file.getAbsolutePath();
-
-            image = new Image(file.toURI().toString(), 112, 137, false, true);
-            availableBooks_imageView.setImage(image);
-        }
-
+        availableBooks_status.setText("");
     }
 
     public ObservableList<bookData> availableBooksListData(){
-        feBookList = new BookList();
+        BookList feBookList = new BookList();
         ObservableList<bookData> listData = FXCollections.observableArrayList();
         ArrayList<Book> books = feBookList.loadBooks_fromDatabase(null);
         for (Book book : books) {
-            System.out.println(book.toString());
-            bookData data = new bookData(
+            bookData data;
+            if (book.isEnabled()) data = new bookData(
                     book.getId(),
                     book.getTitle(),
                     book.getAuthor().getAuthorName(),
                     book.getPublisher().getPublisherName(),
                     book.getCategories().toString(),
-                    ""
+                    "Enabled"
+            );
+            else data = new bookData(
+                    book.getId(),
+                    book.getTitle(),
+                    book.getAuthor().getAuthorName(),
+                    book.getPublisher().getPublisherName(),
+                    book.getCategories().toString(),
+                    "Disabled"
             );
             listData.add(data);
         }
@@ -649,6 +536,7 @@ public class dashboardController implements Initializable{
         availableBooks_col_bookTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         availableBooks_col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
         availableBooks_col_publisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        availableBooks_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         availableBooks_col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         availableBooks_tableView.setItems(availableBooksList);
     }
@@ -662,49 +550,39 @@ public class dashboardController implements Initializable{
         availableBooks_bookID.setText(String.valueOf(bookD.getBookId()));
         availableBooks_bookTitle.setText(bookD.getTitle());
         availableBooks_author.setText(bookD.getAuthor());
-        availableBooks_genre.setText(bookD.getGenre());
+        availableBooks_genre.setText(bookD.getGenre().replace("\n", ", "));
         availableBooks_publisher.setText(bookD.getPublisher());
-
-        getData.path = bookD.getImage();
-
-        String uri = "file:" + bookD.getImage();
-
-        image = new Image(uri, 112, 137, false, true);
-
-        availableBooks_imageView.setImage(image);
+        availableBooks_status.setText(bookD.getStatus());
     }
 
-    public void availableBooksSearch(){
+    public void availableBooksSearch() {
+        // Create a filtered list based on the availableBooksList
+        FilteredList<bookData> filteredList = new FilteredList<>(availableBooksList, e -> true);
 
-        FilteredList<bookData> filter = new FilteredList<>(availableBooksList, e -> true);
-
-        availableBooks_search.textProperty().addListener((Observable, oldValue, newValue) ->{
-
-            filter.setPredicate(predicateBookData -> {
-
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
+        // Add a listener to the text property of the search TextField
+        availableBooks_search.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            // Set the predicate for filtering based on the search text
+            filteredList.setPredicate(bookData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true; // Show all items if the search text is empty
                 }
 
                 String searchKey = newValue.toLowerCase();
-
-                if(predicateBookData.getBookId().toString().contains(searchKey)){
-                    return true;
-                }else if(predicateBookData.getTitle().toLowerCase().contains(searchKey)){
-                    return true;
-                }else if(predicateBookData.getAuthor().toLowerCase().contains(searchKey)){
-                    return true;
-                }else if(predicateBookData.getPublisher().toLowerCase().contains(searchKey)){
-                    return true;
-                }
-                else return predicateBookData.getGenre().toLowerCase().contains(searchKey);
+                return bookData.getBookId().toString().contains(searchKey) ||
+                        bookData.getTitle().toLowerCase().contains(searchKey) ||
+                        bookData.getAuthor().toLowerCase().contains(searchKey) ||
+                        bookData.getPublisher().toLowerCase().contains(searchKey) ||
+                        bookData.getGenre().toLowerCase().contains(searchKey);
             });
+            // Create a sorted list based on the filtered list
+            SortedList<bookData> sortedList = new SortedList<>(filteredList);
+
+            // Bind the comparator of the sorted list to the comparator of the TableView
+            sortedList.comparatorProperty().bind(availableBooks_tableView.comparatorProperty());
+
+            // Set the items of the TableView to the sorted list
+            availableBooks_tableView.setItems(sortedList);
         });
-
-        SortedList<bookData> sortList = new SortedList(filter);
-        sortList.comparatorProperty().bind(availableBooks_tableView.comparatorProperty());
-        availableBooks_tableView.setItems(sortList);
-
     }
 
     private double totalP;
@@ -1003,132 +881,130 @@ public class dashboardController implements Initializable{
 
     }
 
-    public void publisherAdd(){
-        String sql = "INSERT INTO Publisher (publisher_id, name) "
-                + "VALUES(?,?,?,?,?,?,?)";
+    public void publisherAdd() {
+        try {
+            Alert alert;
 
-//        connect = database.connectDb();
-//
-//        try{
-//            Alert alert;
-//
-//            if(publisher_publisherID.getText().isEmpty()
-//                    || publisher_publisherName.getText().isEmpty()){
-//                alert = new Alert(AlertType.ERROR);
-//                alert.setTitle("Error Message");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Please fill all blank fields");
-//                alert.showAndWait();
-//            }else{
-//                // CHECK IF BOOK ID IS ALREADY EXIST
-//                String checkData = "SELECT publisher_id FROM book WHERE publisher_id = '"
-//                        +publisher_publisherID.getText()+"'";
-//
-//                statement = connect.createStatement();
-//                result = statement.executeQuery(checkData);
-//
-//                if(result.next()){
-//                    alert = new Alert(AlertType.ERROR);
-//                    alert.setTitle("Erro  r Message");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Book ID: " + publisher_publisherID.getText() + " was already exist!");
-//                    alert.showAndWait();
-//                }else{
-//
-//                    prepare = connect.prepareStatement(sql);
-//                    prepare.setString(1, publisher_publisherID.getText());
-//                    prepare.setString(2, publisher_publisherName.getText());
-//
-//                    String uri = getData.path;
-//                    uri = uri.replace("\\", "\\\\");
-//
-//                    prepare.setString(2, uri);
-//
-//                    prepare.executeUpdate();
-//
-//                    alert = new Alert(AlertType.INFORMATION);
-//                    alert.setTitle("Information Message");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Successfully Added!");
-//                    alert.showAndWait();
-//
-//                    // TO BE UPDATED THE TABLEVIEW
-//                    publisherShowListData();
-//                    // CLEAR FIELDS
-//                    availableBooksClear();
-//                }
-//            }
-//        }catch(Exception e){e.printStackTrace();}
-    }
+            // Check if publisher data fields are empty
+            if (publisher_publisherID.getText().isEmpty() || publisher_publisherName.getText().isEmpty() || publisher_publisherStatus.getText().isEmpty()) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all fields");
+                alert.showAndWait();
+            } else {
+                // Create a publisherData object
+                publisherData newPublisher = new publisherData(Integer.parseInt(publisher_publisherID.getText()), publisher_publisherName.getText(), publisher_publisherStatus.getText());
+                // Add the publisher to the database
+                PublisherList publisherList = new PublisherList();
+                boolean isAddedSuccessfully = publisherList.addPublisher(newPublisher);
+                if (!isAddedSuccessfully) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Failed to add publisher!");
+                    alert.showAndWait();
+                } else {
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Publisher added successfully!");
+                    alert.showAndWait();
+                    // Refresh the publisher list
+                    publisherShowListData();
 
-//    public void publisherUpdate(){
-//        String uri = getData.path;
-//        uri = uri.replace("\\", "\\\\");
-//
-//        String sql = "Upadte publisher Name = '"
-//                +publisher_publisherID.setText("") +"', name = ' "
-//                +publisher_publisherName.getText()+"', image = '"
-//                +uri+"'" ;
-//
-//
-//    }
-
-    public void publisherSearch(){
-        FilteredList<publisherData> filter = new FilteredList<>(publisherList, e -> true);
-
-        publisher_search.textProperty().addListener((Observable, oldValue, newValue) -> {
-            filter.setPredicate(predicatePublisherData -> {
-                if((newValue == null || newValue.isEmpty())){
-                    return true;
                 }
-
-                String searchKey = newValue.toLowerCase();
-                if(predicatePublisherData.getPublisherId().toString().contains(searchKey)){
-                    return true;
-                } else if (predicatePublisherData.getName().toLowerCase().contains(searchKey)) {
-                    return true;
-                } else return false;
-            });
-        });
-
-        SortedList<publisherData> sortList = new SortedList<>(filter);
-        sortList.comparatorProperty().bind(publisher_tableView.comparatorProperty());
-        publisher_tableView.setItems(sortList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void publisherInsertImage(){
-        FileChooser open = new FileChooser();
-        open.setTitle("Open Image File");
-        open.getExtensionFilters().add(new ExtensionFilter("File Image", "*jpg", "*png"));
+    public void publisherUpdate(){
+        try {
+            Alert alert;
 
-        File file = open.showOpenDialog(main_form.getScene().getWindow());
-
-        if(file != null){
-            getData.path = file.getAbsolutePath();
-
-            image = new Image(file.toURI().toString(), 112, 137, false, true);
-            publisher_imageView.setImage(image);
+            if (publisher_publisherID.getText().isEmpty()
+                    || publisher_publisherName.getText().isEmpty()
+                    || publisher_publisherStatus.getText().isEmpty()
+            ) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                PublisherList fePublisherList = new PublisherList();
+                publisherData update = new publisherData(Integer.parseInt(publisher_publisherID.getText()), publisher_publisherName.getText(), publisher_publisherStatus.getText());
+                boolean isUpdatedSuccessfully = fePublisherList.updatePublisher(update);
+                if (!isUpdatedSuccessfully) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Book ID: " + availableBooks_bookID.getText() + " was not found!");
+                    alert.showAndWait();
+                } else {
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+                    publisherShowListData();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
 
-    public ObservableList<publisherData> publisherListData(){
-        ObservableList<publisherData> listData = FXCollections.observableArrayList();
-//        String sql = "SELECT * FROM ";
+    public void publisherSearch() {
+        // Create a filtered list based on the publisherList
+        FilteredList<publisherData> filteredList = new FilteredList<>(publisherList, e -> true);
 
-//        connect = database.connectDb();
-//
-//        try{
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            publisherData pubD;
-//
-//            while(result.next()){
-//                pubD = new publisherData(result.getInt("publisher_id"), result.getString("name"), result.getString("image"));
-//                listData.add(pubD);
-//            }
-//        }catch(Exception e){e.printStackTrace();}
+        // Add a listener to the text property of the search TextField
+        publisher_search.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            // Set the predicate for filtering based on the search text
+            filteredList.setPredicate(publisherData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true; // Show all items if the search text is empty
+                }
+
+                String searchKey = newValue.toLowerCase();
+                return publisherData.getPublisherId().toString().contains(searchKey) ||
+                        publisherData.getName().toLowerCase().contains(searchKey);
+            });
+
+            // Create a sorted list based on the filtered list
+            SortedList<publisherData> sortedList = new SortedList<>(filteredList);
+
+            // Bind the comparator of the sorted list to the comparator of the TableView
+            sortedList.comparatorProperty().bind(publisher_tableView.comparatorProperty());
+
+            // Set the items of the TableView to the sorted list
+            publisher_tableView.setItems(sortedList);
+        });
+    }
+
+    public ObservableList<publisherData> publisherListData() {
+        PublisherList publisherList = new PublisherList();
+        ObservableList<publisherData> listData = FXCollections.observableArrayList();
+        ArrayList<Publisher> publishers = publisherList.loadPublishers_fromDatabase(null);
+        for (Publisher publisher : publishers) {
+            publisherData data;
+            if (publisher.isEnabled()) data = new publisherData(
+                    publisher.getId(),
+                    publisher.getName(),
+                    "Enabled"
+            );
+            else data = new publisherData(
+                    publisher.getId(),
+                    publisher.getName(),
+                    "Disabled"
+            );
+
+            listData.add(data);
+        }
         return listData;
     }
     private ObservableList<publisherData> publisherList;
@@ -1136,7 +1012,7 @@ public class dashboardController implements Initializable{
         publisherList = publisherListData();
         publisher_col_publisherID.setCellValueFactory(new PropertyValueFactory<>("publisherId"));
         publisher_col_publisherName.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+        publisher_col_publisherStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         publisher_tableView.setItems(publisherList);
     }
 
@@ -1150,11 +1026,156 @@ public class dashboardController implements Initializable{
 
         publisher_publisherID.setText(String.valueOf(pubD.getPublisherId()));
         publisher_publisherName.setText(pubD.getName());
-
-        String uri = "file: " + pubD.getImage();
-        image = new Image(uri, 112, 137, false, true);
-        publisher_imageView.setImage(image);
+        publisher_publisherStatus.setText(pubD.getStatus());
     }
+
+    public void authorAdd() {
+        try {
+            Alert alert;
+
+            // Check if author data fields are empty
+            if (author_authorID.getText().isEmpty() || author_authorName.getText().isEmpty() || author_authorStatus.getText().isEmpty()) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all fields");
+                alert.showAndWait();
+            } else {
+                // Create an authorData object
+                Author newAuthor = new Author(Integer.parseInt(author_authorID.getText()), author_authorName.getText(), Objects.equals(author_authorStatus.getText(), "Enabled"));
+                // Add the author to the database
+                AuthorList authorList = new AuthorList();
+                boolean isAddedSuccessfully = authorList.addAuthor(newAuthor);
+                if (!isAddedSuccessfully) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Failed to add author!");
+                    alert.showAndWait();
+                } else {
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Author added successfully!");
+                    alert.showAndWait();
+                    // Refresh the author list
+                    authorShowListData();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void authorUpdate(){
+        try {
+            Alert alert;
+
+            if (author_authorID.getText().isEmpty()
+                    || author_authorName.getText().isEmpty()
+                    || author_authorStatus.getText().isEmpty()
+            ) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                AuthorList feAuthorList = new AuthorList();
+                Author update = new Author(Integer.parseInt(author_authorID.getText()), author_authorName.getText(), author_authorStatus.getText() == "Enabled");
+                boolean isUpdatedSuccessfully = feAuthorList.updateAuthor(update);
+                if (!isUpdatedSuccessfully) {
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Author ID: " + author_authorID.getText() + " was not found!");
+                    alert.showAndWait();
+                } else {
+                    alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+                    authorShowListData();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void authorSearch() {
+        // Create a filtered list based on the authorList
+        FilteredList<authorData> filteredList = new FilteredList<>(authorList, e -> true);
+
+        // Add a listener to the text property of the search TextField
+        author_search.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            // Set the predicate for filtering based on the search text
+            filteredList.setPredicate(authorData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true; // Show all items if the search text is empty
+                }
+
+                String searchKey = newValue.toLowerCase();
+                return authorData.getAuthorId().toString().contains(searchKey) ||
+                        authorData.getName().toLowerCase().contains(searchKey);
+            });
+
+            // Create a sorted list based on the filtered list
+            SortedList<authorData> sortedList = new SortedList<>(filteredList);
+
+            // Bind the comparator of the sorted list to the comparator of the TableView
+            sortedList.comparatorProperty().bind(author_tableView.comparatorProperty());
+
+            // Set the items of the TableView to the sorted list
+            author_tableView.setItems(sortedList);
+        });
+    }
+
+    public ObservableList<authorData> authorListData() {
+        AuthorList authorList = new AuthorList();
+        ObservableList<authorData> listData = FXCollections.observableArrayList();
+        ArrayList<Author> authors = authorList.loadAuthors_fromDatabase(null);
+        for (Author author : authors) {
+            authorData data;
+            if (author.isEnabled()) data = new authorData(
+                    author.getId(),
+                    author.getName(),
+                    "Enabled"
+            );
+            else data = new authorData(
+                    author.getId(),
+                    author.getName(),
+                    "Disabled"
+            );
+
+            listData.add(data);
+        }
+        return listData;
+    }
+    private ObservableList<authorData> authorList;
+    public void authorShowListData(){
+        authorList = authorListData();
+        author_col_authorID.setCellValueFactory(new PropertyValueFactory<>("authorId"));
+        author_col_authorName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        author_col_authorStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        author_tableView.setItems(authorList);
+    }
+
+    public void authorSelect(){
+        authorData autD = author_tableView.getSelectionModel().getSelectedItem();
+        int num = author_tableView.getSelectionModel().getSelectedIndex();
+
+        if((num - 1) < -1){
+            return;
+        }
+
+        author_authorID.setText(String.valueOf(autD.getAuthorId()));
+        author_authorName.setText(autD.getName());
+        author_authorStatus.setText(autD.getStatus());
+    }
+
 
     public void displayUsername(){
 //        String user = getData.username;
@@ -1246,6 +1267,8 @@ public class dashboardController implements Initializable{
             dashboard_btn.setStyle("-fx-background-color: transparent");
             purchase_btn.setStyle("-fx-background-color: transparent");
             publisher_btn.setStyle("-fx-background-color: transparent");
+
+            authorShowListData();
         }
     }
 
@@ -1321,6 +1344,6 @@ public class dashboardController implements Initializable{
         purchaseDisplayQTY();
         purchaseDisplayTotal();
         publisherShowListData();
+        authorShowListData();
     }
-
 }

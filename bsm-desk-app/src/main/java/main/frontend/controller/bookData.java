@@ -2,19 +2,19 @@ package main.frontend.controller;
 
 public class bookData {
     
-    private Integer bookId;
-    private String title;
-    private String author;
-    private String genre;
-    private String publisher;
-    private String image;
-    public bookData(Integer bookId, String title, String author, String publisher, String genre, String image){
+    private final Integer bookId;
+    private final String title;
+    private final String author;
+    private final String genre;
+    private final String publisher;
+    private final String status;
+    public bookData(Integer bookId, String title, String author, String publisher, String genre, String status){
         this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.genre = genre;
-        this.image = image;
+        this.status = status;
     }
     public Integer getBookId(){
         return bookId;
@@ -28,11 +28,9 @@ public class bookData {
     public String getGenre(){
         return genre;
     }
-    public String getImage(){
-        return image;
-    }
 
     public String getPublisher() {
         return publisher;
     }
+    public String getStatus() { return status; }
 }

@@ -40,8 +40,12 @@ public class Author {
 		this.description = description;
 		this.enabled = enabled;
 	}
-	public Author(int id, String name, String description) { this(id, name, description, true); }
-	public Author(Author author) { this(author.id, author.name, author.description); }
+	public Author(int id, String name, boolean enabled) {
+		// Call another constructor within the same class
+		this(id, name, "", enabled);
+	}
+
+	// Add another constructor to handle the initialization
 
 	public int getId() { return id; }
 	public String getAuthorName() { return name; }
