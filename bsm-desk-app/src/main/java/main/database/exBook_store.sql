@@ -128,7 +128,7 @@ ALTER SEQUENCE public.author_id_seq OWNED BY public.author.id;
 CREATE TABLE public.book (
     id integer NOT NULL,
     title character varying(255) NOT NULL,
-    isbn character(13) NOT NULL,
+    isbn character(13),
     language character varying(255),
     number_of_pages integer,
     publisher integer NOT NULL,
@@ -184,6 +184,9 @@ CREATE TABLE public.category_book (
     book_id integer NOT NULL
 );
 
+ALTER TABLE public.category_book
+    ADD PRIMARY KEY (category_id),
+ADD PRIMARY KEY (book_id);
 
 ALTER TABLE public.category_book OWNER TO postgres;
 
@@ -628,3 +631,60 @@ ALTER TABLE ONLY public.orders
 -- PostgreSQL database dump complete
 --
 
+INSERT INTO public.book (id, title, isbn, language, number_of_pages, publisher, author, status) VALUES
+                                                                                                    (1, 'The Great Gatsby', '9780743273565', 'English', 180, 1, 1, true),
+                                                                                                    (2, 'To Kill a Mockingbird', '9780061120084', 'English', 324, 2, 2, true),
+                                                                                                    (3, '1984', '9780452284234', 'English', 328, 3, 3, true),
+                                                                                                    (4, 'Pride and Prejudice', '9780141439518', 'English', 279, 4, 4, true),
+                                                                                                    (5, 'The Catcher in the Rye', '9780316769488', 'English', 277, 5, 5, true),
+                                                                                                    (6, 'Animal Farm', '9780451526342', 'English', 141, 3, 3, true),
+                                                                                                    (7, 'Brave New World', '9780060850524', 'English', 288, 6, 6, true),
+                                                                                                    (8, 'Lord of the Flies', '9780571273577', 'English', 224, 7, 7, true),
+                                                                                                    (9, 'The Hobbit', '9780547928227', 'English', 310, 8, 8, true),
+                                                                                                    (10, 'The Lord of the Rings', '9780544003415', 'English', 1178, 9, 8, true);
+
+INSERT INTO public.category (id, name, description, status) VALUES
+                                                                (1, 'Fiction', 'Books that are not based on real events', true),
+                                                                (2, 'Non-fiction', 'Books that are based on real events', true),
+                                                                (3, 'Science Fiction', 'Books that involve futuristic or fantastical scientific and technological advances', true),
+                                                                (4, 'Mystery', 'Books that involve a mysterious event or crime', true),
+                                                                (5, 'Romance', 'Books that focus on romantic love between characters', true),
+                                                                (6, 'Fantasy', 'Books that feature magical or supernatural elements', true),
+                                                                (7, 'Thriller', 'Books that create excitement and suspense', true),
+                                                                (8, 'Horror', 'Books that intend to scare, unsettle, or horrify the reader', true),
+                                                                (9, 'Biography', 'Books that tell the life story of a real person', true),
+                                                                (10, 'Self-help', 'Books that provide guidance and advice on personal growth and development', true);
+
+INSERT INTO public.category_book (category_id, book_id) VALUES
+                                                            (1, 1),
+                                                            (1, 2),
+                                                            (1, 3),
+                                                            (1, 4),
+                                                            (1, 5),
+                                                            (3, 3),
+                                                            (3, 6),
+                                                            (3, 7),
+                                                            (6, 9),
+                                                            (6, 10);
+
+INSERT INTO public.author (id, name, description, status) VALUES
+                                                              (1, 'F. Scott Fitzgerald', 'American novelist and short-story writer', true),
+                                                              (2, 'Harper Lee', 'American novelist best known for her 1960 novel "To Kill a Mockingbird"', true),
+                                                              (3, 'George Orwell', 'English novelist, essayist, journalist, and critic', true),
+                                                              (4, 'Jane Austen', 'English novelist known primarily for her six major novels', true),
+                                                              (5, 'J.D. Salinger', 'American writer known for "The Catcher in the Rye"', true),
+                                                              (6, 'Aldous Huxley', 'English writer and philosopher', true),
+                                                              (7, 'William Golding', 'British novelist, poet, playwright, and Nobel Prize laureate', true),
+                                                              (8, 'J.R.R. Tolkien', 'English writer, poet, philologist, and university professor', true);
+
+INSERT INTO public.publisher (id, name, description, status) VALUES
+                                                                 (1, 'Scribner', 'An American publisher based in New York City', true),
+                                                                 (2, 'HarperCollins', 'One of the world''s largest publishing companies', true),
+                                                                 (3, 'Signet Classics', 'An imprint of Penguin Books', true),
+                                                                 (4, 'Penguin Classics', 'An imprint published by Penguin Books', true),
+                                                                 (5, 'Little, Brown and Company', 'An American publisher founded in 1837', true),
+                                                                 (6, 'Harper Perennial', 'A paperback imprint of the publishing house HarperCollins', true),
+                                                                 (7, 'Faber and Faber', 'An independent publishing house in London, England', true),
+                                                                 (8, 'Houghton Mifflin Harcourt', 'An American publishing company based in Boston, Massachusetts', true),
+                                                                 (9, 'Allen & Unwin', 'An independent publishing company based in Australia', true),
+                                                                 (10, 'Ballantine Books', 'An American publisher', true);

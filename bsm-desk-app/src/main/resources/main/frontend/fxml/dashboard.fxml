@@ -8,7 +8,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
@@ -206,7 +205,7 @@
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="availableBooks_form" layoutX="165.0" layoutY="151.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="availableBooks_form" layoutX="165.0" layoutY="151.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
                                             <styleClass>
@@ -262,8 +261,8 @@
 <!--                                                    </font>-->
 <!--                                                </Label>-->
 <!--                                                <TextField fx:id="availableBooks_price" layoutX="102.0" layoutY="390.0" promptText="\$0.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />-->
-                                                <Button fx:id="availableBooks_addBtn" layoutX="39.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
-                                                <Button fx:id="availableBooks_updateBtn" layoutX="151.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
+                                                <Button fx:id="availableBooks_addBtn" layoutX="39.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" AnchorPane.bottomAnchor="58.666666666666686" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="150.66666666666663" AnchorPane.topAnchor="437.0" />
+                                                <Button fx:id="availableBooks_updateBtn" layoutX="151.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="38.66666666666664" AnchorPane.topAnchor="437.3333333333333" />
                                                 <Label layoutX="19.0" layoutY="323.0" text="Publisher:">
                                                     <font>
                                                         <Font name="Arial" size="15.0" />
@@ -280,7 +279,7 @@
                                             <children>
                                                 <TextField fx:id="availableBooks_search" layoutX="14.0" layoutY="14.0" onAction="#availableBooksSearch" onKeyTyped="#availableBooksSearch" prefHeight="25.0" prefWidth="240.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="486.6666666666667" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.33333333333337" AnchorPane.topAnchor="14.0" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="18.0" layoutY="34.0" size="1.5em" text="" />
-                                                <TableView fx:id="availableBooks_tableView" layoutX="18.0" layoutY="58.0" onMouseClicked="#availableBooksSelect" prefHeight="451.0" prefWidth="550.0">
+                                                <TableView fx:id="availableBooks_tableView" layoutX="18.0" layoutY="58.0" onMouseClicked="#availableBooksSelect" prefHeight="451.0" prefWidth="550.0" AnchorPane.topAnchor="58.0">
                                                     <columns>
                                                         <TableColumn fx:id="availableBooks_col_bookID" prefWidth="68.6666259765625" text="Book ID" />
                                                         <TableColumn fx:id="availableBooks_col_bookTitle" prefWidth="115.3333740234375" text="Title" />
@@ -508,7 +507,7 @@
                                             <children>
                                                 <TextField fx:id="author_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#authorSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
-                                                <TableView fx:id="author_tableView" onMouseClicked="#authorSelect" layoutX="14.0" layoutY="52.0" prefHeight="459.0" prefWidth="557.0">
+                                                <TableView fx:id="author_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#authorSelect" prefHeight="459.0" prefWidth="557.0">
                                                     <columns>
                                                         <TableColumn fx:id="author_col_authorID" prefWidth="128.0" text="Author ID" />
                                                         <TableColumn fx:id="author_col_authorName" prefWidth="337.3333435058594" text="Name" />
