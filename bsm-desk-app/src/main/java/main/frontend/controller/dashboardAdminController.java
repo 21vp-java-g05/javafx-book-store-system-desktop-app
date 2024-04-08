@@ -83,15 +83,24 @@ public class dashboardAdminController implements Initializable {
     private AnchorPane userAccount_form;
 
     @FXML
+    private AnchorPane profile_setting;
+
+    @FXML
     private TableView<?> userAccount_tableView;
 
 public void switchForm(ActionEvent event){
     if(event.getSource() == revenue_btn){
         revenue_form.setVisible(true);
         userAccount_form.setVisible(false);
+        profile_setting.setVisible(false);
     } else if (event.getSource() == userAccount_btn) {
         revenue_form.setVisible(false);
         userAccount_form.setVisible(true);
+        profile_setting.setVisible(false);
+    }else if (event.getSource() == profile_btn) {
+        revenue_form.setVisible(false);
+        userAccount_form.setVisible(false);
+        profile_setting.setVisible(true);
     }
 }
 

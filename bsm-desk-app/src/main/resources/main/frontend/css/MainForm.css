@@ -29,6 +29,22 @@
     -fx-background-color:  #365486;
 }
 
+.bg-color-3{
+    -fx-background-color:  #7FC7D9;
+}
+
+.bg-color-4{
+    -fx-background-color: linear-gradient(to bottom right, #365486, #7FC7D9);
+    -fx-text-fill: #fff;
+}
+
+.bg-color-4:hover{
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+    -fx-border-color:linear-gradient(to bottom right, #365486, #7FC7D9);
+    -fx-border-width: 2.5px;
+}
+
 .nav-btn-1{
     -fx-background-color: transparent;
     -fx-border-color: #fff;
