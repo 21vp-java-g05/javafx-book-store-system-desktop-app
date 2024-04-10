@@ -1,46 +1,83 @@
 package main.frontend.backend.orders;
 
 public class Customer {
-	private int id;
-	private String mail, fullname, phone;
-	private boolean male, enabled;
-
-	public Customer() {}
-	public Customer(int id, String mail, String fullname, String phone, boolean male, boolean enabled) {
+	public void setId(int id) {
 		this.id = id;
-		this.mail = mail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.male = male;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	public Customer(int id, String mail, String fullname, String phone, boolean male) { this(id, mail, fullname, phone, male, true); }
-	public Customer(Customer other) { this(other.id, other.mail, other.fullname, other.phone, other.male, other.enabled); }
 
-	public int getId() { return id; }
-	public String getMail() { return mail; }
-	public String getFullname() { return fullname; }
-	public String getPhone() { return phone; }
-	public boolean isMale() { return male; }
+	private int id;
+	private String email; // Assuming "mail" was changed to "email"
+	private String fullName;
+	private String gender; // Assuming "male" boolean was replaced with a gender String field
+	private boolean enabled;
 
-	public void changeInfo(int id, String mail, String fullname, String phone, boolean male, boolean enabled) {
+	public Customer() {
+	}
+
+	public Customer(int id, String email, String fullName, String gender, boolean enabled) {
 		this.id = id;
-		this.mail = mail;
-		this.fullname = fullname;
-		this.phone = phone;
-		this.male = male;
+		this.email = email;
+		this.fullName = fullName;
+		this.gender = gender;
+		this.enabled = enabled;
+	}
+
+	public Customer(Customer other) {
+		this(other.id, other.email, other.fullName, other.gender, other.enabled);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void changeInfo(int id, String email, String fullName, String gender, boolean enabled) {
+		this.id = id;
+		this.email = email;
+		this.fullName = fullName;
+		this.gender = gender;
 		this.enabled = enabled;
 	}
 
 	@Override
 	public String toString() {
 		String idStr = "\tID: " + String.valueOf(id) + "\n";
-		String mailStr = "\tMail: " + mail + "\n";
-		String fullnameStr = "\tFull name: " + fullname + "\n";
-		String phoneStr = "\tPhone: " + phone + "\n";
-		String gender = "\tGender: " + (male ? "male" : "female") + "\n";
-		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
-		
-		return idStr + mailStr + fullnameStr + phoneStr + gender + stsStr;
+		String emailStr = "\tEmail: " + email + "\n";
+		String fullnameStr = "\tFull name: " + fullName + "\n";
+		String genderStr = "\tGender: " + gender + "\n";
+		String stsStr = "\tStatus: " + (enabled ? "enabled" : "disabled") + "\n";
+
+		return idStr + emailStr + fullnameStr + genderStr + stsStr;
 	}
 }

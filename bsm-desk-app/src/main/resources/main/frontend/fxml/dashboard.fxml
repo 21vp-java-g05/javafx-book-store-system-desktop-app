@@ -8,7 +8,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
@@ -20,6 +19,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.frontend.controller.dashboardController">
     <children>
         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
@@ -66,22 +67,79 @@
                                     </font>
                                 </Label>
                                 <Line endX="83.66667175292969" layoutX="108.0" layoutY="188.0" startX="-100.0" stroke="WHITE" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" />
-                                <Button fx:id="dashboard_btn" layoutX="10.0" layoutY="212.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Dashboard" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+
+                                <ScrollPane fx:id="scrollable_list" layoutX="10.0" layoutY="212.0" prefHeight="280.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" styleClass="scroll-list" stylesheets="@../css/dashboard.css">
+                                <content>
+                                <VBox styleClass="vbox" stylesheets="@../css/dashboard.css">
+                                <Button fx:id="dashboard_btn" layoutX="10.0" layoutY="212.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Dashboard" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                     <graphic>
                                         <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5EM" />
                                     </graphic>
                                 </Button>
-                                <Button fx:id="availableBooks_btn" layoutX="11.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Available Books">
+                                <Button fx:id="availableBooks_btn" layoutX="11.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Available Books">
                                     <graphic>
                                         <FontAwesomeIcon fill="WHITE" glyphName="BOOK" size="1.5EM" />
                                     </graphic>
                                 </Button>
-                                <Button fx:id="purchase_btn" layoutX="11.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Purchase">
+                                <Button fx:id="purchase_btn" layoutX="11.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Purchase">
                                     <graphic>
                                         <FontAwesomeIcon fill="WHITE" glyphName="SHOPPING_CART" size="1.5EM" />
                                     </graphic>
                                 </Button>
-                                <Button fx:id="logout" layoutX="14.0" layoutY="516.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="32.0" stylesheets="@../css/dashboard.css">
+                                <Button fx:id="publisher_btn" layoutX="11.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Publishers">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="PRINT" size="1.5EM" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="author_btn" layoutX="11.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Authors">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" size="1.5EM" text="" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="category_btn" layoutX="11.0" layoutY="397.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Categories">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="TAGS" size="1.5EM" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="newbook_btn" layoutX="11.0" layoutY="434.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="New books">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="STAR" size="1.5EM" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="oos_btn" layoutX="11.0" layoutY="471.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Out-of-stock">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="MINUS_SQUARE" size="1.5EM" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="import_btn" layoutX="11.0" layoutY="508.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Import sheets">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="UPLOAD" size="1.5EM" />
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="import_books_btn" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Import books">
+                                    <graphic>
+                                        <FontAwesomeIcon fill="WHITE" glyphName="PLUS_SQUARE" size="1.5EM" />
+                                    </graphic>
+                                </Button>
+                                    <Button fx:id="customer_btn" layoutX="11.0" layoutY="582.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Customers">
+                                        <graphic>
+                                            <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.5EM" />
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="order_btn" layoutX="11.0" layoutY="619.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Order">
+                                        <graphic>
+                                            <FontAwesomeIcon fill="WHITE" glyphName="REORDER" size="1.5EM" />
+                                        </graphic>
+                                    </Button>
+                                    <Button fx:id="order_books_btn" layoutX="11.0" layoutY="656.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Order books">
+                                        <graphic>
+                                            <FontAwesomeIcon fill="WHITE" glyphName="REORDER" size="1.5EM" />
+                                        </graphic>
+                                    </Button>
+                                </VBox>
+                                </content>
+                                </ScrollPane>
+                                <Button fx:id="logout" layoutX="22.0" layoutY="515.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="32.0" stylesheets="@../css/dashboard.css">
                                     <graphic>
                                         <FontAwesomeIcon glyphName="SIGN_OUT" size="1.5em" />
                                     </graphic>
@@ -90,17 +148,6 @@
                                         <String fx:value="shadow" />
                                     </styleClass>
                                 </Button>
-                                <Button fx:id="publisher_btn" layoutX="11.0" layoutY="323.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Publishers">
-                                    <graphic>
-                                        <FontAwesomeIcon fill="WHITE" glyphName="PRINT" size="1.5EM" />
-                                    </graphic>
-                                </Button>
-                                <Button fx:id="author_btn" layoutX="11.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Authors">
-                                    <graphic>
-                                        <FontAwesomeIcon fill="WHITE" glyphName="PENCIL" size="1.5EM" />
-                                    </graphic>
-                                </Button>
-                                <FontAwesomeIcon glyphName="SIGN_OUT" layoutX="22.0" layoutY="535.0" size="1.5em" />
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
@@ -214,12 +261,6 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <AnchorPane layoutX="77.0" layoutY="14.0" prefHeight="137.0" prefWidth="112.0" stylesheets="@../css/dashboard.css">
-                                                    <styleClass>
-                                                        <String fx:value="white-bg" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                </AnchorPane>
                                                 <Label layoutX="19.0" layoutY="189.0" text="Book ID:">
                                                     <font>
                                                         <Font name="Arial" size="15.0" />
@@ -250,18 +291,6 @@
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="availableBooks_status" layoutX="102.0" layoutY="355.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <!--                                                <Label layoutX="9.0" layoutY="359.0" text="Published Date:">-->
-<!--                                                    <font>-->
-<!--                                                        <Font name="Arial" size="15.0" />-->
-<!--                                                    </font>-->
-<!--                                                </Label>-->
-<!--                                                <DatePicker fx:id="availableBooks_date" layoutX="118.0" layoutY="355.0" prefHeight="25.0" prefWidth="130.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />-->
-<!--                                                <Label layoutX="18.0" layoutY="394.0" text="Price:">-->
-<!--                                                    <font>-->
-<!--                                                        <Font name="Arial" size="15.0" />-->
-<!--                                                    </font>-->
-<!--                                                </Label>-->
-<!--                                                <TextField fx:id="availableBooks_price" layoutX="102.0" layoutY="390.0" promptText="\$0.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />-->
                                                 <Button fx:id="availableBooks_addBtn" layoutX="39.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
                                                 <Button fx:id="availableBooks_updateBtn" layoutX="151.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableBooksUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
                                                 <Label layoutX="19.0" layoutY="323.0" text="Publisher:">
@@ -308,19 +337,19 @@
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                     <children>
-                                                        <Label layoutX="62.0" layoutY="34.0" text="Book ID:">
+                                                        <Label layoutX="48.0" layoutY="34.0" text="Customer ID:">
                                                             <font>
                                                                 <Font name="Arial" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <ComboBox fx:id="purchase_bookID" layoutX="138.0" layoutY="30.0" onAction="#purchaseBookId" prefWidth="150.0" promptText="Choose..." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                        <Label layoutX="48.0" layoutY="69.0" text="Book Title:">
+                                                        <ComboBox fx:id="purchase_customerID" layoutX="138.0" layoutY="30.0" onAction="#purchaseCustomerId" prefWidth="150.0" promptText="Choose..." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                        <Label layoutX="48.0" layoutY="69.0" text="Book ID:">
                                                             <font>
                                                                 <Font name="Arial" size="15.0" />
                                                             </font>
                                                         </Label>
-                                                        <ComboBox fx:id="purchase_bookTitle" layoutX="138.0" layoutY="65.0" onAction="#purchaseBookTitle" prefWidth="150.0" promptText="Choose..." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                        <Spinner fx:id="purchase_quantity" layoutX="137.0" layoutY="99.0" onMouseClicked="#purhcaseQty" prefHeight="25.0" prefWidth="151.0" />
+                                                        <ComboBox fx:id="purchase_bookID" layoutX="138.0" layoutY="65.0" onAction="#purchaseCustomerIdSelect" prefWidth="150.0" promptText="Choose..." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                        <Spinner fx:id="purchase_quantity" layoutX="137.0" layoutY="99.0" onMouseClicked="#purchaseQty" prefHeight="25.0" prefWidth="151.0" />
                                                         <Label layoutX="48.0" layoutY="148.0" text="Total:">
                                                             <font>
                                                                 <Font name="Arial" size="18.0" />
@@ -374,12 +403,12 @@
                                                                         <Font name="Arial" size="17.0" />
                                                                     </font>
                                                                 </Label>
-                                                                <Label layoutX="65.0" layoutY="175.0" text="Pub Date:" textFill="WHITE">
+                                                                <Label layoutX="65.0" layoutY="175.0" text="Publisher:" textFill="WHITE">
                                                                     <font>
                                                                         <Font name="Arial" size="13.0" />
                                                                     </font>
                                                                 </Label>
-                                                                <Label fx:id="purchase_info_date" layoutX="142.0" layoutY="172.0" prefHeight="21.0" prefWidth="225.0" styleClass="info-label" stylesheets="@../css/dashboard.css" text=" ">
+                                                                <Label fx:id="purchase_info_publisher" layoutX="142.0" layoutY="172.0" prefHeight="21.0" prefWidth="225.0" styleClass="info-label" stylesheets="@../css/dashboard.css" text=" ">
                                                                     <font>
                                                                         <Font name="Arial" size="17.0" />
                                                                     </font>
@@ -416,13 +445,6 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <AnchorPane layoutX="77.0" layoutY="21.0" prefHeight="137.0" prefWidth="112.0" stylesheets="@../css/dashboard.css">
-                                                    <styleClass>
-                                                        <String fx:value="white-bg" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-
-                                                </AnchorPane>
                                                 <Label layoutX="18.0" layoutY="203.0" text="Publisher ID:">
                                                     <font>
                                                         <Font name="Arial" size="15.0" />
@@ -473,13 +495,6 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <AnchorPane layoutX="77.0" layoutY="20.0" prefHeight="137.0" prefWidth="112.0" stylesheets="@../css/dashboard.css">
-                                                    <styleClass>
-                                                        <String fx:value="white-bg" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-
-                                                </AnchorPane>
                                                 <Label layoutX="18.0" layoutY="203.0" text="Author ID: ">
                                                     <font>
                                                         <Font name="Arial" size="15.0" />
@@ -508,7 +523,7 @@
                                             <children>
                                                 <TextField fx:id="author_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#authorSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
-                                                <TableView fx:id="author_tableView" onMouseClicked="#authorSelect" layoutX="14.0" layoutY="52.0" prefHeight="459.0" prefWidth="557.0">
+                                                <TableView fx:id="author_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#authorSelect" prefHeight="459.0" prefWidth="557.0">
                                                     <columns>
                                                         <TableColumn fx:id="author_col_authorID" prefWidth="128.0" text="Author ID" />
                                                         <TableColumn fx:id="author_col_authorName" prefWidth="337.3333435058594" text="Name" />
@@ -521,6 +536,573 @@
                                         <Button fx:id="author_updateBtn" layoutX="171.0" layoutY="457.0" mnemonicParsing="false" onAction="#authorUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
                                     </children>
                                 </AnchorPane>
+                                <AnchorPane fx:id="category_form" layoutX="57.0" layoutY="72.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label layoutX="18.0" layoutY="203.0" text="Category ID: ">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="category_categoryID" layoutX="119.0" layoutY="199.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <Label layoutX="18.0" layoutY="241.0" text="Name:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="category_categoryName" layoutX="119.0" layoutY="237.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <Label layoutX="18.0" layoutY="279.0" text="Status:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="category_categoryStatus" layoutX="119.0" layoutY="275.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <TextField fx:id="category_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#categorySearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+                                                <TableView fx:id="category_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#categorySelect" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="category_col_categoryID" prefWidth="128.0" text="Category ID" />
+                                                        <TableColumn fx:id="category_col_categoryName" prefWidth="337.3333435058594" text="Name" />
+                                                        <TableColumn fx:id="category_col_categoryStatus" prefWidth="90" text="Status" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                        <Button fx:id="category_addBtn" layoutX="59.0" layoutY="457.0" mnemonicParsing="false" onAction="#categoryAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
+                                        <Button fx:id="category_updateBtn" layoutX="171.0" layoutY="457.0" mnemonicParsing="false" onAction="#categoryUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="newbook_form" layoutX="57.0" layoutY="51.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <!-- Left Pane -->
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Book ID -->
+                                                <Label layoutX="18.0" layoutY="20.0" text="Book ID: ">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="newbook_bookID" layoutX="119.0" layoutY="16.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Title -->
+                                                <Label layoutX="18.0" layoutY="62.0" text="Title:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="newbook_title" layoutX="119.0" layoutY="58.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Author -->
+                                                <Label layoutX="18.0" layoutY="104.0" text="Author:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="newbook_author" layoutX="119.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Publisher -->
+                                                <Label layoutX="18.0" layoutY="146.0" text="Publisher:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="newbook_publisher" layoutX="119.0" layoutY="142.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Genre -->
+                                                <Label layoutX="18.0" layoutY="188.0" text="Genre:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="newbook_genre" layoutX="119.0" layoutY="184.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Status -->
+                                                <Label layoutX="18.0" layoutY="230.0" text="Status:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="newbook_status" layoutX="119.0" layoutY="226.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                            </children>
+                                        </AnchorPane>
+
+                                        <!-- Right Pane -->
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Search Field -->
+                                                <TextField fx:id="newbook_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#newbookSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+
+                                                <!-- Table View -->
+                                                <TableView fx:id="newbook_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#newbookSelect" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="newbook_col_bookID" prefWidth="68.6666259765625" text="Book ID" />
+                                                        <TableColumn fx:id="newbook_col_title" prefWidth="115.3333740234375" text="Title" />
+                                                        <TableColumn fx:id="newbook_col_author" prefWidth="96.6666259765625" text="Author" />
+                                                        <TableColumn fx:id="newbook_col_publisher" prefWidth="96.66668701171875" text="Publisher" />
+                                                        <TableColumn fx:id="newbook_col_genre" prefWidth="96" text="Genre" />
+                                                        <TableColumn fx:id="newbook_col_status" prefWidth="72" text="Status" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane fx:id="oos_form" layoutX="57.0" layoutY="30.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <!-- Left Pane -->
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Book ID -->
+                                                <Label layoutX="18.0" layoutY="20.0" text="Book ID: ">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="oos_bookID" layoutX="119.0" layoutY="16.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Title -->
+                                                <Label layoutX="18.0" layoutY="62.0" text="Title:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="oos_title" layoutX="119.0" layoutY="58.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Author -->
+                                                <Label layoutX="18.0" layoutY="104.0" text="Author:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="oos_author" layoutX="119.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Publisher -->
+                                                <Label layoutX="18.0" layoutY="146.0" text="Publisher:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="oos_publisher" layoutX="119.0" layoutY="142.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Genre -->
+                                                <Label layoutX="18.0" layoutY="188.0" text="Genre:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="oos_genre" layoutX="119.0" layoutY="184.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Status -->
+                                                <Label layoutX="18.0" layoutY="230.0" text="Status:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="oos_status" layoutX="119.0" layoutY="226.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                            </children>
+                                        </AnchorPane>
+
+                                        <!-- Right Pane -->
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Search Field -->
+                                                <TextField fx:id="oos_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#oosSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+
+                                                <!-- Table View -->
+                                                <TableView fx:id="oos_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#oosSelect" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="oos_col_bookID" prefWidth="68.6666259765625" text="Book ID" />
+                                                        <TableColumn fx:id="oos_col_title" prefWidth="115.3333740234375" text="Title" />
+                                                        <TableColumn fx:id="oos_col_author" prefWidth="96.6666259765625" text="Author" />
+                                                        <TableColumn fx:id="oos_col_publisher" prefWidth="96.66668701171875" text="Publisher" />
+                                                        <TableColumn fx:id="oos_col_genre" prefWidth="96" text="Genre" />
+                                                        <TableColumn fx:id="oos_col_status" prefWidth="72" text="Status" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane fx:id="import_form" layoutX="57.0" layoutY="9.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <!-- Left Pane -->
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Status -->
+                                                <Label layoutX="18.0" layoutY="230.0" text="IFile:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_file" layoutX="119.0" layoutY="226.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                                <Button fx:id="import_selectFile" layoutX="59.0" layoutY="457.0" mnemonicParsing="false" onAction="#selectImportFile" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Select file" />
+                                                <Button fx:id="import_addImport" layoutX="171.0" layoutY="457.0" mnemonicParsing="false" onAction="#addImport" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Import" />
+                                            </children>
+                                        </AnchorPane>
+                                        <!-- Right Pane -->
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Search Field -->
+                                                <TextField fx:id="import_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#importSheetSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+                                                <!-- Table View -->
+                                                <TableView fx:id="import_tableView" layoutX="14.0" layoutY="52.0" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="import_col_importID" prefWidth="100.0" text="Import ID" />
+                                                        <TableColumn fx:id="import_col_datetime" prefWidth="150.0" text="Datetime" />
+                                                        <TableColumn fx:id="import_col_employee" prefWidth="150.0" text="Employee" />
+                                                        <TableColumn fx:id="import_col_totalCost" prefWidth="150.0" text="Total Cost" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane fx:id="import_books_form" layoutX="57.0" layoutY="9.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <!-- Left Pane -->
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <Label layoutX="18.0" layoutY="20.0" text="Import ID: ">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_books_importID" layoutX="119.0" layoutY="16.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <Label layoutX="18.0" layoutY="62.0" text="Book ID:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_books_bookID" layoutX="119.0" layoutY="58.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <Label layoutX="18.0" layoutY="104.0" text="Book name:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_books_title" layoutX="119.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <Label layoutX="18.0" layoutY="146.0" text="Quantity:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_books_quantity" layoutX="119.0" layoutY="142.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <Label layoutX="18.0" layoutY="188.0" text="Price:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_books_price" layoutX="119.0" layoutY="184.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <Label layoutX="18.0" layoutY="230.0" text="Remaining:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="import_books_remaining" layoutX="119.0" layoutY="226.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                            </children>
+                                        </AnchorPane>
+
+                                        <!-- Right Pane -->
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Search Field -->
+                                                <TextField fx:id="import_books_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#importBooksSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+
+                                                <!-- Table View -->
+                                                <TableView fx:id="import_books_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#importBooksSelect" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="import_books_col_importID" prefWidth="68.6666259765625" text="Import ID" />
+                                                        <TableColumn fx:id="import_books_col_bookID" prefWidth="115.3333740234375" text="Book ID" />
+                                                        <TableColumn fx:id="import_books_col_title" prefWidth="96.6666259765625" text="Title" />
+                                                        <TableColumn fx:id="import_books_col_quantity" prefWidth="96.66668701171875" text="Quantity" />
+                                                        <TableColumn fx:id="import_books_col_price" prefWidth="96" text="Price/Book" />
+                                                        <TableColumn fx:id="import_books_col_remaining" prefWidth="72" text="Remaining" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane fx:id="customer_form" layoutX="165.0" layoutY="9.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <children>
+                                <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                    <styleClass>
+                                        <String fx:value="white-bg" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                    <children>
+                                        <Label layoutX="19.0" layoutY="189.0" text="Customer ID:">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="customer_id" layoutX="103.0" layoutY="185.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                        <Label layoutX="19.0" layoutY="222.0" text="Full Name:">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="customer_fullName" layoutX="103.0" layoutY="218.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                        <Label layoutX="19.0" layoutY="255.0" text="Email:">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="customer_mail" layoutX="103.0" layoutY="251.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                        <Label layoutX="18.0" layoutY="289.0" text="Gender:">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="customer_gender" layoutX="102.0" layoutY="285.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                        <Label layoutX="18.0" layoutY="359.0" text="Status:">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="customer_status" layoutX="102.0" layoutY="355.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                        <Button fx:id="customer_addBtn" layoutX="39.0" layoutY="437.0" mnemonicParsing="false" onAction="#customerAdd" prefHeight="30.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
+                                        <Button fx:id="customer_updateBtn" layoutX="151.0" layoutY="437.0" mnemonicParsing="false" onAction="#customerUpdate" prefHeight="30.0" prefWidth="75.0" styleClass="update-btn" stylesheets="@../css/dashboard.css" text="Update" />
+
+                                    </children>
+                                </AnchorPane>
+                                    <AnchorPane layoutX="300.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                        <styleClass>
+                                            <String fx:value="white-bg" />
+                                            <String fx:value="shadow" />
+                                        </styleClass>
+                                        <children>
+                                            <TextField fx:id="customer_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#customerSearch" prefHeight="25.0" prefWidth="240.0" promptText="Search Customer" styleClass="search" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="486.6666666666667" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.33333333333337" AnchorPane.topAnchor="14.0" />
+                                            <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="18.0" layoutY="34.0" size="1.5em" text="" />
+                                            <TableView fx:id="customer_tableView" layoutX="18.0" layoutY="58.0" onMouseClicked="#customerSelect" prefHeight="451.0" prefWidth="550.0">
+                                                <columns>
+                                                    <TableColumn fx:id="customer_col_id" prefWidth="90" text="Customer ID" />
+                                                    <TableColumn fx:id="customer_col_fullName" prefWidth="115.3333740234375" text="Full Name" />
+                                                    <TableColumn fx:id="customer_col_mail" prefWidth="150" text="Email" />
+                                                    <TableColumn fx:id="customer_col_gender" prefWidth="96.66668701171875" text="Gender" />
+                                                    <TableColumn fx:id="customer_col_status" prefWidth="90" text="Status" />
+                                                </columns>
+                                            </TableView>
+                                        </children>
+                                    </AnchorPane>
+                                </children>
+                                </AnchorPane>
+
+                                <AnchorPane fx:id="order_form" layoutX="57.0" layoutY="30.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <!-- Left Pane -->
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Order ID -->
+                                                <Label layoutX="18.0" layoutY="62.0" text="Order ID: ">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_orderID" layoutX="119.0" layoutY="58.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Date time -->
+                                                <Label layoutX="18.0" layoutY="104.0" text="Time:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_time" layoutX="119.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Employee -->
+                                                <Label layoutX="18.0" layoutY="146.0" text="Employee:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_employee" layoutX="119.0" layoutY="142.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Customer -->
+                                                <Label layoutX="18.0" layoutY="188.0" text="Customer:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_customer" layoutX="119.0" layoutY="184.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Total -->
+                                                <Label layoutX="18.0" layoutY="230.0" text="Total:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_total" layoutX="119.0" layoutY="226.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                            </children>
+                                        </AnchorPane>
+
+                                        <!-- Right Pane -->
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Search Field -->
+                                                <TextField fx:id="order_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#orderSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+
+                                                <!-- Table View -->
+                                                <TableView fx:id="order_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#orderSelect" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="order_col_orderID" prefWidth="68.6666259765625" text="Order ID" />
+                                                        <TableColumn fx:id="order_col_time" prefWidth="132.3333740234375" text="Time" />
+                                                        <TableColumn fx:id="order_col_employee" prefWidth="125" text="Employee" />
+                                                        <TableColumn fx:id="order_col_customer" prefWidth="125" text="Customer" />
+                                                        <TableColumn fx:id="order_col_total" prefWidth="100" text="Total" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane fx:id="order_books_form" layoutX="57.0" layoutY="51.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <!-- Left Pane -->
+                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Order ID -->
+                                                <Label layoutX="18.0" layoutY="20.0" text="Order ID: ">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_books_orderID" layoutX="119.0" layoutY="16.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Book ID -->
+                                                <Label layoutX="18.0" layoutY="62.0" text="Book ID:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_books_bookID" layoutX="119.0" layoutY="58.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Quantity -->
+                                                <Label layoutX="18.0" layoutY="104.0" text="Quantity:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_books_quantity" layoutX="119.0" layoutY="100.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Book name -->
+                                                <Label layoutX="18.0" layoutY="188.0" text="Book title:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_books_name" layoutX="119.0" layoutY="184.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+
+                                                <!-- Price -->
+                                                <Label layoutX="18.0" layoutY="146.0" text="Price:">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="order_books_price" layoutX="119.0" layoutY="142.0" prefHeight="25.0" prefWidth="128.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                            </children>
+                                        </AnchorPane>
+
+                                        <!-- Right Pane -->
+                                        <AnchorPane layoutX="299.0" layoutY="14.0" prefHeight="526.0" prefWidth="585.0" stylesheets="@../css/dashboard.css">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <!-- Search Field -->
+                                                <TextField fx:id="order_books_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#orderBooksSearch" prefHeight="25.0" prefWidth="220.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" />
+                                                <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="21.0" layoutY="34.0" size="1.5em" text="" />
+
+                                                <!-- Table View -->
+                                                <TableView fx:id="order_books_tableView" layoutX="14.0" layoutY="52.0" onMouseClicked="#orderBooksSelect" prefHeight="459.0" prefWidth="557.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="order_books_col_orderID" prefWidth="68.6666259765625" text="Order ID" />
+                                                        <TableColumn fx:id="order_books_col_bookID" prefWidth="115.3333740234375" text="Book ID" />
+                                                        <TableColumn fx:id="order_books_col_quantity" prefWidth="96.6666259765625" text="Quantity" />
+                                                        <TableColumn fx:id="order_books_col_price" prefWidth="96.66668701171875" text="Price" />
+                                                        <TableColumn fx:id="order_books_col_name" prefWidth="180" text="Book title" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+
+
                             </children>
                         </AnchorPane>
                     </center>

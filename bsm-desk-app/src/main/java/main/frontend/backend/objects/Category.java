@@ -36,8 +36,10 @@ public class Category {
 		this.description = description;
 		this.enabled = enabled;
 	}
-	public Category(int id, String name, String description) { this(id, name, description, true); }
-	public Category(Category other) { this(other.id, other.name, other.description, other.enabled); }
+	public Category(int id, String name, boolean enabled) {
+		// Call another constructor within the same class
+		this(id, name, "", enabled);
+	}
 
 	public int getId() { return id; }
 	public String getCategoryName() { return name; }

@@ -1,49 +1,79 @@
 package main.frontend.backend.orders;
 
-import main.frontend.backend.lists.BookList;
 import main.frontend.backend.users.Employee;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ImportSheet {
 	private int id;
-	private Date ImportTime;
+	private LocalDateTime importTime;
 	private Employee employee;
-	private float TotalCost;
-	private BookList books;
-	private ArrayList<Integer> quantity;
-	private ArrayList<Float> ImportPrice;
+	private float totalCost;
+	private ArrayList<ImportItem> importItems;
 
-	public ImportSheet() {}
-	public ImportSheet(int id, Date ImportTime, Employee employee, float TotalCost, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice) {
-		this.id = id;
-		this.ImportTime = ImportTime;
-		this.employee = employee;
-		this.TotalCost = TotalCost;
-		this.books = books;
-		this.quantity = quantity;
-		this.ImportPrice = ImportPrice;
+	public ImportSheet() {
+		importItems = new ArrayList<>();
 	}
+
+	public ImportSheet(int id, LocalDateTime importTime, Employee employee, float totalCost, ArrayList<ImportItem> importItems) {
+		this.id = id;
+		this.importTime = importTime;
+		this.employee = employee;
+		this.totalCost = totalCost;
+		this.importItems = importItems;
+	}
+
 	public ImportSheet(ImportSheet other) {
-		this(other.id, other.ImportTime, other.employee, other.TotalCost, other.books, other.quantity, other.ImportPrice);
+		this(other.id, other.importTime, other.employee, other.totalCost, other.importItems);
 	}
 
-	public int getId() { return id; }
-	public Date getImportTime() { return ImportTime; }
-	public Employee getEmployee() { return employee; }
-	public float getTotalCost() { return TotalCost; }
-	public BookList getBookList() { return books; }
-	public ArrayList<Integer> getQuantity() { return quantity; }
-	public ArrayList<Float> getImportPrice() { return ImportPrice; }
+	public int getId() {
+		return id;
+	}
 
-	public void changeInfo(int id, Date ImportTime, Employee employee, float TotalCost, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice) {
+	public void setId(int id) {
 		this.id = id;
-		this.ImportTime = ImportTime;
+	}
+
+	public LocalDateTime getImportTime() {
+		return importTime;
+	}
+
+	public void setImportTime(LocalDateTime importTime) {
+		this.importTime = importTime;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
 		this.employee = employee;
-		this.TotalCost = TotalCost;
-		this.books = books;
-		this.quantity = quantity;
-		this.ImportPrice = ImportPrice;
+	}
+
+	public float getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(float totalCost) {
+		this.totalCost = totalCost;
+	}
+
+	public ArrayList<ImportItem> getImportItems() {
+		return importItems;
+	}
+
+	public void setImportItems(ArrayList<ImportItem> importItems) {
+		this.importItems = importItems;
+	}
+
+	public void addItem(ImportItem item) {
+		importItems.add(item);
+	}
+
+	public void removeItem(ImportItem item) {
+		importItems.remove(item);
 	}
 }

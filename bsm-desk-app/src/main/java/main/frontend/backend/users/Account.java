@@ -2,7 +2,7 @@ package main.frontend.backend.users;
 
 public class Account {
 	private int id;
-	private String username, password, mail;
+	private String username, password, mail, fullname;
 	private boolean enabled;
 
 	public Account(int id, String username, String password, String mail, boolean enabled) {
@@ -14,8 +14,15 @@ public class Account {
 	}
 	public Account(int id, String username, String password, String mail) { this(id, username, password, mail, true); }
 	public Account(Account other) { this(other.id, other.username, other.password, other.mail, other.enabled); }
+	public Account(String name) {
+		this.fullname = name;
+	}
 
-	public int getId() { return id; }
+    public Account() {
+
+    }
+
+    public int getId() { return id; }
 	public String getAccountUsername() { return username; }
 	public String getAccountPassword() { return password; }
 	public String getMail() { return mail; }
@@ -38,5 +45,13 @@ public class Account {
 		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
 		
 		return idStr + nameStr + disStr + mailStr + stsStr;
+	}
+
+	public String getFullname() {
+		return this.fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 }

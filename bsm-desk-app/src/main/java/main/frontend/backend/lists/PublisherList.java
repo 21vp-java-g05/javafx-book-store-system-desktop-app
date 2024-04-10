@@ -87,11 +87,9 @@ public class PublisherList {
 			statement.setBoolean(2, Objects.equals(update.getStatus(), "Enabled"));
 			statement.setInt(3, update.getPublisherId());
 			int rowsAffected = statement.executeUpdate();
-			if (rowsAffected > 0) {
+			if (rowsAffected > 0 && !Objects.equals(update.getStatus(), "Enabled")) {
 				// Check if the status is set to disabled, then update status of all books with the same publisher id
-				if (!Objects.equals(update.getStatus(), "Enabled")) {
-					updateBooksStatusByPublisher(update.getPublisherId(), false);
-				}
+				updateBooksStatusByPublisher(update.getPublisherId());
 				return true;
 			} else {
 				return false;
@@ -101,10 +99,10 @@ public class PublisherList {
 			return false;
 		}
     }
-	public void updateBooksStatusByPublisher(int publisherId, boolean status) {
+	public void updateBooksStatusByPublisher(int publisherId) {
 		try (DBconnect db = new DBconnect();
-			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE BOOK SET status = ? WHERE id = ?")) {
-			statement.setBoolean(1, status);
+			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE BOOK SET status = ? WHERE publisher = ?")) {
+			statement.setBoolean(1, false);
 			statement.setInt(2, publisherId);
 		} catch (SQLException ex) {
 			ex.printStackTrace();

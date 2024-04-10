@@ -29,7 +29,11 @@ public class Book {
 		this(other.id, other.isbn, other.title, other.language, other.numberOfPages, other.publisher, other.author, other.categories, other.enabled);
 	}
 
-	public int getId() { return id; }
+    public Book(int i) {
+		this.id = i;
+    }
+
+    public int getId() { return id; }
 	public String getIsbn() { return isbn; }
 	public String getTitle() { return title; }
 	public String getLanguage() { return language; }

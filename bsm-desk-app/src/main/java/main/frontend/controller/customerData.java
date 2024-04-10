@@ -1,61 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main.frontend.controller;
 
-//import java.sql.Date;
-
-/**
- *
- * @author WINDOWS 10
- */
 public class customerData {
-    
-    private Integer customerId;
-    private Integer bookId;
-    private String title;
-    private String author;
-    private String genre;
-    private Integer quantity;
-    private Double price;
-    private Date date;
-    
-    public customerData(Integer customerId, Integer bookId, String title, String author
-            , String genre, Integer quantity, Double price, Date date){
-        this.customerId = customerId;
-        this.bookId = bookId;
-        this.title = title;
-        this.author = author;
-        this.genre = genre;
-        this.quantity = quantity;
-        this.price = price;
-        this.date = date;
+
+    private final Integer customerID;
+    private final String fullName;
+    private final String email; // Corrected email spelling
+    private final String gender;
+    private final String status;
+
+    public customerData(Integer customerID, String fullName, String email, String gender, String status) {
+        this.customerID = customerID;
+        this.fullName = fullName;
+        this.email = email;
+        this.gender = gender;
+        this.status = status;
     }
-    public Integer getCustomerId(){
-        return customerId;
+
+    public Integer getCustomerID() {
+        return customerID;
     }
-    public Integer getBookId(){
-        return bookId;
+
+    public String getFullName() {
+        return fullName;
     }
-    public String getTitle(){
-        return title;
+
+    public String getEmail() {
+        return email;
     }
-    public String getAuthor(){
-        return author;
+
+    public String getGender() {
+        return gender;
     }
-    public String getGenre(){
-        return genre;
+
+    public String getStatus() {
+        return status;
     }
-    public Integer getQuantity(){
-        return quantity;
-    }
-    public Double getPrice(){
-        return price;
-    }
-    public Date getDate(){
-        return date;
-    }
-    
 }

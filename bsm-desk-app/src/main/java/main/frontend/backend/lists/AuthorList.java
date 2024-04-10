@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AuthorList {
 	private ArrayList<Author> authors;
@@ -89,7 +88,7 @@ public class AuthorList {
 
 			if (rowsAffected > 0 && !update.isEnabled()) {
 				// If the author is disabled, update the status of all books with this author ID to disabled
-				updateBooksStatusByAuthor(update.getId(), false);
+				updateBooksStatusByAuthor(update.getId());
 			}
 
 			return rowsAffected > 0;
@@ -99,10 +98,10 @@ public class AuthorList {
 		}
 	}
 
-	private void updateBooksStatusByAuthor(int authorId, boolean status) {
+	private void updateBooksStatusByAuthor(int authorId) {
 		try (DBconnect db = new DBconnect();
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE BOOK SET status = ? WHERE author = ?")) {
-			statement.setBoolean(1, status);
+			statement.setBoolean(1, false);
 			statement.setInt(2, authorId);
 			statement.executeUpdate();
 		} catch (SQLException ex) {

@@ -16,7 +16,6 @@ public class DBconnect implements AutoCloseable {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
-			System.out.println("Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

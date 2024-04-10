@@ -7,6 +7,13 @@ and open the template in the editor.
     Created on : 10 8, 22, 3:25:42 PM
     Author     : WINDOWS 10
 */
+.scroll-list {
+    -fx-background-color: linear-gradient(to top right, #183D3D, #2D9596);
+}
+
+.scroll-list .vbox {  /* Assuming the VBox class name */
+    -fx-background-color: linear-gradient(to top right, #183D3D, #2D9596);
+}
 
 .top-form {
     -fx-background-color: #fff;
