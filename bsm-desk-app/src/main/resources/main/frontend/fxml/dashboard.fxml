@@ -253,7 +253,7 @@
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="availableBooks_form" layoutX="165.0" layoutY="151.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="availableBooks_form" layoutX="165.0" layoutY="151.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
                                             <styleClass>
@@ -309,7 +309,7 @@
                                             <children>
                                                 <TextField fx:id="availableBooks_search" layoutX="14.0" layoutY="14.0" onAction="#availableBooksSearch" onKeyTyped="#availableBooksSearch" prefHeight="25.0" prefWidth="240.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="486.6666666666667" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.33333333333337" AnchorPane.topAnchor="14.0" />
                                                 <FontAwesomeIcon fill="#dddddd" glyphName="SEARCH" layoutX="18.0" layoutY="34.0" size="1.5em" text="" />
-                                                <TableView fx:id="availableBooks_tableView" layoutX="18.0" layoutY="58.0" onMouseClicked="#availableBooksSelect" prefHeight="451.0" prefWidth="550.0">
+                                                <TableView fx:id="availableBooks_tableView" layoutX="18.0" layoutY="58.0" onMouseClicked="#availableBooksSelect" prefHeight="451.0" prefWidth="550.0" AnchorPane.topAnchor="58.0">
                                                     <columns>
                                                         <TableColumn fx:id="availableBooks_col_bookID" prefWidth="68.6666259765625" text="Book ID" />
                                                         <TableColumn fx:id="availableBooks_col_bookTitle" prefWidth="115.3333740234375" text="Title" />

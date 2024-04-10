@@ -85,7 +85,9 @@ public class FXMLDocumentController implements Initializable {
                     loginBtn.getScene().getWindow().hide();
 
                     // LINK YOUR DASHBOARD FORM : )
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboard.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboardAdmin.fxml")));
+                    //                    Use this for employee screen
+                    //                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboard.fxml")));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
 
