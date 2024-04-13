@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.frontend.BookstoreManagementApplication;
 
-public class FXMLDocumentController implements Initializable {
+public class FXMLEmployeeController implements Initializable {
 
     @FXML
     private AnchorPane main_form;
@@ -51,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
     private double x = 0;
     private double y = 0;
 
-    public void loginAdmin(){
+    public void loginEmployee(){
 
 //        connect = database.connectDb();
 //
@@ -78,17 +78,17 @@ public class FXMLDocumentController implements Initializable {
 //
 //                    getData.username = username.getText();
 
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Login");
-                    alert.showAndWait();
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Login");
+                alert.showAndWait();
 
-                    // TO HIDE YOUR LOGIN FORM
+                // TO HIDE YOUR LOGIN FORM
 //                    loginBtn.getScene().getWindow().hide();
 //
                     // LINK YOUR DASHBOARD FORM : )
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboardAdmin.fxml")));
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboard.fxml")));
                     //                    Use this for employee screen
                     //                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboard.fxml")));
                     Stage stage = new Stage();
@@ -98,7 +98,7 @@ public class FXMLDocumentController implements Initializable {
                         x = event.getSceneX();
                         y = event.getSceneY();
                     });
-//
+
                     root.setOnMouseDragged((MouseEvent event) ->{
                         stage.setX(event.getScreenX() - x);
                         stage.setY(event.getScreenY() - y);
@@ -140,7 +140,7 @@ public class FXMLDocumentController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("/main/frontend/fxml/FXMLDocument.fxml"));
                 Stage stage = new Stage();
 
-                stage.setTitle("Administrator");
+                stage.setTitle("Admin");
 
 
                 stage.setScene(new Scene(root));

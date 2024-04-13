@@ -92,11 +92,19 @@
                            <graphic>
                               <FontAwesomeIcon fill="#0b60b0" glyphName="USER" size="1.5EM" />
                            </graphic></Button>
-                        <Button fx:id="profile_btn" layoutX="10.0" layoutY="342.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../css/MainForm.css" text="Profile Settings">
+                        <Button fx:id="profile_btn" layoutX="10.0" layoutY="342.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../css/MainForm.css" text="Profile Settings">
                            <graphic>
                               <FontAwesomeIcon fill="#0b60b0" glyphName="COGS" size="1.5EM" />
                            </graphic></Button>
                         <Label layoutX="11.0" layoutY="315.0" text="Profile" textFill="WHITE" />
+                        <Button fx:id="log_out_btn_admin" layoutX="58.0" layoutY="486.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" styleClass="nav-btn-1-logout" stylesheets="@../css/MainForm.css" text="Log out">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="SIGN_OUT" size="1.5EM" />
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                </left>
@@ -205,7 +213,7 @@
                                           <FontAwesomeIcon fill="#999494" glyphName="SEARCH" layoutX="218.0" layoutY="17.0" />
                                        </children>
                                     </Group>
-                                    <Button layoutX="432.0" layoutY="11.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="137.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="+ Add new account" textFill="WHITE">
+                                    <Button fx:id="add_acc_btn" layoutX="432.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="29.0" prefWidth="137.0" styleClass="add-acc-btn" stylesheets="@../css/MainForm.css" text="+ Add new account" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -214,48 +222,60 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profile_setting" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css">
+                        <AnchorPane fx:id="profile_setting" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css" visible="false">
                            <children>
-                              <Label layoutX="199.0" layoutY="48.0" text="Profile Settings">
+                              <Label layoutX="195.0" layoutY="26.0" text="Profile Settings">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="229.0" layoutY="100.0" text="Account ID:">
+                              <Label layoutX="594.0" layoutY="30.0" text="Status:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="125.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
-                              <Label layoutX="229.0" layoutY="185.0" text="Username:">
+                              <ComboBox layoutX="648.0" layoutY="28.0" prefWidth="150.0" promptText="Choose..." />
+                              <Label layoutX="229.0" layoutY="67.0" text="Account ID:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="210.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
-                              <Label layoutX="229.0" layoutY="276.0" text="Password:">
+                              <TextField layoutX="229.0" layoutY="92.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
+                              <Label layoutX="229.0" layoutY="206.0" text="Username:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="301.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
-                              <Label layoutX="229.0" layoutY="359.0" text="Email:">
+                              <TextField layoutX="229.0" layoutY="231.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+                              <Label layoutX="228.0" layoutY="330.0" text="Password:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="384.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
-                              <Button layoutX="342.0" layoutY="463.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="Update" textFill="WHITE">
+                              <TextField layoutX="228.0" layoutY="355.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+                              <Label layoutX="229.0" layoutY="400.0" text="Email:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="229.0" layoutY="425.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
+                              <Button layoutX="341.0" layoutY="493.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="594.0" layoutY="52.0" text="Status:">
+                              <Label layoutX="230.0" layoutY="270.0" text="Role:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="648.0" layoutY="50.0" prefWidth="150.0" promptText="Choose..." />
+                              <ComboBox layoutX="230.0" layoutY="292.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
+                              <Label layoutX="229.0" layoutY="136.0" text="Fullname">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="229.0" layoutY="161.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: BaoKhanh" />
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>

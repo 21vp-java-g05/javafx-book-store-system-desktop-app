@@ -4,6 +4,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -38,6 +43,9 @@ public class dashboardAdminController implements Initializable {
     private Button profile_btn;
 
     @FXML
+    private Button log_out_btn_admin;
+
+    @FXML
     private Button revenue_btn;
 
     @FXML
@@ -60,6 +68,9 @@ public class dashboardAdminController implements Initializable {
 
     @FXML
     private Button userAccount_btn;
+
+    @FXML
+    private Button add_acc_btn;
 
     @FXML
     private TableColumn<?, ?> userAccount_col_accountID;
@@ -98,6 +109,20 @@ public void switchForm(ActionEvent event){
         userAccount_form.setVisible(true);
         profile_setting.setVisible(false);
     }else if (event.getSource() == profile_btn) {
+        revenue_form.setVisible(false);
+        userAccount_form.setVisible(false);
+        profile_setting.setVisible(true);
+    }
+    else if (event.getSource() == add_acc_btn) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/frontend/fxml/userAccount.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         revenue_form.setVisible(false);
         userAccount_form.setVisible(false);
         profile_setting.setVisible(true);
@@ -145,5 +170,18 @@ public void switchForm(ActionEvent event){
     @Override
     public void initialize(URL location, ResourceBundle resources){
         runTime();
+    }
+    public void Logout(ActionEvent event){
+        if (event.getSource() == log_out_btn_admin) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

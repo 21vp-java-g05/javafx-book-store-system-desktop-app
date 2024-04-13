@@ -1,15 +1,11 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-/
-/
-    Created on : 10 8, 22, 2:59:17 PM
-    Author     : MarcoMan
-    Support and Subscribe our channel: https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
-*/
 
-.left_from {
+.left_from_admin {
+    -fx-background-color: linear-gradient(to bottom right, #365486, #7FC7D9);
+    -fx-border-color: #000;
+    -fx-border-width: .4px 0px .4px .4px;
+}
+
+.left_from_employee {
     -fx-background-color: linear-gradient(to top right, #183D3D, #2D9596);
     -fx-border-color: #000;
     -fx-border-width: .4px 0px .4px .4px;
@@ -46,7 +42,16 @@ and open the template in the editor.
     -fx-border-width: 1px;
 }
 
-.login-btn {
+.login-btn-admin {
+    -fx-background-color: linear-gradient(to bottom right, #365486, #7FC7D9);
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+}
+
+.login-btn-employee {
     -fx-background-color: linear-gradient(to top right, #2D9596, #5C8374);
     -fx-background-radius: 4px;
     -fx-cursor: hand;
@@ -55,6 +60,10 @@ and open the template in the editor.
     -fx-font-family: "Arial";
 }
 
-.login-btn:hover {
+.login-btn-admin:hover {
+    -fx-background-color: linear-gradient(to bottom right, #365486, #7FC7D9);
+}
+
+.login-btn-employee:hover {
     -fx-background-color: linear-gradient(to top right, #2D9596, #2D9596);
 }

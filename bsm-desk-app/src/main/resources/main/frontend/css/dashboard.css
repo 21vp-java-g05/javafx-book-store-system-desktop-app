@@ -99,6 +99,19 @@ and open the template in the editor.
     -fx-background-color: #4679a1;
 }
 
+.add-btn {
+    -fx-background-color: #265073;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-text-fill: #fff;
+}
+
+.add-btn:hover {
+    -fx-background-color: #4679a1;
+}
+
 .update-btn {
     -fx-background-color: #2D9596;
     -fx-background-radius: 4px;

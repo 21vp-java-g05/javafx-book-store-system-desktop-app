@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,45 +20,57 @@
          </styleClass>
          <children>
             <FontAwesomeIcon fill="#a6d3f7" glyphName="USER_PLUS" layoutX="451.0" layoutY="401.0" size="20em" text="" wrappingWidth="274.28570556640625" />
-            <Label layoutX="158.0" layoutY="57.0" text="Add new account">
+            <Label layoutX="162.0" layoutY="36.0" text="Add new account">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="162.0" layoutY="107.0" text="Account ID:">
+            <Label layoutX="178.0" layoutY="80.0" text="Account ID:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="162.0" layoutY="132.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
-            <Label layoutX="162.0" layoutY="192.0" text="Username:">
+            <TextField layoutX="178.0" layoutY="105.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
+            <Label layoutX="178.0" layoutY="210.0" text="Username:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="162.0" layoutY="217.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
-            <Label layoutX="162.0" layoutY="283.0" text="Password:">
+            <TextField layoutX="178.0" layoutY="235.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+            <Label layoutX="178.0" layoutY="335.0" text="Password:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="162.0" layoutY="308.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
-            <Label layoutX="162.0" layoutY="366.0" text="Email:">
+            <TextField layoutX="178.0" layoutY="360.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+            <Label layoutX="178.0" layoutY="408.0" text="Email:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="162.0" layoutY="391.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
-            <Button layoutX="386.0" layoutY="462.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="+ Add " textFill="WHITE">
+            <TextField layoutX="178.0" layoutY="433.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
+            <Button layoutX="404.0" layoutY="484.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="+ Add " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="158.0" layoutY="462.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="Back to User List" textFill="WHITE">
+            <Button layoutX="176.0" layoutY="484.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="Back to User List" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Label layoutX="179.0" layoutY="275.0" text="Role:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="179.0" layoutY="297.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
+            <Label layoutX="178.0" layoutY="146.0" text="Fullname:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="178.0" layoutY="171.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
          </children>
       </AnchorPane>
    </children>

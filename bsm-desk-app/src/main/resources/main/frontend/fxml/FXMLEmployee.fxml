@@ -12,9 +12,9 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.frontend.controller.FXMLDocumentController">
     <children>
-        <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" styleClass="left_from_admin" stylesheets="@../css/login.css">
+        <AnchorPane fx:id="main_form1" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <AnchorPane prefHeight="424.0" prefWidth="320.0" styleClass="left_from" stylesheets="@../css/login.css">
+                <AnchorPane prefHeight="424.0" prefWidth="320.0" styleClass="left_from_employee" stylesheets="@../css/login.css">
                     <children>
                         <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="107.0" layoutY="217.0" size="9.5em" text="" />
                         <Label layoutX="28.0" layoutY="246.0" text="Book Shop Management System" textFill="WHITE">
@@ -32,12 +32,12 @@
                                 <Font name="Arial Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="username" layoutX="50.0" layoutY="182.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="text-field" stylesheets="@../css/login.css" />
-                        <PasswordField fx:id="password" layoutX="50.0" layoutY="226.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="text-field" stylesheets="@../css/login.css" />
-                        <Button fx:id="loginBtn" layoutX="50.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn-admin" stylesheets="@../css/login.css" text="LOGIN" />
-                        <Button fx:id="close" layoutX="270.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/login.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
-                  <ComboBox fx:id="login_user" layoutX="107.0" layoutY="342.0" onAction="#switchPage" prefHeight="26.0" prefWidth="106.0" promptText="Select Role" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="140.0" text="Administrator" textAlignment="CENTER">
+                        <TextField fx:id="username1" layoutX="50.0" layoutY="182.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="text-field" stylesheets="@../css/login.css" />
+                        <PasswordField fx:id="password1" layoutX="50.0" layoutY="226.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="text-field" stylesheets="@../css/login.css" />
+                        <Button fx:id="loginBtn1" layoutX="50.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn-employee" stylesheets="@../css/login.css" text="LOGIN" />
+                        <Button fx:id="close1" layoutX="270.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/login.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
+                        <ComboBox fx:id="login_user" layoutX="107.0" layoutY="341.0" onAction="#switchPage" prefHeight="26.0" prefWidth="106.0" promptText="Select Role" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="140.0" text="Employee" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="15.0" />
                      </font>
