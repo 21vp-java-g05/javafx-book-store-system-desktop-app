@@ -50,7 +50,7 @@ and open the template in the editor.
 }
 
 .nav-btn {
-    -fx-background-color: transparent;
+    -fx-background-color: tra   nsparent;
     -fx-cursor: hand;
     -fx-font-size: 14px;
     -fx-text-fill: #fff;
@@ -230,4 +230,16 @@ and open the template in the editor.
     -fx-background-color: #fff;
     -fx-background-radius: 4px;
     -fx-padding: 0 0 0 5px;
+}
+
+
+.update-info-btn{
+    -fx-background-color: linear-gradient(to bottom right, #365486, #7FC7D9);
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+
+.update-info-btn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #365486, #0154b2);
+    -fx-text-fill: #fff;
 }

@@ -97,7 +97,7 @@
                               <FontAwesomeIcon fill="#0b60b0" glyphName="COGS" size="1.5EM" />
                            </graphic></Button>
                         <Label layoutX="11.0" layoutY="315.0" text="Profile" textFill="WHITE" />
-                        <Button fx:id="log_out_btn_admin" layoutX="58.0" layoutY="486.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" styleClass="nav-btn-1-logout" stylesheets="@../css/MainForm.css" text="Log out">
+                        <Button fx:id="log_out_btn_admin" layoutX="58.0" layoutY="486.0" mnemonicParsing="false" onAction="#Logout" prefHeight="42.0" prefWidth="104.0" styleClass="nav-btn-1-logout" stylesheets="@../css/MainForm.css" text="Log out">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
