@@ -85,7 +85,8 @@ public class FXMLDocumentController implements Initializable {
                     alert.showAndWait();
 
                     // TO HIDE YOUR LOGIN FORM
-//                    loginBtn.getScene().getWindow().hide();
+                    Stage loginStage = (Stage) username.getScene().getWindow();
+                    loginStage.close();
 //
                     // LINK YOUR DASHBOARD FORM : )
                     Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboardAdmin.fxml")));

@@ -136,6 +136,11 @@
                                             <FontAwesomeIcon fill="WHITE" glyphName="REORDER" size="1.5EM" />
                                         </graphic>
                                     </Button>
+                                 <Button fx:id="order_books_btn1" mnemonicParsing="false" onAction="#switchForm" prefHeight="37.0" prefWidth="165.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Profile Settings">
+                                    <graphic>
+                                       <FontAwesomeIcon fill="WHITE" glyphName="COGS" size="1.5EM" />
+                                    </graphic>
+                                 </Button>
                                 </VBox>
                                 </content>
                                 </ScrollPane>
@@ -415,7 +420,7 @@
                                                                 </Label>
                                                             </children>
                                                         </AnchorPane>
-                                                        <Button fx:id="purchase_payBtn" layoutX="109.0" layoutY="181.0" mnemonicParsing="false" onAction="#purchasePay" prefHeight="30.0" prefWidth="125.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Pay" />
+                                                        <Button fx:id="purchase_payBtn" layoutX="109.0" layoutY="181.0" mnemonicParsing="false" onAction="#purchasePay" prefHeight="30.0" prefWidth="125.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Sell" />
                                                         <Label layoutX="48.0" layoutY="103.0" text="Quantity:">
                                                             <font>
                                                                 <Font name="Arial" size="15.0" />
@@ -1025,7 +1030,7 @@
                                     </children>
                                 </AnchorPane>
 
-                                <AnchorPane fx:id="order_books_form" layoutX="57.0" layoutY="51.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="order_books_form" layoutX="57.0" layoutY="51.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <!-- Left Pane -->
                                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
@@ -1101,6 +1106,62 @@
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>
+                        <AnchorPane fx:id="profile_setting" layoutX="11.0" layoutY="8.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css" visible="false">
+                           <children>
+                              <Label layoutX="195.0" layoutY="26.0" text="Profile Settings">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="594.0" layoutY="30.0" text="Status:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox layoutX="648.0" layoutY="28.0" prefWidth="150.0" promptText="Choose..." />
+                              <Label layoutX="229.0" layoutY="67.0" text="Account ID:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="229.0" layoutY="92.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
+                              <Label layoutX="229.0" layoutY="206.0" text="Username:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="229.0" layoutY="231.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+                              <Label layoutX="228.0" layoutY="330.0" text="Password:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="228.0" layoutY="355.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+                              <Label layoutX="229.0" layoutY="400.0" text="Email:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="229.0" layoutY="425.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
+                              <Button layoutX="341.0" layoutY="493.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="230.0" layoutY="270.0" text="Role:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox layoutX="230.0" layoutY="292.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
+                              <Label layoutX="229.0" layoutY="136.0" text="Fullname">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="229.0" layoutY="161.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: BaoKhanh" />
+                           </children>
+                        </AnchorPane>
 
 
                             </children>

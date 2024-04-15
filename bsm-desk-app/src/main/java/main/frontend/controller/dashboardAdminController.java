@@ -174,7 +174,10 @@ public void switchForm(ActionEvent event){
     public void Logout(ActionEvent event){
         if (event.getSource() == log_out_btn_admin) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+                Stage currentStage = (Stage) log_out_btn_admin.getScene().getWindow();
+                currentStage.close();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/frontend/fxml/FXMLDocument.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.frontend.controller.dashboardAdminController">
+   <children>
+      <AnchorPane prefHeight="574.0" prefWidth="794.0" stylesheets="@../css/dashboard.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="radius" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <FontAwesomeIcon fill="#caeeff" glyphName="EDIT" layoutX="428.0" layoutY="423.0" size="25em" />
+            <Label layoutX="78.0" layoutY="34.0" text="Edit Information">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="203.0" layoutY="85.0" text="Account ID:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="203.0" layoutY="107.0" prefHeight="30.0" prefWidth="368.0" promptText="Ex: 21126077" />
+            <Label layoutX="202.0" layoutY="220.0" prefHeight="22.0" prefWidth="77.0" text="Username:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="203.0" layoutY="242.0" prefHeight="31.0" prefWidth="368.0" promptText="Ex: Baka3k" />
+            <Label layoutX="202.0" layoutY="346.0" text="Password:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="203.0" layoutY="368.0" prefHeight="32.0" prefWidth="368.0" promptText="Ex: Baka3k" />
+            <Label layoutX="204.0" layoutY="412.0" text="Email:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="202.0" layoutY="434.0" prefHeight="31.0" prefWidth="368.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
+            <Button layoutX="288.0" layoutY="500.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="203.0" layoutY="284.0" text="Role:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="204.0" layoutY="305.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
+            <Label layoutX="203.0" layoutY="157.0" text="Fullname:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="204.0" layoutY="179.0" prefHeight="31.0" prefWidth="368.0" promptText="Ex: Thai Hoang Bao Khanh" />
+            <Label layoutX="584.0" layoutY="24.0" text="Status:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="629.0" layoutY="23.0" prefHeight="26.0" prefWidth="98.0" promptText="Choose..." />
+            <Button layoutX="584.0" layoutY="371.0" mnemonicParsing="false" text="Reset Password" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
