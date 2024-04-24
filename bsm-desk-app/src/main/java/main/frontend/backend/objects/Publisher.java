@@ -1,66 +1,88 @@
 package main.frontend.backend.objects;
 
+import main.frontend.backend.utils.DBconnect;
+
 public class Publisher {
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	private int id;
 	private String name, description;
-	private boolean enabled;
+	private boolean status;
 	
-	public Publisher(int id, String name, String description, boolean enabled) {
+	public Publisher() {}
+	public Publisher(int id, String name, String description, boolean status) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.enabled = enabled;
+		this.status = status;
 	}
 	public Publisher(int id, String name, String description) { this(id, name, description, true); }
-	public Publisher(Publisher other) { this(other.id, other.name, other.description, other.enabled); }
-
-	public Publisher() {
-
-	}
+	public Publisher(Publisher other) { this(other.id, other.name, other.description, other.status); }
 
 	public int getId() { return id; }
-	public String getPublisherName() { return name; }
-	public String getPublisherDescription() { return description; }
-	public boolean isEnabled() { return enabled; }
+	public String getName() { return name; }
+	public String getDescription() { return description; }
+	public boolean getStatus() { return status; }
 
-	public void changeInfo(int id, String name, String description, boolean enabled) {
+	public void setId(int id) { this.id = id; }
+	public void setName(String name) { this.name = name; }
+	public void setDescription(String description) { this.description = description; }
+	public void setStatus(boolean status) { this.status = status; }
+
+	public void changeInfo(int id, String name, String description, boolean status) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.enabled = enabled;
+		this.status = status;
+	}
+
+	public boolean add_toDatabase() {
+		DBconnect db = new DBconnect();
+		String value = "(DEFAULT, " + toString() + ")";
+		
+		try { return (id = db.add_getAuto("PUBLISHER", value)) > 0; }
+		finally { db.close(); }
+	}
+	public boolean update_toDatabase(int id) {
+		DBconnect db = new DBconnect();
+		String value = "name = '" + name + "', description = '" + description + "'";
+		String condition = "id = " + String.valueOf(id);
+		
+		try { return db.update("PUBLISHER", value, condition) > 0; }
+		finally { db.close(); }
+	}
+	public boolean updateStatus_toDatabase() {
+		DBconnect db = new DBconnect();
+		String condition = "id = " + String.valueOf(id);
+		
+		try {
+			if (! db.setAutoCommit(false)) return false;
+			
+			if (db.changeStatus("PUBLISHER", condition, status) < 0) return false;
+			
+			if (! status) {
+				condition = "publisher = " + String.valueOf(id) + " AND status = true";
+				if (db.changeStatus("BOOK", condition, status) < 0) {
+					db.rollback();
+					return false;
+				}
+			}
+			
+			if (! db.commit()) {
+				db.rollback();
+				return false;
+			};
+		} finally { db.close(); }
+		return true;
+	}
+	public boolean delete_toDatabase() {
+		DBconnect db = new DBconnect();
+		String condition = "id = " + String.valueOf(id);
+		
+		try { return db.delete("PUBLISHER", condition) > 0; }
+		finally { db.close(); }
 	}
 
 	@Override
 	public String toString() {
-		String idStr = "\tID: " + String.valueOf(id) + "\n";
-		String nameStr = "\tPublisher name: " + name + "\n";
-		String disStr = "\tPublisher description: " + description + "\n";
-		String stsStr = "\tStatus: " + (enabled ? "enable" : "disable") + "\n";
-		
-		return idStr + nameStr + disStr + stsStr;
+		return "'" + name + "', '" + description + "', " + String.valueOf(status);
 	}
 }

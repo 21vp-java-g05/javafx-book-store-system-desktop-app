@@ -3,53 +3,56 @@ package main.frontend.backend.lists;
 import main.frontend.backend.objects.Category;
 import main.frontend.backend.utils.DBconnect;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CategoryList {
 	private ArrayList<Category> categories;
 	
 	public CategoryList() { categories = new ArrayList<Category>(); }
+	public CategoryList(ArrayList<Category> categories) { categories = new ArrayList<>(categories); }
 	public CategoryList(CategoryList other) { categories = new ArrayList<>(other.categories); }
 
 	public void add(Category category) { categories.add(category); }
 	public void clear() { categories.clear(); }
-	public Category getCategoryByID(int id) {
+	public int size() { return categories.size(); }
+	
+	public Category getCategory_byID(int id) {
 		for (Category category : categories)
 			if (category.getId() == id) return category;
 		return null;
 	}
+	public Category getCategory_byName(String name) {
+		for (Category category : categories)
+			if (category.getName().compareTo(name) == 0) return category;
+		return null;
+	}
+	public ArrayList<Category> getCategories() { return categories; }
 
-	public boolean loadCategories_fromDatabase(String name) {
-		String condition = name == null ? null : ("name LIKE '%" + name + "%'");
-		DBconnect db = new DBconnect();
+	public boolean load_fromDatabase(String name) {
 		categories = new ArrayList<Category>();
+		DBconnect db = new DBconnect();
+		String condition = name == null || name.isEmpty() ? null : ("name LIKE '%" + name + "%'");
 		
-		try (ResultSet rs = db.view("CATEGORY", condition);) {
-			while (rs.next())
-				categories.add(new Category(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getBoolean("status")));
+		try (ResultSet cSet = db.view(null, "CATEGORY", condition);) {
+			while (cSet.next())
+				categories.add(new Category(
+					cSet.getInt("id"),
+					cSet.getString("name"),
+					cSet.getString("description"),
+					cSet.getBoolean("status")
+				));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("next() error while loading categories: " + e.getMessage());
 			return false;
 		} finally { db.close(); }
-
 		return true;
 	}
 
-	public String getName() {
-		String names = categories.get(0).getName();
-		for (int i = 1; i < categories.size(); i++)
-			names += ", " + categories.get(i).getName();
-		return names;
-	}
 	@Override
 	public String toString() {
 		String str = "There are " + categories.size() + " categories in the list.\n\n";
-
-		for (Category category : categories)
-			str += category.toString() + "\n";
-		
+		for (Category category : categories) str += category.toString() + "\n";
 		return str.toString();
 	}
 }

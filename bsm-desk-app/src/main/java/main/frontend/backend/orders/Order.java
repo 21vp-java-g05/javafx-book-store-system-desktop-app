@@ -1,53 +1,74 @@
 package main.frontend.backend.orders;
 
-import main.frontend.backend.lists.BookList;
-import main.frontend.backend.users.Employee;
+import main.frontend.backend.lists.BookList_forSell;
+import main.frontend.backend.users.Customer;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import main.frontend.backend.users.Employee;
+import main.frontend.backend.utils.DBconnect;
+
+import java.sql.*;
 
 public class Order {
 	private int id;
 	private Date OrderTime;
 	private Employee employee;
-	private float SalesPrice;
-	private BookList books;
-	private ArrayList<Integer> quantity;
-	private ArrayList<Float> ImportPrice;
 	private Customer customer;
+	private float SalesPrice;
+	private BookList_forSell books;
 
 	public Order() {}
-	public Order(int id, Date OrderTime, Employee employee, float SalesPrice, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice, Customer customer) {
+	public Order(int id, Date OrderTime, Employee employee, Customer customer, float SalesPrice, BookList_forSell books) {
 		this.id = id;
 		this.OrderTime = OrderTime;
 		this.employee = employee;
+		this.customer = customer;
 		this.SalesPrice = SalesPrice;
 		this.books = books;
-		this.quantity = quantity;
-		this.ImportPrice = ImportPrice;
-		this.customer = customer;
 	}
-	public Order(Order other) {
-		this(other.id, other.OrderTime, other.employee, other.SalesPrice, other.books, other.quantity, other.ImportPrice, other.customer);
-	}
+	public Order(Order other) { this(other.id, other.OrderTime, other.employee, other.customer, other.SalesPrice, other.books); }
 
 	public int getId() { return id; }
 	public Date getOrderTime() { return OrderTime; }
 	public Employee getEmployee() { return employee; }
-	public float getSalesPrice() { return SalesPrice; }
-	public BookList getBooks() { return books; }
-	public ArrayList<Integer> getQuantity() { return quantity; }
-	public ArrayList<Float> getImportPrice() { return ImportPrice; }
 	public Customer getCustomer() { return customer; }
+	public float getSalesPrice() { return SalesPrice; }
+	public BookList_forSell getBooks() { return books; }
 
-	public void changeInfo(int id, Date OrderTime, Employee employee, float SalesPrice, BookList books, ArrayList<Integer> quantity, ArrayList<Float> ImportPrice, Customer customer) {
+	public void changeInfo(int id, Date OrderTime, Employee employee, Customer customer, float SalesPrice, BookList_forSell books) {
 		this.id = id;
 		this.OrderTime = OrderTime;
 		this.employee = employee;
+		this.customer = customer;
 		this.SalesPrice = SalesPrice;
 		this.books = books;
-		this.quantity = quantity;
-		this.ImportPrice = ImportPrice;
-		this.customer = customer;
+	}
+
+	public boolean add_toDatabase() {
+		if (books == null) return false;
+
+		DBconnect db = new DBconnect();
+		String value = "(DEFAULT, " + toString() + ")";
+		
+		try {
+			if (! db.setAutoCommit(false)) return false;
+
+			if ((id = db.add_getAuto("ORDERS", value)) <= 0) return false;
+
+			if (! books.addOrders_toDatabase(id)) {
+				db.rollback();
+				return false;
+			}
+
+			if (! db.commit()) {
+				db.rollback();
+				return false;
+			}
+		} finally { db.close(); }
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(new Timestamp(OrderTime.getTime())) + ", " + String.valueOf(employee.getId()) + ", " + String.valueOf(customer.getId()) + ", " + String.valueOf(SalesPrice);
 	}
 }

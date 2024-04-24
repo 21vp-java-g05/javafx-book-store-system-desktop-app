@@ -3,47 +3,55 @@ package main.frontend.backend.lists;
 import main.frontend.backend.objects.Author;
 import main.frontend.backend.utils.DBconnect;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class AuthorList {
 	private ArrayList<Author> authors;
 	
 	public AuthorList() { authors = new ArrayList<>(); }
+	public AuthorList(ArrayList<Author> authors) { authors = new ArrayList<>(authors); }
 	public AuthorList(AuthorList other) { authors = new ArrayList<>(other.authors); }
 	
 	public void add(Author author) { authors.add(author); }
 	public void clear() { authors.clear(); }
-	public Author getAuthorByID(int id) {
+	public int size() { return authors.size(); }
+	
+	public Author getAuthor_byID(int id) {
 		for (Author author : authors)
 			if (author.getId() == id) return author;
 		return null;
 	}
+	public Author getAuthor_byName(String name) {
+		for (Author author : authors)
+			if (author.getName().compareTo(name) == 0) return author;
+		return null;
+	}
 
-	public boolean loadAuthors_fromDatabase(String name) {
-		String condition = name == null ? null : ("name LIKE '%" + name + "%'");
-		DBconnect db = new DBconnect();
+	public boolean load_fromDatabase(String name) {
 		authors = new ArrayList<Author>();
+		DBconnect db = new DBconnect();
+		String condition = name == null || name.isEmpty() ? null : ("name LIKE '%" + name + "%'");
 		
-		try (ResultSet rs = db.view("AUTHOR", condition);) {
-			while (rs.next())
-				authors.add(new Author(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getBoolean("status")));
+		try (ResultSet aSet = db.view(null, "AUTHOR", condition);) {
+			while (aSet.next())
+				authors.add(new Author(
+					aSet.getInt("id"),
+					aSet.getString("name"),
+					aSet.getString("description"),
+					aSet.getBoolean("status")
+				));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("next() error while loading authors: " + e.getMessage());
 			return false;
 		} finally { db.close(); }
-		
 		return true;
 	}
 	
 	@Override
 	public String toString() {
 		String str = "There are " + authors.size() + " authors in the list.\n\n";
-
-		for (Author author : authors)
-			str += author.toString() + "\n";
-		
+		for (Author author : authors) str += author.toString() + "\n";
 		return str;
 	}
 }
