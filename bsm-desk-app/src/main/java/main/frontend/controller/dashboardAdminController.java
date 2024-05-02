@@ -1,26 +1,26 @@
 package main.frontend.controller;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
-import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 public class dashboardAdminController implements Initializable {
@@ -99,6 +99,9 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TableView<?> userAccount_tableView;
 
+    @FXML
+    private ComboBox<?> time_range;
+
 public void switchForm(ActionEvent event){
     if(event.getSource() == revenue_btn){
         revenue_form.setVisible(true);
@@ -129,6 +132,36 @@ public void switchForm(ActionEvent event){
     }
 }
 
+public void updateInfoAdmin()
+{
+    Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Your information is successfully updated");
+        alert.showAndWait();
+}
+
+    public void switchTimeRange() {
+
+        if (time_range.getSelectionModel().getSelectedItem() == "A week ago") {
+
+        } else if (time_range.getSelectionModel().getSelectedItem() == "A month ago") {
+
+        }else if (time_range.getSelectionModel().getSelectedItem() == "From date to date")
+        time_range.getScene().getWindow().hide();
+
+    }
+
+    public void timeRangeList(){
+        List<String> listU = new ArrayList<>();
+
+        for (String data : Users.timeRange){
+            listU.add(data);
+        }
+        ObservableList listData = FXCollections.observableList(listU);
+        time_range.setItems(listData);
+    }
     public void displayAdminIDUsername(){
         String sql = "SELECT * FORM admin WHERE username = '" + DataAdmin.admin_username+ "'";
 
@@ -170,7 +203,9 @@ public void switchForm(ActionEvent event){
     @Override
     public void initialize(URL location, ResourceBundle resources){
         runTime();
+        timeRangeList();
     }
+
     public void Logout(ActionEvent event){
         if (event.getSource() == log_out_btn_admin) {
             try {
