@@ -32,10 +32,10 @@
                                 <Font name="Arial Bold" size="20.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="username1" layoutX="50.0" layoutY="182.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="text-field" stylesheets="@../css/login.css" />
-                        <PasswordField fx:id="password1" layoutX="50.0" layoutY="226.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="text-field" stylesheets="@../css/login.css" />
-                        <Button fx:id="loginBtn1" layoutX="50.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn-employee" stylesheets="@../css/login.css" text="LOGIN" />
-                        <Button fx:id="close1" layoutX="270.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/login.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
+                        <TextField fx:id="username1" layoutX="50.0" layoutY="182.0" onAction="#loginEmployee" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="text-field" stylesheets="@../css/login.css" />
+                        <PasswordField fx:id="password1" layoutX="50.0" layoutY="226.0" onAction="#loginEmployee" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="text-field" stylesheets="@../css/login.css" />
+                        <Button fx:id="loginBtn1" layoutX="50.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginEmployee" prefHeight="35.0" prefWidth="220.0" styleClass="login-btn-employee" stylesheets="@../css/login.css" text="LOGIN" />
+                        <Button fx:id="close" layoutX="270.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/login.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
                         <ComboBox fx:id="login_user" layoutX="107.0" layoutY="341.0" onAction="#switchPage" prefHeight="26.0" prefWidth="106.0" promptText="Select Role" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="140.0" text="Employee" textAlignment="CENTER">
                      <font>
