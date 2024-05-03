@@ -46,9 +46,9 @@ import main.frontend.backend.objects.Book;
 import main.frontend.backend.objects.Category;
 import main.frontend.backend.objects.Publisher;
 import main.frontend.backend.orders.*;
+import main.frontend.backend.users.Customer;
 
-import static main.frontend.backend.lists.BookList.getPurchaseBookInfo;
-import static main.frontend.backend.lists.BookList.isBookAvailable;
+import main.frontend.backend.lists.BookList;
 
 public class dashboardController implements Initializable{
 

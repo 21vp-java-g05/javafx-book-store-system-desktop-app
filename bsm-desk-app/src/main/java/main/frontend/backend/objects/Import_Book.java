@@ -1,4 +1,4 @@
-package main.frontend.backend.objects.Book;
+package main.frontend.backend.objects;
 
 import main.frontend.backend.utils.DBconnect;
 
