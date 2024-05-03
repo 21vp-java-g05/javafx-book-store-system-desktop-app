@@ -32,13 +32,8 @@ public class updateUserInfoController implements Initializable {
     private ComboBox<String> gender;
 
     @FXML
-    private TextField password;
-
-    @FXML
     private ComboBox<String> status;
 
-    @FXML
-    private Button update_btn;
 
 
     public void setField(){
