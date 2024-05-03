@@ -30,31 +30,31 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="178.0" layoutY="105.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
+            <TextField fx:id="newAcc_ID" layoutX="178.0" layoutY="105.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
             <Label layoutX="178.0" layoutY="210.0" text="Username:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="178.0" layoutY="235.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+            <TextField fx:id="newAcc_username" layoutX="178.0" layoutY="235.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
             <Label layoutX="178.0" layoutY="335.0" text="Password:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="178.0" layoutY="360.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+            <TextField fx:id="newAcc_password" layoutX="178.0" layoutY="360.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
             <Label layoutX="178.0" layoutY="408.0" text="Email:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="178.0" layoutY="433.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
-            <Button layoutX="404.0" layoutY="484.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="+ Add " textFill="WHITE">
+            <TextField fx:id="newAcc_email" layoutX="178.0" layoutY="433.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
+            <Button fx:id="newAcc_addBtn" layoutX="404.0" layoutY="484.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="+ Add " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="176.0" layoutY="484.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="Back to User List" textFill="WHITE">
+            <Button fx:id="newAcc_backToUserList" layoutX="176.0" layoutY="484.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="194.0" styleClass="bg-color-4" stylesheets="@../css/MainForm.css" text="Back to User List" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -64,13 +64,13 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <ComboBox layoutX="179.0" layoutY="297.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
+            <ComboBox fx:id="newAcc_role" layoutX="179.0" layoutY="297.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
             <Label layoutX="178.0" layoutY="146.0" text="Fullname:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="178.0" layoutY="171.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+            <TextField fx:id="newAcc_fullname" layoutX="178.0" layoutY="171.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
          </children>
       </AnchorPane>
    </children>
