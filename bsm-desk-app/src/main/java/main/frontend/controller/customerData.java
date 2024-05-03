@@ -2,11 +2,11 @@ package main.frontend.controller;
 
 public class customerData {
 
-    private final Integer customerID;
-    private final String fullName;
-    private final String email; // Corrected email spelling
-    private final String gender;
-    private final String status;
+    public static Integer customerID;
+    public static String fullName;
+    public static String email; // Corrected email spelling
+    public static String gender;
+    public static String status;
 
     public customerData(Integer customerID, String fullName, String email, String gender, String status) {
         this.customerID = customerID;

@@ -149,7 +149,10 @@ public void updateInfoAdmin()
         } else if (time_range.getSelectionModel().getSelectedItem() == "A month ago") {
 
         }else if (time_range.getSelectionModel().getSelectedItem() == "From date to date")
-        time_range.getScene().getWindow().hide();
+        {
+
+        }
+
 
     }
 
