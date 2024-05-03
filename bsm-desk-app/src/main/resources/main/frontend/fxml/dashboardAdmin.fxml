@@ -108,9 +108,9 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="revenue_form" layoutX="129.0" layoutY="110.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="revenue_form" layoutX="129.0" layoutY="110.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
+                              <AnchorPane layoutX="14.0" layoutY="51.0" prefHeight="233.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="white-bg" />
@@ -127,14 +127,14 @@
                                     </LineChart>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="14.0" layoutY="289.0" prefHeight="250.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
+                              <AnchorPane layoutX="14.0" layoutY="306.0" prefHeight="233.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <LineChart fx:id="revenue_char_customers" layoutX="14.0" layoutY="-103.0" prefHeight="297.3333333333333" prefWidth="514.0" title="Customers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <LineChart fx:id="revenue_char_customers" layoutY="6.0" prefHeight="237.0" prefWidth="410.0" title="Customers" AnchorPane.bottomAnchor="6.800000000000011" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
                                       <xAxis>
                                         <CategoryAxis side="BOTTOM" />
                                       </xAxis>
@@ -144,14 +144,14 @@
                                     </LineChart>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="455.0" layoutY="14.0" prefHeight="250.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
+                              <AnchorPane layoutX="455.0" layoutY="51.0" prefHeight="234.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <LineChart fx:id="revenue_char_bookCategory" layoutX="-90.0" layoutY="-107.0" prefHeight="293.3333333333333" prefWidth="410.0" title="Books Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <LineChart fx:id="revenue_char_bookCategory" layoutY="-3.0" prefHeight="236.0" prefWidth="410.0" title="Books Category" AnchorPane.bottomAnchor="-2.5999999999999943" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
                                       <xAxis>
                                         <CategoryAxis side="BOTTOM" />
                                       </xAxis>
@@ -161,14 +161,14 @@
                                     </LineChart>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="455.0" layoutY="289.0" prefHeight="250.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
+                              <AnchorPane layoutX="455.0" layoutY="304.0" prefHeight="235.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <LineChart fx:id="revenue_char_employees" layoutX="-45.0" layoutY="-90.0" prefHeight="310.0" prefWidth="455.3333333333333" title="Employees" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <LineChart fx:id="revenue_char_employees" layoutX="-45.0" layoutY="19.2" prefHeight="231.0" prefWidth="410.0" title="Employees" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <xAxis>
                                         <CategoryAxis side="BOTTOM" />
                                       </xAxis>
@@ -178,6 +178,7 @@
                                     </LineChart>
                                  </children>
                               </AnchorPane>
+                              <ComboBox fx:id="time_range" layoutX="642.0" layoutY="8.0" onAction="#switchTimeRange" prefHeight="26.0" prefWidth="180.0" promptText="Select Time Range" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -199,7 +200,7 @@
                                           <TableColumn fx:id="userAccount_col_status" prefWidth="160.0" text="Status" />
                                       </columns>
                                     </TableView>
-                                    <Label layoutX="8.0" layoutY="14.0" styleClass="header-1" stylesheets="@../css/MainForm.css" text="User Account">
+                                    <Label layoutX="8.0" layoutY="14.0" styleClass="header-1" stylesheets="@../css/MainForm.css" text="User Accounts">
                                        <font>
                                           <Font size="16.5" />
                                        </font>
@@ -274,7 +275,7 @@
                                  </font>
                               </Label>
                               <TextField layoutX="229.0" layoutY="425.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
-                              <Button layoutX="341.0" layoutY="493.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
+                              <Button fx:id="update_info_admin_btn" layoutX="341.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateInfoAdmin" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

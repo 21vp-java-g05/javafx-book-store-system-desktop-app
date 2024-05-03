@@ -10,11 +10,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
 import java.net.URL;
+
 import java.util.ResourceBundle;
 import java.text.SimpleDateFormat;
+
+import java.util.*;
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
@@ -111,6 +118,7 @@ public class dashboardAdminController implements Initializable {
     private ComboBox<?> userAccount_role;
 
     @FXML
+
     private ComboBox<?> userAccount_status;
 
     @FXML
@@ -212,7 +220,10 @@ public class dashboardAdminController implements Initializable {
 
     }
 
-    public void switchForm(ActionEvent event){
+    private ComboBox<?> time_range;
+
+public void switchForm(ActionEvent event){
+
     if(event.getSource() == revenue_btn){
         revenue_form.setVisible(true);
         userAccount_form.setVisible(false);
@@ -228,7 +239,39 @@ public class dashboardAdminController implements Initializable {
     }
 }
 
+public void updateInfoAdmin()
+{
+    Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Your information is successfully updated");
+        alert.showAndWait();
+}
 
+    public void switchTimeRange() {
+
+        if (time_range.getSelectionModel().getSelectedItem() == "A week ago") {
+
+        } else if (time_range.getSelectionModel().getSelectedItem() == "A month ago") {
+
+        }else if (time_range.getSelectionModel().getSelectedItem() == "From date to date")
+        {
+
+        }
+
+
+    }
+
+    public void timeRangeList(){
+        List<String> listU = new ArrayList<>();
+
+        for (String data : Users.timeRange){
+            listU.add(data);
+        }
+        ObservableList listData = FXCollections.observableList(listU);
+        time_range.setItems(listData);
+    }
 
     public void displayAdminIDUsername(){
         String sql = "SELECT * FORM admin WHERE username = '" + DataAdmin.admin_username+ "'";
@@ -276,7 +319,10 @@ public class dashboardAdminController implements Initializable {
         userAccountRoleList();
         userAccountStatusList();
 
+        timeRangeList();
+
     }
+
     public void Logout(ActionEvent event){
         if (event.getSource() == log_out_btn_admin) {
             try {
