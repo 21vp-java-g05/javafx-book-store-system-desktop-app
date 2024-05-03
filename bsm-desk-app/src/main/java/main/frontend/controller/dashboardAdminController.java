@@ -12,16 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import javafx.stage.Stage;
 import java.net.URL;
-
-import java.util.ResourceBundle;
 import java.text.SimpleDateFormat;
-
 import java.util.*;
 import java.util.Date;
-
+import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
@@ -118,6 +115,7 @@ public class dashboardAdminController implements Initializable {
     private ComboBox<?> userAccount_role;
 
     @FXML
+    private ComboBox<?> time_range;
 
     private ComboBox<?> userAccount_status;
 
@@ -220,10 +218,7 @@ public class dashboardAdminController implements Initializable {
 
     }
 
-    private ComboBox<?> time_range;
-
-public void switchForm(ActionEvent event){
-
+    public void switchForm(ActionEvent event){
     if(event.getSource() == revenue_btn){
         revenue_form.setVisible(true);
         userAccount_form.setVisible(false);
@@ -315,12 +310,10 @@ public void updateInfoAdmin()
     @Override
     public void initialize(URL location, ResourceBundle resources){
         runTime();
+        timeRangeList();
         displayAdminIDUsername();
         userAccountRoleList();
         userAccountStatusList();
-
-        timeRangeList();
-
     }
 
     public void Logout(ActionEvent event){
