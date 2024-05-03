@@ -10,14 +10,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Date;
+
 import java.util.ResourceBundle;
 import java.text.SimpleDateFormat;
+
+import java.util.*;
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
@@ -114,16 +118,11 @@ public class dashboardAdminController implements Initializable {
     private ComboBox<?> userAccount_role;
 
     @FXML
-    private ComboBox<?> time_range;
 
-public void switchForm(ActionEvent event){
     private ComboBox<?> userAccount_status;
 
     @FXML
     private TableView<userAccountData> userAccount_tableView;
-
-    @FXML
-    private Button userAccount_updateBtn;
 
     @FXML
     private TextField userAccount_username;
@@ -214,35 +213,40 @@ public void switchForm(ActionEvent event){
         userAccount_username.setText(appData.getUsername());
         userAccount_password.setText(appData.getPassword());
         userAccount_email.setText(appData.getmail());
+//        userAccount_status.getSelectionModel().select(appData.getStatus());
 //        userAccount_role.getSelectionModel().select(appData.getRole());
 
     }
 
-    public void switchForm(ActionEvent event){
-    if(event.getSource() == revenue_btn){
-        revenue_form.setVisible(true);
-        userAccount_form.setVisible(false);
-        profileSetting_form.setVisible(false);
-    } else if (event.getSource() == userAccount_btn) {
-        revenue_form.setVisible(false);
-        userAccount_form.setVisible(true);
-        profileSetting_form.setVisible(false);
-    }else if (event.getSource() == profile_btn) {
-        revenue_form.setVisible(false);
-        userAccount_form.setVisible(false);
-        profileSetting_form.setVisible(true);
-    }
-}
+    @FXML
+    private ComboBox<?> time_range;
 
-public void updateInfoAdmin()
-{
-    Alert alert;
+    public void switchForm(ActionEvent event){
+
+        if(event.getSource() == revenue_btn){
+            revenue_form.setVisible(true);
+            userAccount_form.setVisible(false);
+            profileSetting_form.setVisible(false);
+        } else if (event.getSource() == userAccount_btn) {
+            revenue_form.setVisible(false);
+            userAccount_form.setVisible(true);
+            profileSetting_form.setVisible(false);
+        }else if (event.getSource() == profile_btn) {
+            revenue_form.setVisible(false);
+            userAccount_form.setVisible(false);
+            profileSetting_form.setVisible(true);
+        }
+    }
+
+    public void updateInfoAdmin()
+    {
+        Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Message");
         alert.setHeaderText(null);
         alert.setContentText("Your information is successfully updated");
         alert.showAndWait();
-}
+    }
 
     public void switchTimeRange() {
 
@@ -289,31 +293,33 @@ public void updateInfoAdmin()
     }
 
     public void runTime(){
-    new Thread(){
-        public void run(){
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            while(true){
-                try{
+        new Thread(){
+            public void run(){
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                while(true){
+                    try{
                         Thread.sleep(1000);
-                }catch(Exception e){
-                    e.printStackTrace();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(() -> {
+                        date_time.setText(format.format(new Date()));
+                    });
                 }
-                Platform.runLater(() -> {
-                    date_time.setText(format.format(new Date()));
-                });
             }
-        }
-    }.start();
-}
+        }.start();
+    }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
         runTime();
-        timeRangeList();
         displayAdminIDUsername();
         userAccountRoleList();
         userAccountStatusList();
+
+        timeRangeList();
+
     }
 
     public void Logout(ActionEvent event){
