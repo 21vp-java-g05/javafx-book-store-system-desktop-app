@@ -10,18 +10,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.InputStream;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.stage.Stage;
 import java.net.URL;
+
+import java.util.ResourceBundle;
 import java.text.SimpleDateFormat;
+
 import java.util.*;
 import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
+import java.util.ArrayList;
+import java.util.List;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+
 
 public class dashboardAdminController implements Initializable {
     @FXML
@@ -70,65 +79,163 @@ public class dashboardAdminController implements Initializable {
     private Button userAccount_btn;
 
     @FXML
-    private Button add_acc_btn;
+    private AnchorPane profileSetting_form;
 
     @FXML
-    private TableColumn<?, ?> userAccount_col_accountID;
+    private TextField userAccount_accountID;
 
     @FXML
-    private TableColumn<?, ?> userAccount_col_action;
+    private Button userAccount_addBtn;
 
     @FXML
-    private TableColumn<?, ?> userAccount_col_email;
+    private TableColumn<userAccountData, Integer> userAccount_col_accountID;
 
     @FXML
-    private TableColumn<?, ?> userAccount_col_password;
+    private TableColumn<userAccountData, String> userAccount_col_role;
 
     @FXML
-    private TableColumn<?, ?> userAccount_col_status;
+    private TableColumn<userAccountData, String> userAccount_col_email;
 
     @FXML
-    private TableColumn<?, ?> userAccount_col_username;
+    private TableColumn<userAccountData, String> userAccount_col_password;
+
+    @FXML
+    private TableColumn<userAccountData, String> userAccount_col_status;
+
+    @FXML
+    private TableColumn<userAccountData, String> userAccount_col_username;
+
+    @FXML
+    private TextField userAccount_email;
 
     @FXML
     private AnchorPane userAccount_form;
 
     @FXML
-    private AnchorPane profile_setting;
+    private TextField userAccount_password;
 
     @FXML
-    private TableView<?> userAccount_tableView;
+    private ComboBox<?> userAccount_role;
 
     @FXML
+
+    private ComboBox<?> userAccount_status;
+
+    @FXML
+    private TableView<userAccountData> userAccount_tableView;
+
+    @FXML
+    private Button userAccount_updateBtn;
+
+    @FXML
+    private TextField userAccount_username;
+
+    //private Connection connect;
+//    private PreparedStatement prepare;
+//    private ResultSet result;
+
+    public void userAccountRoleList(){
+        List<String> listR = new ArrayList<>();
+        for(String data : DataAdmin.role){
+            listR.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listR);
+        userAccount_role.setItems(listData);
+    }
+
+    public void userAccountStatusList(){
+        List<String> listS = new ArrayList<>();
+        for(String data : DataAdmin.status){
+            listS.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listS);
+        userAccount_status.setItems(listData);
+    }
+
+    public ObservableList<userAccountData> userAccountGetData() {
+
+        ObservableList<userAccountData> listData = FXCollections.observableArrayList();
+
+//        String sql = "SELECT * FROM appointment WHERE date_delete IS NULL and admin = '"
+//                + DataAdmin.admin_ID + "'";
+//
+//        connect = Database.connectDB();
+//
+//        try {
+//
+//            prepare = connect.prepareStatement(sql);
+//            result = prepare.executeQuery();
+//
+//            userAccountData appData;
+//
+//            while (result.next()) {
+////            Integer accountID, String username, String status, String role, String password, String email
+//
+//                appData = new userAccountData(result.getInt("accountID"),
+//                        result.getString("username"), result.getString("status"),
+//                        result.getString("role"), result.getString("password"),
+//                        result.getString("email"));
+//                // STORE ALL DATA
+//                listData.add(appData);
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        return listData;
+    }
+
+    public ObservableList<userAccountData> userAccountListData;
+
+    public void userAccountShowData() {
+        userAccountListData = userAccountGetData();
+
+        userAccount_col_accountID.setCellValueFactory(new PropertyValueFactory<>("accountID"));
+        userAccount_col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userAccount_col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        userAccount_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        userAccount_col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+        userAccount_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        userAccount_tableView.setItems(userAccountListData);
+    }
+// TO SELECT THE DATA PER ROW IN THE TABLE
+
+    public void appointmentSelect() {
+
+        userAccountData appData = userAccount_tableView.getSelectionModel().getSelectedItem();
+        int num = userAccount_tableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+
+        userAccount_accountID.setText("" + appData.getAccountID());
+        userAccount_username.setText(appData.getUsername());
+        userAccount_password.setText(appData.getPassword());
+        userAccount_email.setText(appData.getmail());
+//        userAccount_role.getSelectionModel().select(appData.getRole());
+
+    }
+
     private ComboBox<?> time_range;
 
 public void switchForm(ActionEvent event){
+
     if(event.getSource() == revenue_btn){
         revenue_form.setVisible(true);
         userAccount_form.setVisible(false);
-        profile_setting.setVisible(false);
+        profileSetting_form.setVisible(false);
     } else if (event.getSource() == userAccount_btn) {
         revenue_form.setVisible(false);
         userAccount_form.setVisible(true);
-        profile_setting.setVisible(false);
+        profileSetting_form.setVisible(false);
     }else if (event.getSource() == profile_btn) {
         revenue_form.setVisible(false);
         userAccount_form.setVisible(false);
-        profile_setting.setVisible(true);
-    }
-    else if (event.getSource() == add_acc_btn) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/frontend/fxml/userAccount.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        revenue_form.setVisible(false);
-        userAccount_form.setVisible(false);
-        profile_setting.setVisible(true);
+        profileSetting_form.setVisible(true);
     }
 }
 
@@ -165,6 +272,7 @@ public void updateInfoAdmin()
         ObservableList listData = FXCollections.observableList(listU);
         time_range.setItems(listData);
     }
+
     public void displayAdminIDUsername(){
         String sql = "SELECT * FORM admin WHERE username = '" + DataAdmin.admin_username+ "'";
 
@@ -203,10 +311,16 @@ public void updateInfoAdmin()
     }.start();
 }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         runTime();
+        displayAdminIDUsername();
+        userAccountRoleList();
+        userAccountStatusList();
+
         timeRangeList();
+
     }
 
     public void Logout(ActionEvent event){

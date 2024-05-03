@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -37,10 +36,8 @@
                               <FontAwesomeIcon fill="WHITE" glyphName="BOOK" layoutX="24.0" layoutY="27.0" size="1.5em" text="" />
                            </children>
                         </AnchorPane>
-                        <Label layoutX="1021.0" layoutY="10.0" text="Active" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                        <Circle fill="#24c756" layoutX="1068.0" layoutY="23.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="17.333333333333336" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="18.0" />
-                        <Label layoutX="835.0" layoutY="13.0" text="Welcome, " AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0" />
-                        <Label fx:id="top_username" layoutX="891.0" layoutY="13.0" prefHeight="19.0" prefWidth="110.0" text="Harin Nguyen" AnchorPane.bottomAnchor="11.666666666666664" AnchorPane.topAnchor="13.0">
+                        <Label layoutX="920.0" layoutY="13.0" text="Welcome, " AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="13.0" />
+                        <Label fx:id="top_username" layoutX="976.0" layoutY="13.0" prefHeight="19.0" prefWidth="110.0" text="Harin Nguyen" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
@@ -49,7 +46,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="date_time" layoutX="736.0" layoutY="15.0" text="MM:DD:YYYY" />
+                        <Label fx:id="date_time" layoutX="821.0" layoutY="14.0" text="MM:DD:YYYY" />
                      </children>
                      <styleClass>
                         <String fx:value="white-bg" />
@@ -92,12 +89,12 @@
                            <graphic>
                               <FontAwesomeIcon fill="#0b60b0" glyphName="USER" size="1.5EM" />
                            </graphic></Button>
-                        <Button fx:id="profile_btn" layoutX="10.0" layoutY="342.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../css/MainForm.css" text="Profile Settings">
+                        <Button fx:id="profile_btn" layoutX="10.0" layoutY="384.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../css/MainForm.css" text="Profile Settings">
                            <graphic>
                               <FontAwesomeIcon fill="#0b60b0" glyphName="COGS" size="1.5EM" />
                            </graphic></Button>
-                        <Label layoutX="11.0" layoutY="315.0" text="Profile" textFill="WHITE" />
-                        <Button fx:id="log_out_btn_admin" layoutX="58.0" layoutY="486.0" mnemonicParsing="false" onAction="#Logout" prefHeight="42.0" prefWidth="104.0" styleClass="nav-btn-1-logout" stylesheets="@../css/MainForm.css" text="Log out">
+                        <Label layoutX="11.0" layoutY="357.0" text="Profile" textFill="WHITE" />
+                        <Button fx:id="log_out_btn_admin" layoutX="56.0" layoutY="493.0" mnemonicParsing="false" onAction="#Logout" prefHeight="33.0" prefWidth="108.0" styleClass="nav-btn-1-logout" stylesheets="@../css/MainForm.css" text="Log Out">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -184,7 +181,7 @@
                               <ComboBox fx:id="time_range" layoutX="642.0" layoutY="8.0" onAction="#switchTimeRange" prefHeight="26.0" prefWidth="180.0" promptText="Select Time Range" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="17.0" layoutY="9.0" prefHeight="535.0" prefWidth="845.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
@@ -193,14 +190,14 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="userAccount_tableView" layoutX="8.0" layoutY="51.0" prefHeight="470.0" prefWidth="830.0" stylesheets="@../css/MainForm.css">
+                                    <TableView fx:id="userAccount_tableView" layoutX="8.0" layoutY="51.0" prefHeight="210.0" prefWidth="830.0" stylesheets="@../css/MainForm.css">
                                       <columns>
                                         <TableColumn fx:id="userAccount_col_accountID" prefWidth="81.99998664855957" text="Account ID" />
                                         <TableColumn fx:id="userAccount_col_username" prefWidth="133.33333587646484" text="Username" />
                                           <TableColumn fx:id="userAccount_col_password" prefWidth="132.0000457763672" text="Password" />
                                           <TableColumn fx:id="userAccount_col_email" prefWidth="220.66659545898438" text="Email" />
-                                          <TableColumn fx:id="userAccount_col_status" prefWidth="85.33331298828125" text="Status" />
-                                          <TableColumn fx:id="userAccount_col_action" prefWidth="198.0001220703125" text="Action" />
+                                          <TableColumn fx:id="userAccount_col_role" prefWidth="126.00006103515625" text="Role" />
+                                          <TableColumn fx:id="userAccount_col_status" prefWidth="160.0" text="Status" />
                                       </columns>
                                     </TableView>
                                     <Label layoutX="8.0" layoutY="14.0" styleClass="header-1" stylesheets="@../css/MainForm.css" text="User Accounts">
@@ -214,16 +211,34 @@
                                           <FontAwesomeIcon fill="#999494" glyphName="SEARCH" layoutX="218.0" layoutY="17.0" />
                                        </children>
                                     </Group>
-                                    <Button fx:id="add_acc_btn" layoutX="432.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="29.0" prefWidth="137.0" styleClass="add-acc-btn" stylesheets="@../css/MainForm.css" text="+ Add new account" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Button>
+                                    <AnchorPane layoutX="8.0" layoutY="277.0" prefHeight="243.0" prefWidth="830.0" stylesheets="@../css/MainForm.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                          <String fx:value="radius" />
+                                       </styleClass>
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="29.0" text="Account ID:" />
+                                          <TextField fx:id="userAccount_accountID" layoutX="85.0" layoutY="25.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <Label layoutX="14.0" layoutY="71.0" text="Username:" />
+                                          <TextField fx:id="userAccount_username" layoutX="85.0" layoutY="68.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <Label layoutX="16.0" layoutY="115.0" text="Password:" />
+                                          <TextField fx:id="userAccount_password" layoutX="85.0" layoutY="112.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <Label layoutX="16.0" layoutY="154.0" text="Email:" />
+                                          <TextField fx:id="userAccount_email" layoutX="85.0" layoutY="151.0" styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <ComboBox fx:id="userAccount_role" layoutX="326.0" layoutY="67.0" prefHeight="25.0" prefWidth="144.0" promptText="Choose..." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <Label layoutX="255.0" layoutY="71.0" text="Role:" />
+                                          <ComboBox fx:id="userAccount_status" layoutX="326.0" layoutY="24.0" prefHeight="25.0" prefWidth="144.0" promptText="Choose..." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <Label layoutX="255.0" layoutY="28.0" text="Status:" />
+                                          <Button fx:id="userAccount_addBtn" layoutX="326.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/dashboard.css" text="Add" />
+                                          <Button fx:id="userAccount_updateBtn" layoutX="404.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="update-info-btn" stylesheets="@../css/dashboard.css" text="Update" />
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profile_setting" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css" visible="false">
+                        <AnchorPane fx:id="profileSetting_form" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css" visible="false">
                            <children>
                               <Label layoutX="195.0" layoutY="26.0" text="Profile Settings">
                                  <font>
