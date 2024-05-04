@@ -277,7 +277,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="profile_email" layoutX="229.0" layoutY="425.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
-                              <Button fx:id="update_info_admin_btn" layoutX="341.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateInfoAdmin" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
+                              <Button fx:id="update_info_admin_btn" layoutX="341.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateInfo" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>

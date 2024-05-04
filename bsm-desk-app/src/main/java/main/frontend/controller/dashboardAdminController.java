@@ -215,6 +215,27 @@ public class dashboardAdminController implements Initializable {
         );
         return ad.editAccount_fromDatabase(a);
     }
+
+    public void profileRoleList(){
+        List<String> listPR = new ArrayList<>();
+        for(String data : DataAdmin.role){
+            listPR.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listPR);
+        profile_role.setItems(listData);
+    }
+
+    public void profileStatusList(){
+        List<String> listPS = new ArrayList<>();
+        for(String data : DataAdmin.status){
+            listPS.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listPS);
+        profile_status.setItems(listData);
+    }
+
     public boolean updateInfo() {
         ad.changeInfo(
                 Integer.parseInt(profile_ID.getText()),
@@ -242,25 +263,7 @@ public class dashboardAdminController implements Initializable {
 
         userAccount_tableView.setItems(userAccountListData);
     }
-// TO SELECT THE DATA PER ROW IN THE TABLE
 
-//    public void appointmentSelect() {
-//
-//        userAccountData appData = userAccount_tableView.getSelectionModel().getSelectedItem();
-//        int num = userAccount_tableView.getSelectionModel().getSelectedIndex();
-//
-//        if ((num - 1) < -1) {
-//            return;
-//        }
-//
-//        userAccount_accountID.setText("" + appData.getAccountID());
-//        userAccount_username.setText(appData.getUsername());
-//        userAccount_password.setText(appData.getPassword());
-//        userAccount_email.setText(appData.getmail());
-//       userAccount_status.getSelectionModel().select(appData.getStatus());
-//       userAccount_role.getSelectionModel().select(appData.getRole());
-//
-//    }
 
     @FXML
     private ComboBox<?> time_range;
