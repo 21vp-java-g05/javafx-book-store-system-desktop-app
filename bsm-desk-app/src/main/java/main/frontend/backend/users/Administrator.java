@@ -39,7 +39,6 @@ public class Administrator extends Account {
 
 	@Override
 	public String toString() {
-		String str = "Administrator:" + "\n";
-		return str + super.toString();
+		return super.toString();
 	}
 }

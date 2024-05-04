@@ -24,6 +24,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.frontend.BookstoreManagementApplication;
+import main.frontend.backend.users.Account;
+import main.frontend.backend.users.Administrator;
+import main.frontend.backend.users.Employee;
 
 public class FXMLDocumentController implements Initializable {
 
@@ -60,8 +63,12 @@ public class FXMLDocumentController implements Initializable {
     private double x = 0;
     private double y = 0;
 
+    Account init = new Account();
     public void loginAdmin(){
+        Administrator ad = new Administrator(-1, "03102003Minh", "123", "03102003chauminh@gmail.com", "Nguyen Tran Chau Minh", 0);
+        Employee em = new Employee(-1, "Khiem", "123", "khiemkube@gmail.com", "Pham Tran Nguyen Gia Khiem", 1);
 
+        ad.addAccount_toDatabase(em);
 //        connect = database.connectDb();
 //
 //        String sql = "SELECT * FROM ACCOUNT WHERE username = ? and password = ?"; // admin is our table name
@@ -82,6 +89,7 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             }else{
+                    init.login(username.getText(), password.getText());
 //                if(result.next()){
 //                    // IF CORRECT USERNAME AND PASSWORD
 //

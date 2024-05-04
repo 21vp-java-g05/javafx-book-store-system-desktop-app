@@ -83,7 +83,6 @@ public class Employee extends Account {
 
 	@Override
 	public String toString() {
-		String str = "Employee:" + "\n";
-		return str + super.toString();
+		return super.toString();
 	}
 }
