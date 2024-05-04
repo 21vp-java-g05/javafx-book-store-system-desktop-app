@@ -168,6 +168,18 @@ public class dashboardAdminController implements Initializable {
             ));
         return listData;
     }
+    public boolean addAccount() {
+        Account a = new Account(
+
+        );
+        return ad.addAccount_toDatabase(a);
+    }
+    public boolean updateAccount() {
+        Account a = new Account(
+
+        );
+        return ad.editAccount_fromDatabase(a);
+    }
 
     public ObservableList<userAccountData> userAccountListData;
 
