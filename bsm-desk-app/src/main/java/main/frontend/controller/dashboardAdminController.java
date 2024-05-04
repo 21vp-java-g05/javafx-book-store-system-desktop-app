@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
+import main.frontend.backend.users.Account;
+import main.frontend.backend.users.Administrator;
 import main.frontend.backend.utils.DBconnect;
 
 public class dashboardAdminController implements Initializable {
@@ -126,6 +128,8 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TextField userAccount_username;
 
+    Administrator ad = new Administrator(-1, "Harin Nguyen", "123", "harin@gmail.com", "Nguyen Thai Huyen", 0);
+
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -151,35 +155,17 @@ public class dashboardAdminController implements Initializable {
     }
 
     public ObservableList<userAccountData> userAccountGetData() {
-
         ObservableList<userAccountData> listData = FXCollections.observableArrayList();
 
-//        String sql = "SELECT * FROM appointment WHERE date_delete IS NULL and admin = '"
-//                + DataAdmin.admin_ID + "'";
-//
-//        connect = Database.connectDB();
-//
-//        try {
-//
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            userAccountData appData;
-//
-//            while (result.next()) {
-////            Integer accountID, String username, String status, String role, String password, String email
-//
-//                appData = new userAccountData(result.getInt("accountID"),
-//                        result.getString("username"), result.getString("status"),
-//                        result.getString("role"), result.getString("password"),
-//                        result.getString("email"));
-//                // STORE ALL DATA
-//                listData.add(appData);
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        for (Account a : ad.loadAccounts_fromDatabase().getAccounts())
+            listData.add(new userAccountData(
+                    a.getId(),
+                    a.getUsername(),
+                    a.getStatus(),
+                    a.getRole(),
+                    a.getPassword(),
+                    a.getMail()
+            ));
         return listData;
     }
 

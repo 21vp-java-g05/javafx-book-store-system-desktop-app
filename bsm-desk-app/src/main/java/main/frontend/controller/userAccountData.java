@@ -3,12 +3,12 @@ package main.frontend.controller;
 public class userAccountData {
     private Integer accountID;
     private String username;
-    private String status;
-    private String role;
+    private boolean status;
+    private int role;
     private String password;
     private String mail;
 
-    public userAccountData(Integer accountID, String username, String status, String role, String password, String email){
+    public userAccountData(Integer accountID, String username, boolean status, int role, String password, String email){
         this.accountID = accountID;
         this.username = username;
         this.status = status;
@@ -25,10 +25,10 @@ public class userAccountData {
         return username;
     }
 
-    public String getRole(){
+    public int getRole(){
         return role;
     }
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 

@@ -23,6 +23,8 @@ public class AccountList {
 		return null;
 	}
 
+	public ArrayList<Account> getAccounts() { return accounts; }
+
 	public boolean load_fromDatabase(String condition) {
 		accounts = new ArrayList<Account>();
 		DBconnect db = new DBconnect();

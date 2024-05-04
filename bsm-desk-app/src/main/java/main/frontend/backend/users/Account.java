@@ -32,8 +32,8 @@ public class Account {
 	public Account(String fullname) { this.fullname = fullname; }
 
 	public int getId() { return id; }
-	public String getAccountUsername() { return username; }
-	public String getAccountPassword() { return password; }
+	public String getUsername() { return username; }
+	public String getPassword() { return password; }
 	public String getFullname() {return fullname;}
 	public String getMail() { return mail; }
 	public int getRole() {return role;}
