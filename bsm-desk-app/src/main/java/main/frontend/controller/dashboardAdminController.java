@@ -131,6 +131,28 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TextField userAccount_fullname;
 
+    @FXML
+    private TextField profile_ID;
+
+    @FXML
+    private TextField profile_email;
+
+    @FXML
+    private TextField profile_fullname;
+
+    @FXML
+    private TextField profile_password;
+
+    @FXML
+    private ComboBox<?> profile_role;
+
+    @FXML
+    private ComboBox<?> profile_status;
+
+    @FXML
+    private TextField profile_username;
+
+
     Administrator ad = new Administrator(-1, "Harin Nguyen", "123", "harin@gmail.com", "Nguyen Thai Huyen", 0);
 
     private Connection connect;

@@ -181,7 +181,7 @@
                               <ComboBox fx:id="time_range" layoutX="642.0" layoutY="8.0" onAction="#switchTimeRange" prefHeight="26.0" prefWidth="180.0" promptText="Select Time Range" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="17.0" layoutY="9.0" prefHeight="535.0" prefWidth="845.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
@@ -240,7 +240,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileSetting_form" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css" visible="false">
+                        <AnchorPane fx:id="profileSetting_form" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css">
                            <children>
                               <Label layoutX="195.0" layoutY="26.0" text="Profile Settings">
                                  <font>
@@ -252,31 +252,31 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="648.0" layoutY="28.0" prefWidth="150.0" promptText="Choose..." />
+                              <ComboBox fx:id="profile_status" layoutX="648.0" layoutY="28.0" prefWidth="150.0" promptText="Choose..." />
                               <Label layoutX="229.0" layoutY="67.0" text="Account ID:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="92.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
+                              <TextField fx:id="profile_ID" layoutX="229.0" layoutY="92.0" prefHeight="29.0" prefWidth="419.0" promptText="Ex: 21126077" />
                               <Label layoutX="229.0" layoutY="206.0" text="Username:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="231.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+                              <TextField fx:id="profile_username" layoutX="229.0" layoutY="231.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: Baka3k" />
                               <Label layoutX="228.0" layoutY="330.0" text="Password:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="228.0" layoutY="355.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
+                              <TextField fx:id="profile_password" layoutX="228.0" layoutY="355.0" prefHeight="32.0" prefWidth="419.0" promptText="Ex: Baka3k" />
                               <Label layoutX="229.0" layoutY="400.0" text="Email:">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="425.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
+                              <TextField fx:id="profile_email" layoutX="229.0" layoutY="425.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: nth21@vp.fitus.edu.vn" />
                               <Button fx:id="update_info_admin_btn" layoutX="341.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateInfoAdmin" prefHeight="46.0" prefWidth="194.0" styleClass="back-and-add-btn" stylesheets="@../css/MainForm.css" text="Update information" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -287,13 +287,13 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <ComboBox layoutX="230.0" layoutY="292.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
+                              <ComboBox fx:id="profile_role" layoutX="230.0" layoutY="292.0" prefHeight="26.0" prefWidth="151.0" promptText="Select role" />
                               <Label layoutX="229.0" layoutY="136.0" text="Fullname">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="229.0" layoutY="161.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: BaoKhanh" />
+                              <TextField fx:id="profile_fullname" layoutX="229.0" layoutY="161.0" prefHeight="31.0" prefWidth="419.0" promptText="Ex: BaoKhanh" />
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>
