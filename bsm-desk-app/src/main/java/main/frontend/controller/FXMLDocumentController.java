@@ -65,14 +65,6 @@ public class FXMLDocumentController implements Initializable {
 
     Account init = new Account();
     public void loginAdmin(){
-        // Administrator ad = new Administrator(-1, "03102003Minh", "123", "03102003chauminh@gmail.com", "Nguyen Tran Chau Minh", 0);
-//        Administrator em = new Administrator(-1, "NGUYEN TRNA GAY", "GAY@gmail.com", "cyderxxv", "Cyderglxk03", 0);
-//
-//        em.addAccount_toDatabase(em);
-//        connect = database.connectDb();
-//
-//        String sql = "SELECT * FROM ACCOUNT WHERE username = ? and password = ?"; // admin is our table name
-
         try{
             Alert alert;
 
@@ -89,45 +81,36 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             }else{
-                    String u = username.getText();
-                    String p = password.getText();
-                    System.out.println(u);
-                    System.out.println(p);
-                    init.login(username.getText(), password.getText());
-//                if(result.next()){
-//                    // IF CORRECT USERNAME AND PASSWORD
+                    if (init.login(username.getText(), password.getText())) {
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Information Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Successfully Login");
+                        alert.showAndWait();
+
+                        // TO HIDE YOUR LOGIN FORM
+                        Stage loginStage = (Stage) username.getScene().getWindow();
+                        loginStage.close();
 //
-//                    getData.username = username.getText();
+                        // LINK YOUR DASHBOARD FORM : )
+                        Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboardAdmin.fxml")));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
 
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Login");
-                    alert.showAndWait();
-
-                    // TO HIDE YOUR LOGIN FORM
-                    Stage loginStage = (Stage) username.getScene().getWindow();
-                    loginStage.close();
+                        root.setOnMousePressed((MouseEvent event) ->{
+                            x = event.getSceneX();
+                            y = event.getSceneY();
+                        });
 //
-                    // LINK YOUR DASHBOARD FORM : )
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(BookstoreManagementApplication.class.getResource("/main/frontend/fxml/dashboardAdmin.fxml")));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
+                        root.setOnMouseDragged((MouseEvent event) ->{
+                            stage.setX(event.getScreenX() - x);
+                            stage.setY(event.getScreenY() - y);
+                        });
 
-                    root.setOnMousePressed((MouseEvent event) ->{
-                        x = event.getSceneX();
-                        y = event.getSceneY();
-                    });
-//
-                    root.setOnMouseDragged((MouseEvent event) ->{
-                        stage.setX(event.getScreenX() - x);
-                        stage.setY(event.getScreenY() - y);
-                    });
+                        stage.initStyle(StageStyle.TRANSPARENT);
 
-                    stage.initStyle(StageStyle.TRANSPARENT);
-
-                    stage.setScene(scene);
-                    stage.show();
+                        stage.setScene(scene);
+                        stage.show();
 
 //                }else{ // IF WRONG USERNAME OR PASSWORD
 //                    alert = new Alert(AlertType.ERROR);
@@ -136,6 +119,7 @@ public class FXMLDocumentController implements Initializable {
 //                    alert.setContentText("Wrong Username/Password");
 //                    alert.showAndWait();
 //                }
+                    }
             }
 
         }catch(Exception e){e.printStackTrace();}

@@ -64,7 +64,7 @@ public class Account {
         }
     }
 
-	public Account login(String username, String password) {
+	public boolean login(String username, String password) {
 		DBconnect db = new DBconnect();
 		try {
 			String hashedPassword = hashPassword(password);
@@ -74,16 +74,16 @@ public class Account {
 			if (rs.next()) {
 				if (! rs.getBoolean("status")) {
 					System.err.println("Account disabled");
-					return null;
+					return false;
 				}
-				return rs.getInt("role") == 0 ? new Administrator(this) : new Employee(this);
+				return rs.getInt("role") == 0;
 			}
 			
 			System.err.println("Invalid username or password");
-			return null;
+			return false;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
+			System.err.println("Error while login: " + e.getMessage());
+			return false;
 		} finally { db.close(); }
 	}
 

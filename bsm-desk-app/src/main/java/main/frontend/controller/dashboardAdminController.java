@@ -170,23 +170,25 @@ public class dashboardAdminController implements Initializable {
     }
     public boolean addAccount() {
         Account a = new Account(
-                Integer.parseInt(userAccount_accountID.getText()),
-                userAccount_email.getText(),
-                userAccount_username.getText(),
-                userAccount_password.getText(),
-                Integer.parseInt(userAccount_role.getSelectionModel().getSelectedItem().toString()),
-                Boolean.valueOf(userAccount_status.getSelectionModel().getSelectedItem().toString())
+            Integer.parseInt(userAccount_accountID.getText()),
+            null,
+            userAccount_email.getText(),
+            userAccount_username.getText(),
+            userAccount_password.getText(),
+            userAccount_role.getSelectionModel().toString().compareToIgnoreCase("Admin") == 0 ? 0 : 1,
+            userAccount_status.getSelectionModel().toString().compareToIgnoreCase("Enable") == 0 ? true : false
         );
         return ad.addAccount_toDatabase(a);
     }
     public boolean updateAccount() {
         Account a = new Account(
                 Integer.parseInt(userAccount_accountID.getText()),
+                null,
                 userAccount_email.getText(),
                 userAccount_username.getText(),
                 userAccount_password.getText(),
-                Integer.parseInt(userAccount_role.getSelectionModel().toString()),
-                Boolean.valueOf(userAccount_status.getSelectionModel())
+                userAccount_role.getSelectionModel().toString().compareToIgnoreCase("Admin") == 0 ? 0 : 1,
+                userAccount_status.getSelectionModel().toString().compareToIgnoreCase("Enable") == 0 ? true : false
         );
         return ad.editAccount_fromDatabase(a);
     }
