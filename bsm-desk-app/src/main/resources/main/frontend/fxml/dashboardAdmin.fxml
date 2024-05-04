@@ -108,7 +108,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="revenue_form" layoutX="129.0" layoutY="110.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="revenue_form" layoutX="129.0" layoutY="110.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="51.0" prefHeight="233.0" prefWidth="410.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
@@ -190,7 +190,7 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="userAccount_tableView" layoutX="8.0" layoutY="51.0" prefHeight="210.0" prefWidth="830.0" stylesheets="@../css/MainForm.css">
+                                    <TableView fx:id="userAccount_tableView" layoutX="8.0" layoutY="51.0" onMouseClicked="#userAccountShowData" prefHeight="210.0" prefWidth="830.0" stylesheets="@../css/MainForm.css">
                                       <columns>
                                         <TableColumn fx:id="userAccount_col_accountID" prefWidth="81.99998664855957" text="Account ID" />
                                         <TableColumn fx:id="userAccount_col_username" prefWidth="133.33333587646484" text="Username" />

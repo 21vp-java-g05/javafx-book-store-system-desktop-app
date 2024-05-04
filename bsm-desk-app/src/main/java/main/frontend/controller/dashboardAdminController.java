@@ -185,23 +185,23 @@ public class dashboardAdminController implements Initializable {
     }
 // TO SELECT THE DATA PER ROW IN THE TABLE
 
-    public void appointmentSelect() {
-
-        userAccountData appData = userAccount_tableView.getSelectionModel().getSelectedItem();
-        int num = userAccount_tableView.getSelectionModel().getSelectedIndex();
-
-        if ((num - 1) < -1) {
-            return;
-        }
-
-        userAccount_accountID.setText("" + appData.getAccountID());
-        userAccount_username.setText(appData.getUsername());
-        userAccount_password.setText(appData.getPassword());
-        userAccount_email.setText(appData.getmail());
-//        userAccount_status.getSelectionModel().select(appData.getStatus());
-//        userAccount_role.getSelectionModel().select(appData.getRole());
-
-    }
+//    public void appointmentSelect() {
+//
+//        userAccountData appData = userAccount_tableView.getSelectionModel().getSelectedItem();
+//        int num = userAccount_tableView.getSelectionModel().getSelectedIndex();
+//
+//        if ((num - 1) < -1) {
+//            return;
+//        }
+//
+//        userAccount_accountID.setText("" + appData.getAccountID());
+//        userAccount_username.setText(appData.getUsername());
+//        userAccount_password.setText(appData.getPassword());
+//        userAccount_email.setText(appData.getmail());
+//       userAccount_status.getSelectionModel().select(appData.getStatus());
+//       userAccount_role.getSelectionModel().select(appData.getRole());
+//
+//    }
 
     @FXML
     private ComboBox<?> time_range;

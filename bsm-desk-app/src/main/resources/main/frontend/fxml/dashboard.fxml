@@ -258,7 +258,7 @@
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="availableBooks_form" layoutX="165.0" layoutY="151.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="availableBooks_form" layoutX="165.0" layoutY="151.0" prefHeight="554.6666666666666" prefWidth="898.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="526.0" prefWidth="265.0" stylesheets="@../css/dashboard.css">
                                             <styleClass>
