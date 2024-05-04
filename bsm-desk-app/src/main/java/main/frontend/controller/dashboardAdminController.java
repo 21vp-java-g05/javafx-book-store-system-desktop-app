@@ -153,6 +153,9 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TextField profile_username;
 
+    @FXML
+    private TextField userAccount_search;
+
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;

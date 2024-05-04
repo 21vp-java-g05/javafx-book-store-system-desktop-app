@@ -181,7 +181,7 @@
                               <ComboBox fx:id="time_range" layoutX="642.0" layoutY="8.0" onAction="#switchTimeRange" prefHeight="26.0" prefWidth="180.0" promptText="Select Time Range" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="userAccount_form" layoutX="51.0" layoutY="67.0" prefHeight="553.3333333333334" prefWidth="879.3333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="17.0" layoutY="9.0" prefHeight="535.0" prefWidth="845.0" stylesheets="@../css/MainForm.css">
                                  <styleClass>
@@ -207,7 +207,7 @@
                                     </Label>
                                     <Group layoutX="586.0" layoutY="13.0">
                                        <children>
-                                          <TextField layoutX="-2.0" prefHeight="26.0" prefWidth="238.0" promptText="Search" />
+                                          <TextField fx:id="userAccount_search" layoutX="-2.0" onAction="#search" prefHeight="26.0" prefWidth="238.0" promptText="Search" />
                                           <FontAwesomeIcon fill="#999494" glyphName="SEARCH" layoutX="218.0" layoutY="17.0" />
                                        </children>
                                     </Group>
@@ -240,7 +240,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profileSetting_form" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css">
+                        <AnchorPane fx:id="profileSetting_form" layoutX="1.0" layoutY="-2.0" prefHeight="554.0" prefWidth="878.0" stylesheets="@../css/dashboard.css" visible="false">
                            <children>
                               <Label layoutX="195.0" layoutY="26.0" text="Profile Settings">
                                  <font>
