@@ -207,7 +207,7 @@
                                     </Label>
                                     <Group layoutX="586.0" layoutY="13.0">
                                        <children>
-                                          <TextField fx:id="userAccount_search" layoutX="-2.0" onAction="#search" prefHeight="26.0" prefWidth="238.0" promptText="Search" />
+                                          <TextField fx:id="userAccount_search" layoutX="-2.0" onMousePressed="#search" prefHeight="26.0" prefWidth="238.0" promptText="Search" />
                                           <FontAwesomeIcon fill="#999494" glyphName="SEARCH" layoutX="218.0" layoutY="17.0" />
                                        </children>
                                     </Group>
