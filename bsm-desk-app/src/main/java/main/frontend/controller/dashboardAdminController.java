@@ -128,6 +128,9 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TextField userAccount_username;
 
+    @FXML
+    private TextField userAccount_fullname;
+
     Administrator ad = new Administrator(-1, "Harin Nguyen", "123", "harin@gmail.com", "Nguyen Thai Huyen", 0);
 
     private Connection connect;
