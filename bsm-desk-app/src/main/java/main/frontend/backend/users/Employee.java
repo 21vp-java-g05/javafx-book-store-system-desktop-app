@@ -11,12 +11,12 @@ import main.frontend.backend.utils.Time;
 public class Employee extends Account {
 	private static final float diff = 1.95f;
 	public Employee() {}
-	public Employee(int id, String username, String password, String mail, String fullname, int role) {
-		super(id, username, password, mail, fullname, role);
+	public Employee(int id, String fullname, String mail, String username, String password, int role) {
+		super(id, fullname, mail, username, password, role);
 		checkRole();
 	}
-	public Employee(int id, String username, String password, String mail, String fullname, int role, boolean status) {
-		super(id, username, password, mail, fullname, role, status);
+	public Employee(int id, String fullname, String mail, String username, String password, int role, boolean status) {
+		super(id, fullname, mail, username, password, role, status);
 		checkRole();
 	}
 	public  Employee(String fullname) { super(fullname); }

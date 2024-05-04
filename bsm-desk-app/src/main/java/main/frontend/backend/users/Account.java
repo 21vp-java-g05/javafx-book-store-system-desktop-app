@@ -14,20 +14,20 @@ public class Account {
 	protected boolean status;
 
 	public Account() {}
-	public Account(int id, String username, String password, String mail, String fullname, int role, boolean status) {
+	public Account(int id, String fullname, String mail, String username, String password, int role, boolean status) {
 		this.id = id;
+		this.fullname = fullname;
+		this.mail = mail;
 		this.username = username;
 		this.password = hashPassword(password);
-		this.mail = mail;
-		this.fullname = fullname;
-		this.status = status;
 		this.role = role;
+		this.status = status;
 	}
-	public Account(int id, String username, String password, String mail, String fullname, int role) {
+	public Account(int id, String fullname, String mail, String username, String password, int role) {
 		this(id, fullname, mail, username, password, role, true);
 	}
 	public Account(Account other) {
-		this(other.id, other.username, other.password, other.mail, other.fullname, other.role, other.status);
+		this(other.id, other.fullname, other.mail, other.username, other.password, other.role, other.status);
 	}
 	public Account(String fullname) { this.fullname = fullname; }
 

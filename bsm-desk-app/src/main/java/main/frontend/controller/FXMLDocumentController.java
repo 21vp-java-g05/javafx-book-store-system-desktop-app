@@ -65,10 +65,10 @@ public class FXMLDocumentController implements Initializable {
 
     Account init = new Account();
     public void loginAdmin(){
-        Administrator ad = new Administrator(-1, "03102003Minh", "123", "03102003chauminh@gmail.com", "Nguyen Tran Chau Minh", 0);
-        Employee em = new Employee(-1, "Khiem", "123", "khiemkube@gmail.com", "Pham Tran Nguyen Gia Khiem", 1);
-
-        ad.addAccount_toDatabase(em);
+        // Administrator ad = new Administrator(-1, "03102003Minh", "123", "03102003chauminh@gmail.com", "Nguyen Tran Chau Minh", 0);
+//        Administrator em = new Administrator(-1, "NGUYEN TRNA GAY", "GAY@gmail.com", "cyderxxv", "Cyderglxk03", 0);
+//
+//        em.addAccount_toDatabase(em);
 //        connect = database.connectDb();
 //
 //        String sql = "SELECT * FROM ACCOUNT WHERE username = ? and password = ?"; // admin is our table name
@@ -89,6 +89,10 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             }else{
+                    String u = username.getText();
+                    String p = password.getText();
+                    System.out.println(u);
+                    System.out.println(p);
                     init.login(username.getText(), password.getText());
 //                if(result.next()){
 //                    // IF CORRECT USERNAME AND PASSWORD
