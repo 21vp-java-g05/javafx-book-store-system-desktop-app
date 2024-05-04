@@ -92,7 +92,7 @@ public class dashboardAdminController implements Initializable {
     private TableColumn<userAccountData, Integer> userAccount_col_accountID;
 
     @FXML
-    private TableColumn<userAccountData, String> userAccount_col_role;
+    private TableColumn<userAccountData, Integer> userAccount_col_role;
 
     @FXML
     private TableColumn<userAccountData, String> userAccount_col_email;
@@ -101,7 +101,7 @@ public class dashboardAdminController implements Initializable {
     private TableColumn<userAccountData, String> userAccount_col_password;
 
     @FXML
-    private TableColumn<userAccountData, String> userAccount_col_status;
+    private TableColumn<userAccountData, Boolean> userAccount_col_status;
 
     @FXML
     private TableColumn<userAccountData, String> userAccount_col_username;
