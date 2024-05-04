@@ -182,10 +182,8 @@ public class dashboardAdminController implements Initializable {
 
     public ObservableList<userAccountData> userAccountGetData() {
         ObservableList<userAccountData> listData = FXCollections.observableArrayList();
-        String search = userAccount_search.getText();
-        String condition = search != null || ! search.isEmpty() ? "username = " + userAccount_search.getText() : null;
 
-        for (Account a : ad.loadAccounts_fromDatabase(condition).getAccounts())
+        for (Account a : ad.loadAccounts_fromDatabase(null).getAccounts())
             listData.add(new userAccountData(
                     a.getId(),
                     a.getUsername(),
