@@ -23,9 +23,9 @@ public class Administrator extends Account {
 		if (role != 0) throw new IllegalArgumentException("Role must be administrator");
 	}
 
-	public AccountList loadAccounts_fromDatabase() {
+	public AccountList loadAccounts_fromDatabase(String condition) {
 		AccountList accounts = new AccountList();
-		return accounts.load_fromDatabase(null) ? accounts : null;
+		return accounts.load_fromDatabase(condition) ? accounts : null;
 	}
 	public boolean addAccount_toDatabase(Account account) {
 		DBconnect db = new DBconnect();
