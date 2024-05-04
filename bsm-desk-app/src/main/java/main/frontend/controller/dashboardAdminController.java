@@ -182,22 +182,8 @@ public class dashboardAdminController implements Initializable {
 
     public ObservableList<userAccountData> userAccountGetData() {
         ObservableList<userAccountData> listData = FXCollections.observableArrayList();
-
-        for (Account a : ad.loadAccounts_fromDatabase(null).getAccounts())
-            listData.add(new userAccountData(
-                    a.getId(),
-                    a.getUsername(),
-                    a.getStatus(),
-                    a.getRole(),
-                    a.getPassword(),
-                    a.getMail()
-            ));
-        return listData;
-    }
-
-    public ObservableList<userAccountData> search() {
-        ObservableList<userAccountData> listData = FXCollections.observableArrayList();
-        String condition = "username = " + userAccount_search.getText();
+        String search = userAccount_search.getText();
+        String condition = search != null || ! search.isEmpty() ? "username = " + userAccount_search.getText() : null;
 
         for (Account a : ad.loadAccounts_fromDatabase(condition).getAccounts())
             listData.add(new userAccountData(
@@ -210,6 +196,22 @@ public class dashboardAdminController implements Initializable {
             ));
         return listData;
     }
+
+//    public ObservableList<userAccountData> search() {
+//        ObservableList<userAccountData> listData = FXCollections.observableArrayList();
+//        String condition = "username = " + userAccount_search.getText();
+//
+//        for (Account a : ad.loadAccounts_fromDatabase(condition).getAccounts())
+//            listData.add(new userAccountData(
+//                    a.getId(),
+//                    a.getUsername(),
+//                    a.getStatus(),
+//                    a.getRole(),
+//                    a.getPassword(),
+//                    a.getMail()
+//            ));
+//        return listData;
+//    }
     public boolean addAccount() {
         Account a = new Account(
             Integer.parseInt(userAccount_accountID.getText()),
