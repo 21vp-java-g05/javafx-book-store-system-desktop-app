@@ -14,8 +14,9 @@ import java.time.LocalDate;
 public class OrderList {
     public ArrayList<OrderItem> loadOrdersFromDatabase() {
         ArrayList<OrderItem> orders = new ArrayList<>();
+        DBconnect db = new DBconnect();
         try (
-                DBconnect db = new DBconnect();
+
                 Statement st = db.getConnection().createStatement();
                 ResultSet rs = st.executeQuery("SELECT o.id AS order_id, o.order_time, o.sale_price," +
                         "a.fullname AS employee_name, c.fullname AS customer_name " +
@@ -43,6 +44,8 @@ public class OrderList {
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        } finally {
+            db.close();
         }
         return orders;
     }

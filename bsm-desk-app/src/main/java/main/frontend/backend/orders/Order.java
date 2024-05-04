@@ -36,7 +36,8 @@ public class Order {
 	}
 
 	public static void addOrder(int employeeID, int currentCustomer, float totalP, List<Map<String, Object>> orderData) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 		PreparedStatement insertOrderStatement = db.getConnection().prepareStatement(
 				"INSERT INTO orders (order_time, employee, customer, sale_price) VALUES (?, ?, ?, ?)",
 				Statement.RETURN_GENERATED_KEYS
@@ -89,6 +90,8 @@ public class Order {
 		} catch (SQLException e) {
 			// Handle database errors
 			// ...
+		} finally {
+			db.close();
 		}
 	}
 

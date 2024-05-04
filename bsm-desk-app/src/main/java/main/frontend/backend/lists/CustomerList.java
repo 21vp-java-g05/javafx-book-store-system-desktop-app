@@ -23,8 +23,9 @@ public class CustomerList {
 
     public static ArrayList<String> getAllPurchaseCustomerId() {
         ArrayList<String> listData = new ArrayList<>();
+        DBconnect db = new DBconnect();
         try (
-                DBconnect db = new DBconnect();
+
                 Statement st = db.getConnection().createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM CUSTOMER")
         ) {
@@ -36,6 +37,8 @@ public class CustomerList {
             return listData;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            db.close();
         }
     }
 
@@ -57,7 +60,8 @@ public class CustomerList {
     }
 
     public ArrayList<Customer> loadCustomersFromDatabase() { // Adjusted method name for consistency
-        try (DBconnect db = new DBconnect();
+        DBconnect db = new DBconnect();
+        try (
              Statement st = db.getConnection().createStatement();
              ResultSet rs = st.executeQuery("SELECT * FROM CUSTOMER")) {
             while (rs.next()) {
@@ -72,12 +76,15 @@ public class CustomerList {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            db.close();
         }
         return customers;
     }
 
     public boolean addCustomer(Customer customer) {
-        try (DBconnect db = new DBconnect()) {
+        DBconnect db = new DBconnect();
+        try {
             // Check if the customer ID already exists
             String checkCustomerIdQuery = "SELECT id FROM CUSTOMER WHERE id = ?";
             try (PreparedStatement checkIdStatement = db.getConnection().prepareStatement(checkCustomerIdQuery)) {
@@ -102,11 +109,14 @@ public class CustomerList {
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
+        } finally {
+            db.close();
         }
     }
 
     public boolean updateCustomer(Customer updatedCustomer) {
-        try (DBconnect db = new DBconnect();
+        DBconnect db = new DBconnect();
+        try (
              PreparedStatement statement = db.getConnection().prepareStatement("UPDATE CUSTOMER SET fullName = ?, mail = ?, gender = ?, status = ? WHERE id = ?")) {
             statement.setString(1, updatedCustomer.getFullName());
             statement.setString(2, updatedCustomer.getEmail());
@@ -118,6 +128,8 @@ public class CustomerList {
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
+        } finally {
+            db.close();
         }
     }
 

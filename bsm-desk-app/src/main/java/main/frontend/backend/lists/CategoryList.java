@@ -33,10 +33,16 @@ public class CategoryList {
 			if (category.getId() == id) return category;
 		return null;
 	}
+	public Category getCategory_byName(String name) {
+		for (Category category : categories)
+			if (category.getName().compareTo(name) == 0) return category;
+		return null;
+	}
 
 	public ArrayList<Category> loadCategories_fromDatabase(String name) {
 		String condition = (name == null || name.isEmpty()) ? "" : "WHERE Name = '" + name + "'";
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 Statement st = db.getConnection().createStatement();
 			 ResultSet rs = st.executeQuery("SELECT * FROM CATEGORY " + condition)) {
 			while (rs.next()) {
@@ -45,12 +51,15 @@ public class CategoryList {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return categories;
 	}
 
 	public boolean addCategory(Category category) {
-		try (DBconnect db = new DBconnect()) {
+		DBconnect db = new DBconnect();
+		try {
 			// Check if the category ID already exists
 			String checkCategoryIdQuery = "SELECT id FROM CATEGORY WHERE id = ?";
 			try (PreparedStatement checkIdStatement = db.getConnection().prepareStatement(checkCategoryIdQuery)) {
@@ -74,11 +83,14 @@ public class CategoryList {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;
+		} finally {
+			db.close();
 		}
 	}
 
 	public boolean updateCategory(Category update) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE CATEGORY SET name = ?, status = ? WHERE id = ?")) {
 			statement.setString(1, update.getName());
 			statement.setBoolean(2, update.isEnabled());
@@ -94,17 +106,22 @@ public class CategoryList {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;
+		} finally {
+			db.close();
 		}
 	}
 
 	private void updateBooksStatusByCategory(int categoryId) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE BOOK SET status = ? WHERE id IN (SELECT book_id FROM CATEGORY_BOOK WHERE category_id = ?)")) {
 			statement.setBoolean(1, false);
 			statement.setInt(2, categoryId);
 			statement.executeUpdate();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 	}
 

@@ -60,14 +60,12 @@ public class Author {
 	}
 	
 	public boolean addAuthor_toDatabase() {
-		boolean rs;
-		try (DBconnect db = new DBconnect();) {
-			rs = db.add("AUTHOR", "");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
+		DBconnect db = new DBconnect();
+		try {
+			return db.add("AUTHOR", "") > 0;
+		} finally {
+			db.close();
 		}
-		return rs;
 	}
 	public boolean updateAuthor_toDatabase() {
 		

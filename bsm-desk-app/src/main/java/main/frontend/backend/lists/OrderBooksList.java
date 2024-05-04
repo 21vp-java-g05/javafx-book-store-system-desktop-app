@@ -10,8 +10,8 @@ import java.sql.*;
 public class OrderBooksList {
     public ArrayList<OrderBook> loadOrderBooksFromDatabase() {
         ArrayList<OrderBook> orders = new ArrayList<>();
+        DBconnect db = new DBconnect();
         try (
-                DBconnect db = new DBconnect();
                 Statement st = db.getConnection().createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM orders_book JOIN book ON orders_book.book_id = book.id")
         ) {
@@ -26,6 +26,8 @@ public class OrderBooksList {
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        } finally {
+            db.close();
         }
         return orders;
     }

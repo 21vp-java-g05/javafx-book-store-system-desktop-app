@@ -24,11 +24,17 @@ public class PublisherList {
 			if (publisher.getId() == id) return publisher;
 		return null;
 	}
+	public Publisher getPublisher_byName(String name) {
+		for (Publisher publisher : publishers)
+			if (publisher.getName().compareTo(name) == 0) return publisher;
+		return null;
+	}
 
 	public ArrayList<Publisher> loadPublishers_fromDatabase(String name) {
 		String condition = (name == null || name.isEmpty()) ? "" : "WHERE Name = '" + name + "'";
 		ArrayList<Publisher> publishers = new ArrayList<>();
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 Statement st = db.getConnection().createStatement();
 			 ResultSet rs = st.executeQuery("SELECT * FROM PUBLISHER " + condition)) {
 			while (rs.next()) {
@@ -37,12 +43,15 @@ public class PublisherList {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return publishers;
 	}
 
 	public boolean addPublisher(publisherData publisher) {
-		try (DBconnect db = new DBconnect()) {
+		DBconnect db = new DBconnect();
+		try {
 			// Check if the publisher ID already exists
 			String checkPublisherIdQuery = "SELECT id FROM PUBLISHER WHERE id = ?";
 			try (PreparedStatement checkIdStatement = db.getConnection().prepareStatement(checkPublisherIdQuery)) {
@@ -66,6 +75,8 @@ public class PublisherList {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;
+		} finally {
+			db.close();
 		}
 	}
 
@@ -81,7 +92,8 @@ public class PublisherList {
 	}
 
 	public boolean updatePublisher(publisherData update) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE PUBLISHER SET name = ?, status = ? WHERE id = ?")) {
 			statement.setString(1, update.getName());
 			statement.setBoolean(2, Objects.equals(update.getStatus(), "Enabled"));
@@ -97,15 +109,20 @@ public class PublisherList {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;
+		} finally {
+			db.close();
 		}
     }
 	public void updateBooksStatusByPublisher(int publisherId) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE BOOK SET status = ? WHERE publisher = ?")) {
 			statement.setBoolean(1, false);
 			statement.setInt(2, publisherId);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 	}
 }

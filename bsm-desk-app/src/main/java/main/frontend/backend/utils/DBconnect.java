@@ -2,81 +2,122 @@ package main.frontend.backend.utils;
 
 import java.sql.*;
 
-public class DBconnect implements AutoCloseable {
+public class DBconnect {
 	private static final String DRIVER = "org.postgresql.Driver";
-//	private static final String URL = "jdbc:postgresql:database";
-	private static final String URL = "jdbc:postgresql://localhost:5432/";
-	private static final String USER = "postgres";
-	private static final String PASSWORD = "123456";
+	private static final String URL = "jdbc:postgresql:" + System.getenv("DB_URL");
+	private static final String USER = System.getenv("DB_USER");
+	private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
-	private static Connection connection;
+	private Connection connection;
 
 	// Constructor for initializing the connection
 	public DBconnect() {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Connected");
+		} catch (ClassNotFoundException e) {
+			System.err.println("Class not found");
+		} catch (SQLException e) {
+			System.err.println("Connection fail");
 		}
+	}
+
+	public Connection getConnection() { return connection; }
+	public void close() {
+		try { connection.close(); }
+		catch (SQLException e) { System.err.println("Error closing connection"); }
+	}
+
+	public boolean setAutoCommit(boolean status) {
+		try { connection.setAutoCommit(status); }
+		catch (SQLException e) {
+			System.err.println("Change commit's status error: " + e.getMessage());
+			return false;
+		}
+		return true;
+	}
+	public boolean commit() {
+		try { connection.commit(); }
+		catch (SQLException e) {
+			System.err.println("Committing error: " + e.getMessage());
+			return false;
+		}
+		return true;
+	}
+	public boolean rollback() {
+		try { connection.rollback(); }
+		catch (SQLException e) {
+			System.err.println("Rollback error: " + e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	// Method to execute a query and retrieve a ResultSet
-	public ResultSet view(String object, String condition) {
-		try (Statement st = connection.createStatement()) {
-			ResultSet rs;
-			String query = "SELECT * FROM " + object;
-			if (condition != null)
-				query += " WHERE " + condition;
-			System.out.println(query);
-			rs = st.executeQuery(query);
-			return rs;
-		} catch (SQLException e) {
-			e.printStackTrace();
+	public ResultSet view(String column, String object, String condition) {
+		String query = "SELECT " + (column == null || column.isEmpty() ? "*" : column) + " FROM " + object;
+		if (condition != null)
+			if (! condition.isEmpty()) query += " WHERE " + condition;
+		
+		try { return connection.createStatement().executeQuery(query); }
+		catch (SQLException e) {
+			System.err.println("Viewing error: " + e.getMessage());
+			return null;
 		}
-		return null;
 	}
-
-	public boolean add(String object, String value) {
-		try (Statement st = connection.createStatement();) {
-			String query = "INSERT INTO " + object + " VALUES (" + value + ")";
-			st.executeUpdate(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
+	public boolean checkExists(String object, String condition) {
+		ResultSet resultSet = view(null, object, condition);
+		try { return resultSet.next(); }
+		catch (SQLException e) {
+			System.err.println("Checking exists error: " + e.getMessage());
 			return false;
 		}
-		return true;
 	}
-	public boolean update(String object, String value, String condition) {
-		try (Statement st = connection.createStatement();) {
-			String query = "UPDATE " + object + " SET " + value + " WHERE " + condition;
-			st.executeUpdate(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-	public boolean changeStatus(String object, String condition, boolean status) {
-		String query = "UPDATE " + object + " SET Enabled = ?" + " WHERE " + condition;
-		try (PreparedStatement st = connection.prepareStatement(query);) {
-			st.setBoolean(0, status);
-			st.executeUpdate(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public void close() throws SQLException {
-		if (connection != null) {
-			connection.close();
+	public int add(String object, String value) {
+		String query = "INSERT INTO " + object + " VALUES " + value;
+		try { return connection.createStatement().executeUpdate(query); }
+		catch (SQLException e) {
+			System.err.println("Adding error: " + e.getMessage());
+			return -1;
 		}
 	}
-
-	public Connection getConnection() {
-		return connection;
+	public int add_getAuto(String object, String value) {
+		String query = "INSERT INTO " + object + " VALUES " + value;
+		try {
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = statement.getGeneratedKeys();
+			return rs.next() ? rs.getInt(1) : 0;
+		}
+		catch (SQLException e) {
+			System.err.println("Adding auto error: " + e.getMessage());
+			return -1;
+		}
+	}
+	public int update(String object, String value, String condition) {
+		String query = "UPDATE " + object + " SET " + value + " WHERE " + condition;
+		try { return connection.createStatement().executeUpdate(query); }
+		catch (SQLException e) {
+			System.err.println("Update error: " + e.getMessage());
+			return -1;
+		}
+	}
+	public int changeStatus(String object, String condition, boolean status) {
+		String query = "UPDATE " + object + " SET status = " + String.valueOf(status) + " WHERE " + condition;
+		try { return connection.createStatement().executeUpdate(query); }
+		catch (SQLException e) {
+			System.err.println("Changing status error: " + e.getMessage());
+			return -1;
+		}
+	}
+	public int delete(String object, String condition) {
+		String query = "DELETE FROM " + object + " WHERE " + condition;
+		try { return connection.createStatement().executeUpdate(query); }
+		catch (SQLException e) {
+			System.err.println("Deleting error: " + e.getMessage());
+			return -1;
+		}
 	}
 }

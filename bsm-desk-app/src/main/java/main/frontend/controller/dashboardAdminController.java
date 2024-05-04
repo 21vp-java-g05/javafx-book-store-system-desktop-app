@@ -27,10 +27,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import java.util.List;
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
+import java.sql.*;
 
+import main.frontend.backend.utils.DBconnect;
 
 public class dashboardAdminController implements Initializable {
     @FXML
@@ -127,9 +126,9 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TextField userAccount_username;
 
-    //private Connection connect;
-//    private PreparedStatement prepare;
-//    private ResultSet result;
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
 
     public void userAccountRoleList(){
         List<String> listR = new ArrayList<>();

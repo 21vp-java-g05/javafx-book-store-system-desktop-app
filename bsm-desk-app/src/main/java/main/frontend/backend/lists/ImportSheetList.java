@@ -20,7 +20,8 @@ public class ImportSheetList {
 
     public List<ImportSheet> loadImportSheetsFromDatabase() {
         List<ImportSheet> importSheets = new ArrayList<>();
-        try (DBconnect db = new DBconnect();
+        DBconnect db = new DBconnect();
+        try (
              Statement statement = db.getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM imports JOIN account ON imports.employee = account.id")) {
             while (resultSet.next()) {
@@ -42,6 +43,8 @@ public class ImportSheetList {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            db.close();
         }
         return importSheets;
     }
@@ -60,12 +63,14 @@ public class ImportSheetList {
     }
 
     public boolean bookExistsInDatabase(int bookId) throws SQLException {
-        try (DBconnect db = new DBconnect();
-             Statement statement = db.getConnection().createStatement();
+        DBconnect db = new DBconnect();
+        try (Statement statement = db.getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOK WHERE id = " + bookId)) {
             if (resultSet.next()) {
                 return true;
             }
+        } finally {
+            db.close();
         }
         return false;
     }
@@ -80,9 +85,9 @@ public class ImportSheetList {
 
     public int addImportSheetToDatabase(ImportSheet importSheet, float totalCost) throws SQLException {
         int importId = -1; // Initialize importId to -1
-
+        DBconnect db = new DBconnect();
         // Step 1: Connect to the database
-        try (DBconnect db = new DBconnect();) {
+        try {
             // Step 2: Insert data into the IMPORTS table
             String insertImportQuery = "INSERT INTO public.imports (import_time, employee, total_cost) VALUES (?, ?, ?)";
             try (PreparedStatement preparedStatement = db.getConnection().prepareStatement(insertImportQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -105,6 +110,8 @@ public class ImportSheetList {
                     }
                 }
             }
+        } finally {
+            db.close();
         }
         // Return the importId
         return importId;
@@ -112,7 +119,8 @@ public class ImportSheetList {
 
     private void addImportItemToDatabase(int importId, ImportItem item) throws SQLException {
         String query = "INSERT INTO public.imports_book (imports_id, book_id, quantity, import_price, remaining) VALUES (?, ?, ?, ?, ?)";
-        try (DBconnect db = new DBconnect();
+        DBconnect db = new DBconnect();
+        try (
              PreparedStatement preparedStatement = db.getConnection().prepareStatement(query);
              ) {
                 preparedStatement.setInt(1, importId);
@@ -121,6 +129,8 @@ public class ImportSheetList {
                 preparedStatement.setFloat(4, item.getImportPrice());
                 preparedStatement.setInt(5, item.getQuantity());
                 preparedStatement.executeUpdate();
+        } finally {
+            db.close();
         }
     }
 
@@ -134,7 +144,8 @@ public class ImportSheetList {
 
     public List<ImportBook> loadImportBooksFromDatabase() {
         List<ImportBook> importBooks = new ArrayList<>();
-        try (DBconnect db = new DBconnect();
+        DBconnect db = new DBconnect();
+        try (
              Statement statement = db.getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM imports_book JOIN book on imports_book.book_id = book.id")) {
             while (resultSet.next()) {
@@ -154,6 +165,8 @@ public class ImportSheetList {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            db.close();
         }
         return importBooks;
     }

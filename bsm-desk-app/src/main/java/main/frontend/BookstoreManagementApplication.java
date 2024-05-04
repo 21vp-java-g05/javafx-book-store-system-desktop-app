@@ -44,18 +44,6 @@ public class BookstoreManagementApplication extends Application {
     }
 
     public static void main(String[] args) {
-//            Account a2 = new Account("Pham Nguyen Gia Khiem", "pngkhiem21@vp.fitus.edu.vn", "cyderxda", "Cyderglxk03", 1);
-//        System.out.println("Account 2 (copy of Account 1):");
-//        System.out.println(a2);
-//        System.out.println();
-//
-////        a2.add_toDatabase();
-//
-//        String hashedPassword = a2.hashPassword("Cyderglxk03");
-//        System.out.println("Hashed password: " + hashedPassword);
-//
-////        boolean isLoggedIn = a2.login("cyderxda", "Cyderglxk03");
-////        System.out.println("Login successed is " + isLoggedIn);
         launch(args);
     }
 }

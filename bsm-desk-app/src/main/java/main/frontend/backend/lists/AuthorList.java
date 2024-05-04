@@ -33,10 +33,16 @@ public class AuthorList {
 			if (author.getId() == id) return author;
 		return null;
 	}
+	public Author getAuthor_byName(String name) {
+		for (Author author : authors)
+			if (author.getName().compareTo(name) == 0) return author;
+		return null;
+	}
 
 	public ArrayList<Author> loadAuthors_fromDatabase(String name) {
 		String condition = (name == null || name.isEmpty()) ? "" : "WHERE Name = '" + name + "'";
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 Statement st = db.getConnection().createStatement();
 			 ResultSet rs = st.executeQuery("SELECT * FROM AUTHOR " + condition)) {
 			while (rs.next()) {
@@ -45,13 +51,16 @@ public class AuthorList {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return authors;
 	}
 
 
 	public boolean addAuthor(Author author) {
-		try (DBconnect db = new DBconnect()) {
+		DBconnect db = new DBconnect();
+		try {
 			// Check if the author ID already exists
 			String checkAuthorIdQuery = "SELECT id FROM AUTHOR WHERE id = ?";
 			try (PreparedStatement checkIdStatement = db.getConnection().prepareStatement(checkAuthorIdQuery)) {
@@ -75,11 +84,14 @@ public class AuthorList {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;
+		} finally {
+			db.close();
 		}
 	}
 
 	public boolean updateAuthor(Author update) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE AUTHOR SET name = ?, status = ? WHERE id = ?")) {
 			statement.setString(1, update.getName());
 			statement.setBoolean(2, update.isEnabled());
@@ -95,17 +107,22 @@ public class AuthorList {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;
+		} finally {
+			db.close();
 		}
 	}
 
 	private void updateBooksStatusByAuthor(int authorId) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 PreparedStatement statement = db.getConnection().prepareStatement("UPDATE BOOK SET status = ? WHERE author = ?")) {
 			statement.setBoolean(1, false);
 			statement.setInt(2, authorId);
 			statement.executeUpdate();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 	}
 

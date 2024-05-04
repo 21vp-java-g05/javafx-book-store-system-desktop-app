@@ -22,10 +22,15 @@ public class BookList {
 	public BookList() { books = new ArrayList<>(); }
 	public BookList(BookList other) { books = new ArrayList<>(other.books); }
 
+	public Book getBook_byId(int id) {
+		for (Book book : books)
+			if (book.getId() == id) return book;
+		return null;
+	}
     public static Book getPurchaseBookInfo(int i) {
-
+		DBconnect db = new DBconnect();
 		try (
-				DBconnect db = new DBconnect();
+				
 				Statement st = db.getConnection().createStatement();
 				ResultSet rs = st.executeQuery("SELECT * FROM BOOK WHERE id = " + i)
 		) {
@@ -90,14 +95,16 @@ public class BookList {
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			db.close();
 		}
         return null;
     }
 
 	public static ArrayList<String> getAllPurchaseBookId() {
 		ArrayList<String> listData = new ArrayList<>();
+		DBconnect db = new DBconnect();
 		try (
-				DBconnect db = new DBconnect();
 				Statement st = db.getConnection().createStatement();
 				ResultSet rs = st.executeQuery("SELECT * FROM BOOK")
 		) {
@@ -107,6 +114,8 @@ public class BookList {
 			return listData;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			db.close();
 		}
 	}
 
@@ -114,8 +123,9 @@ public class BookList {
 
 	public ArrayList<Book> loadBooks_fromDatabase() {
 		ArrayList<Book> books = new ArrayList<>();
+		DBconnect db = new DBconnect();
 		try (
-				DBconnect db = new DBconnect();
+
 				Statement st = db.getConnection().createStatement();
 				ResultSet rs = st.executeQuery("SELECT * FROM BOOK")
 		) {
@@ -181,6 +191,8 @@ public class BookList {
 			}
 		} catch (SQLException ex) {
 			throw new RuntimeException(ex);
+		} finally {
+			db.close();
 		}
 		return books;
 	}
@@ -188,7 +200,8 @@ public class BookList {
 	public boolean addBook(bookData book) {
 		LocalDate today = LocalDate.now();
 		Date currentDate = Date.valueOf(today);
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 Statement st = db.getConnection().createStatement();
 			 ResultSet rs = st.executeQuery("SELECT ID FROM BOOK WHERE BOOK.id = " + book.getBookId())) {
 
@@ -319,6 +332,8 @@ public class BookList {
 
 		} catch (SQLException ex) {
 			throw new RuntimeException(ex);
+		} finally {
+			db.close();
 		}
 		return true;
 	}
@@ -335,7 +350,8 @@ public class BookList {
 	}
 
 	public boolean updateBook(bookData book) {
-		try (DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try (
 			 Statement st = db.getConnection().createStatement();
 			 ResultSet rs = st.executeQuery("SELECT ID FROM BOOK WHERE BOOK.id = " + book.getBookId())) {
 
@@ -470,13 +486,15 @@ public class BookList {
 
 		} catch (SQLException ex) {
 			throw new RuntimeException(ex);
+		} finally {
+			db.close();
 		}
 		return true;
 	}
 	public ArrayList<Book> loadNewBooks_fromDatabase() {
 		ArrayList<Book> books = new ArrayList<>();
+		DBconnect db = new DBconnect();
 		try (
-				DBconnect db = new DBconnect();
 				Statement st = db.getConnection().createStatement();
 				ResultSet rs = st.executeQuery("SELECT * FROM BOOK WHERE date_part('month', date) = date_part('month', current_date)")
 		) {
@@ -548,8 +566,8 @@ public class BookList {
 
     public ArrayList<Book> loadOosBooks_fromDatabase(Object o) {
 		ArrayList<Book> books = new ArrayList<>();
+		DBconnect db = new DBconnect();
 		try (
-				DBconnect db = new DBconnect();
 				Statement st = db.getConnection().createStatement();
 				ResultSet rs = st.executeQuery("SELECT * FROM BOOK b\n" +
 						"LEFT JOIN imports_book ib ON b.id = ib.book_id\n" +
@@ -619,6 +637,8 @@ public class BookList {
 			}
 		} catch (SQLException ex) {
 			throw new RuntimeException(ex);
+		} finally {
+			db.close();
 		}
 		return books;
     }
@@ -641,7 +661,8 @@ public class BookList {
 		alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle("Error message");
 		alert.setHeaderText(null);
-		try(DBconnect db = new DBconnect();
+		DBconnect db = new DBconnect();
+		try(
 			PreparedStatement statement = db.getConnection().prepareStatement(sql)) {
 			statement.setInt(1, id);
 
@@ -694,6 +715,8 @@ public class BookList {
 			alert.setContentText("An error occurred while checking book availability");
 			alert.showAndWait();
 			return null;
+		} finally {
+			db.close();
 		}
 	}
 
