@@ -131,7 +131,7 @@ public class dashboardAdminController implements Initializable {
     @FXML
     private TextField userAccount_fullname;
 
-    Administrator ad = new Administrator(-1, "Harin Nguyen", "123", "harin@gmail.com", "Nguyen Thai Huyen", 0);
+    Administrator ad = new Administrator();
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -207,7 +207,7 @@ public class dashboardAdminController implements Initializable {
         userAccount_col_accountID.setCellValueFactory(new PropertyValueFactory<>("accountID"));
         userAccount_col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         userAccount_col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
-        userAccount_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        userAccount_col_email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         userAccount_col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
         userAccount_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
 

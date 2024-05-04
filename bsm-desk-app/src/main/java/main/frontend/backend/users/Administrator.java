@@ -4,6 +4,7 @@ import main.frontend.backend.lists.AccountList;
 import main.frontend.backend.utils.DBconnect;
 
 public class Administrator extends Account {
+	public Administrator() {}
 	public Administrator(int id, String fullname, String mail, String username, String password, int role) {
 		super(id, fullname, mail, username, password, role);
 		checkRole();
