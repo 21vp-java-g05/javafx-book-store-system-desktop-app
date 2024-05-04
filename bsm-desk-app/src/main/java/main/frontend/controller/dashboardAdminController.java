@@ -170,13 +170,23 @@ public class dashboardAdminController implements Initializable {
     }
     public boolean addAccount() {
         Account a = new Account(
-
+                Integer.parseInt(userAccount_accountID.getText()),
+                userAccount_email.getText(),
+                userAccount_username.getText(),
+                userAccount_password.getText(),
+                Integer.parseInt(userAccount_role.getSelectionModel().getSelectedItem().toString()),
+                Boolean.valueOf(userAccount_status.getSelectionModel().getSelectedItem().toString())
         );
         return ad.addAccount_toDatabase(a);
     }
     public boolean updateAccount() {
         Account a = new Account(
-
+                Integer.parseInt(userAccount_accountID.getText()),
+                userAccount_email.getText(),
+                userAccount_username.getText(),
+                userAccount_password.getText(),
+                Integer.parseInt(userAccount_role.getSelectionModel().toString()),
+                Boolean.valueOf(userAccount_status.getSelectionModel())
         );
         return ad.editAccount_fromDatabase(a);
     }
