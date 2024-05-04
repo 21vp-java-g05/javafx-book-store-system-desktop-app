@@ -174,7 +174,7 @@ public class dashboardAdminController implements Initializable {
     public boolean addAccount() {
         Account a = new Account(
             Integer.parseInt(userAccount_accountID.getText()),
-            null,
+            userAccount_fullname.getText(),
             userAccount_email.getText(),
             userAccount_username.getText(),
             userAccount_password.getText(),
@@ -186,14 +186,17 @@ public class dashboardAdminController implements Initializable {
     public boolean updateAccount() {
         Account a = new Account(
                 Integer.parseInt(userAccount_accountID.getText()),
-                null,
+                userAccount_fullname.getText(),
                 userAccount_email.getText(),
                 userAccount_username.getText(),
                 userAccount_password.getText(),
                 userAccount_role.getSelectionModel().toString().compareToIgnoreCase("Admin") == 0 ? 0 : 1,
-                userAccount_status.getSelectionModel().toString().compareToIgnoreCase("Enable") == 0 ? true : false
+                userAccount_status.getSelectionModel().toString().compareToIgnoreCase("Enable") == 0 ? false : true
         );
         return ad.editAccount_fromDatabase(a);
+    }
+    public boolean updateInfo() {
+        return true;
     }
 
     public ObservableList<userAccountData> userAccountListData;
