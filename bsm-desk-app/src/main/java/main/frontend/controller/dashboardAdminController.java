@@ -132,6 +132,26 @@ public class dashboardAdminController implements Initializable {
     private TextField userAccount_fullname;
 
     Administrator ad = new Administrator();
+    @FXML
+    private TextField profile_ID;
+
+    @FXML
+    private TextField profile_email;
+
+    @FXML
+    private TextField profile_fullname;
+
+    @FXML
+    private TextField profile_password;
+
+    @FXML
+    private ComboBox<?> profile_role;
+
+    @FXML
+    private ComboBox<?> profile_status;
+
+    @FXML
+    private TextField profile_username;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -196,7 +216,16 @@ public class dashboardAdminController implements Initializable {
         return ad.editAccount_fromDatabase(a);
     }
     public boolean updateInfo() {
-        return true;
+        ad.changeInfo(
+                Integer.parseInt(profile_ID.getText()),
+                profile_username.getText(),
+                profile_password.getText(),
+                profile_email.getText(),
+                profile_fullname.getText(),
+                profile_role.getSelectionModel().toString().compareToIgnoreCase("Admin") == 0 ? 0 : 1,
+                profile_status.getSelectionModel().toString().compareToIgnoreCase("Enable") == 0 ? false : true
+        );
+        return ad.updateAccount_toDatabase();
     }
 
     public ObservableList<userAccountData> userAccountListData;
